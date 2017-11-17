@@ -87,7 +87,7 @@
 							<el-checkbox v-for="(item,index) in List2" :label="item"></el-checkbox>
 						</el-checkbox-group>
 						<div>
-							<div class="clearfix"  v-for="(item,index) in AllArrey">
+							<div class="clearfix fix"  v-for="(item,index) in AllArrey">
 								<div style="width:60px;float:left">
 									{{item.name}}
 								</div>
