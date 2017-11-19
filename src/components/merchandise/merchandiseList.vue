@@ -128,9 +128,9 @@ export default {
 	.merchandise{
 		width: 100%;
 		font-size: 14px;
-		.allMerchandise-top {
+		.allMerchandise-top{
 		    height: 50px;
-	    	.add-merchandise {
+	    	.add-merchandise{
 			    display: block;
 			    width: 160px;
 			    height: 100%;

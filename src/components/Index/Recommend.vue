@@ -1,9 +1,9 @@
   <template>
   	<!--首页商品推荐-->
-  <div class="admin-adver">
+  <div class="admin-center">
   			<div class="add-column">
-  					<div class="column-top clearfix">
-  						<a @click="addColumnShow=true" href="javascript:;" class="add-a f-r">添加栏目</a>
+  					<div class="admin-center-top clearfix">
+  						<el-button @click="addColumnShow=true" class="f-r" type="primary">添加栏目</el-button>
   					</div>
   					<div class="column-list">
   						<span class="item">
@@ -26,7 +26,7 @@
 							  </el-select>
 		   	  	</div>
 		   	  	<el-button @click="alertFun()" class="f-l" style="margin-left: 15px;" type="primary" icon="search">搜索</el-button>
-	          <a href="javascript:;" @click="addAdverShow=true" class="add-adver f-r">添加商品推荐</a>
+	          <el-button @click="addAdverShow=true" class="f-r" plain>添加商品推荐</el-button>
 	        </div>
 	        <div class="adver-list">
             <table class="adver-table">
@@ -34,8 +34,7 @@
                     <tr>
                     		<td width="60">序号</td>
                     		<td width="120">分类</td>
-                        <td width="200">图片</td>
-    													
+                        <td width="160">图片</td>				
                         <td width="80">商品ID</td>
                         <td width="130">发布时间</td>
                         <td width="130">修改时间</td>
@@ -45,7 +44,7 @@
                 <tbody>
                     <tr>
                     		<td valign="middle">1</td>
-                    		<td width="120">分类</td>
+                    		<td>分类</td>
                         <td>
                             <img src="../../assets/logo.png"/>
                         </td>
@@ -53,8 +52,8 @@
                         <td valign="middle">发布时间</td>
                         <td valign="middle">修改时间</td>
                         <td valign="middle" class="operate-table">
-                            <a class="compile">编辑</a>
-                            <a href="javascript:;"  v-on:click="delect()" class="delect" >删除</a>
+                            <el-button>编辑</el-button>
+                    	  	  <el-button v-on:click="delect()" type="warning">删除</el-button>
                         </td>
                     </tr>
                 </tbody>                   
@@ -192,25 +191,10 @@ export default {
 		width: 100%;
 		display: block;
 	}
-	.admin-adver{
+	.admin-center{
 		width: 100%;
 		.add-column{
 			margin-bottom: 20px;
-			.column-top{
-				height: 50px;
-	    	.add-a {
-			    display: block;
-			    box-sizing: border-box;
-			    width: 160px;
-			    height: 100%;
-			    line-height: 50px;
-			    text-align: center;
-			    font-size: 22px;
-			    color: #52a8f9;
-			    border: 1px solid #95989a;
-			    border-radius: 10px
-				}
-			}
 			.column-list{
 				.item{
 					padding: 3px 10px;
@@ -245,23 +229,8 @@ export default {
 				}
 			}
 		}
-		.alladver-top {
-		    height: 50px;
-	    	.add-adver {
-	    		box-sizing: border-box;
-			    display: block;
-			    width: 160px;
-			    height: 100%;
-			    line-height: 50px;
-			    text-align: center;
-			    font-size: 22px;
-			    color: #52a8f9;
-			    border: 1px solid #95989a;
-			    border-radius: 10px
-				}
-		}
 		.adver-list {
-	    margin-top: 40px;
+	    margin-top: 15px;
 	    font-size: 18px;
 	    .adver-table {
 			    width: 100%;
@@ -272,7 +241,9 @@ export default {
 			    height: 40px;
 			    line-height: 40px;
 			    text-align: center;
+			    background: #f2f2f2;
 			    border-bottom: 1px solid #e5e5e5;
+			    font-size: 18px;
 			    td {
 					    padding: 0 10px
 					}

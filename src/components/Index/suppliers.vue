@@ -1,18 +1,18 @@
   <template>
   	<!--供应商录入-->
-  <div class="admin-adver">
-	   	  <div class="alladver-top clearfix">
-            <a @click="addAdverShow=true" href="javascript:;" class="add-adver f-r">添加供应商</a>
+  <div class="admin-center">
+	   	  <div class="admin-center-top clearfix">
+	   	  	  <el-button @click="addAdverShow=true" class="f-r" type="primary">添加供应商</el-button>
         </div>
         <div class="adver-list">
             <table class="adver-table">
                 <thead>
                     <tr>
                     		<td width="60">序号</td>
-                        <td width="180">LOGO</td>
+                        <td width="160">LOGO</td>
                         <td width="140">供应商名称</td>
-                        <td width="180">发布时间</td>
-                        <td width="180">修改时间</td>
+                        <td width="160">发布时间</td>
+                        <td width="160">修改时间</td>
                         <td>操作</td>
                     </tr>
                 </thead>
@@ -28,8 +28,8 @@
                         <td valign="middle">发布时间</td>
                         <td valign="middle">修改时间</td>
                         <td valign="middle" class="operate-table">
-                            <a class="compile">编辑</a>
-                            <a href="javascript:;"  v-on:click="delect()" class="delect" >删除</a>
+                            <el-button>编辑</el-button>
+                    	  	  <el-button v-on:click="delect()" type="warning">删除</el-button>
                         </td>
                     </tr>
                 </tbody>                   
@@ -124,25 +124,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
-	.admin-adver{
+<style lang="scss" scoped>
+	.admin-center{
 		width: 100%;
-		.alladver-top {
-		    height: 50px;
-	    	.add-adver {
-			    display: block;
-			    width: 160px;
-			    height: 100%;
-			    line-height: 50px;
-			    text-align: center;
-			    font-size: 22px;
-			    color: #52a8f9;
-			    border: 1px solid #95989a;
-			    border-radius: 10px
-				}
-		}
 		.adver-list {
-	    margin-top: 40px;
 	    font-size: 18px;
 	    .adver-table {
 			    width: 100%;
@@ -153,7 +138,9 @@ export default {
 			    height: 40px;
 			    line-height: 40px;
 			    text-align: center;
+			    background: #f2f2f2;
 			    border-bottom: 1px solid #e5e5e5;
+			    font-size: 18px;
 			    td {
 					    padding: 0 10px
 					}

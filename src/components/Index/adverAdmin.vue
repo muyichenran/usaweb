@@ -1,7 +1,7 @@
   <template>
   	<!--首页广告管理-->
-  <div class="admin-cener">
-	   	  <div class="admin-top clearfix">
+  <div class="admin-center">
+	   	  <div class="admin-center-top clearfix">
             <el-button class="f-r" type="primary">添加广告</el-button>
         </div>
         <div class="adver-list">
@@ -9,10 +9,10 @@
                 <thead>
                     <tr>
                     		<td width="60">序号</td>
-                        <td width="200">商品图片</td>
+                        <td width="180">商品图片</td>
                         <td width="100">商品ID</td>
-                        <td width="180">发布时间</td>
-                        <td width="180">修改时间</td>
+                        <td width="160">发布时间</td>
+                        <td width="160">修改时间</td>
                         <td>操作</td>
                     </tr>
                 </thead>
@@ -26,14 +26,15 @@
                         <td valign="middle">发布时间</td>
                         <td valign="middle">修改时间</td>
                         <td valign="middle" class="operate-table">
-                            <a class="compile">编辑</a>
-                            <a href="javascript:;"  v-on:click="delect()" class="delect" >删除</a>
+                            <el-button>编辑</el-button>
+                    	  	  <el-button v-on:click="delect()" type="warning">删除</el-button>
                         </td>
                     </tr>
                 </tbody>                   
             </table>
         </div>
-        <div v-if="addAdverShow">
+       
+       <div v-if="addAdverShow">
         	<div class="box-shade"></div>
         	<div class="add-tkbox">
         		<a @click="addAdverShow=false" class="close" href="javascript:;">
@@ -97,14 +98,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.admin-center{
 		width: 100%;
-		.admin-center-top {
-		    height: 50px;
-		}
 		.adver-list {
-	    margin-top: 40px;
 	    font-size: 18px;
 	    .adver-table {
 			    width: 100%;
@@ -115,8 +112,9 @@ export default {
 			    height: 40px;
 			    line-height: 40px;
 			    text-align: center;
+			    background: #f2f2f2;
 			    border-bottom: 1px solid #e5e5e5;
-			    background: #e5e5e5;
+			    font-size: 18px;
 			    td {
 					    padding: 0 10px
 					}

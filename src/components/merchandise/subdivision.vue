@@ -8,7 +8,7 @@
             <table class="subdivision-table">
                 <thead>
                     <tr>
-                    	<td width="60">序号</td>
+                    		<td width="60">序号</td>
                         <td width="200">分区名称</td>
                         <td align="right">
                         	<span style="padding-right: 25px;">操作</span>
@@ -60,6 +60,31 @@
                     </tr>
                 </tbody>                   
             </table>
+        </div>
+        <div v-if="addSubShow">
+        	<div class="box-shade"></div>
+        	<div class="add-sub-box">
+        			<a  class="close" href="javascript:;">
+        				<i class="iconfont">&#xe605;</i>
+	        		</a>	
+        			<table>
+									<tr>
+										<td width="120" align="right">序号</td>
+										<td width="220">
+											<el-input v-model="addSubShow"></el-input>
+										</td>
+									</tr>
+									<tr>
+										<td width="120" align="right">名称</td>
+										<td width="220">
+											<el-input v-model="addSubShow"></el-input>
+										</td>
+									</tr>
+							</table>
+							<p class="align-center">
+								 <el-button  type="primary"  class="submit-btn">Submit</el-button>
+							</p>
+        	</div>
         </div>
   </div>
 </template>
@@ -162,5 +187,34 @@ export default {
 						}  
 					}
 				}
+		}
+		.add-sub-box{
+			z-index: 100;
+	    padding: 30px;
+	    position: fixed;
+	    width: 400px;
+	    left: 50%;
+	    top: 50%;
+	    -webkit-transform: translate(-50%,-50%);
+	    transform: translate(-50%,-50%);
+	    border-radius: 10px;
+	    background: #fff;
+	    box-shadow: 0 2px 3px rgba(0,0,0,.4);
+	    .close{
+	    	position: absolute;
+	    	top: 5px;
+	    	right: 8px;
+	    	i{
+	    		color: #95989a;
+	    	}
+	    }
+	    table{
+	    	td{
+	    		padding: 10px;
+	    	}
+    	}
+	    .submit-btn{
+	    	margin-top: 30px;
+	    }
 		}
 </style>
