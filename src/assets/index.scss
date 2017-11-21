@@ -90,3 +90,17 @@ $F76260:#F76260;
     }
     
 }
+
+
+// 弹框代码
+.usa-up-box{
+    z-index: 100;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 3px rgba(0,0,0,.4);
+}
