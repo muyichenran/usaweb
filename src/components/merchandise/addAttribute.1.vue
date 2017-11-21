@@ -1,5 +1,5 @@
   <template>
-  	<!--添加分区管理-->
+  	<!--添加属性管理-->
   	<div class="admin-adver">
 				<div class="subdivision-table">
 						<table>

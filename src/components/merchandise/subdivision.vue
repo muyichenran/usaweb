@@ -8,7 +8,7 @@
             <table class="subdivision-table">
                 <thead>
                     <tr>
-                    		<td width="60">序号</td>
+                    	<td width="60">序号</td>
                         <td width="200">分区名称</td>
                         <td align="right">
                         	<span style="padding-right: 25px;">操作</span>

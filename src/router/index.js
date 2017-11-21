@@ -8,7 +8,7 @@ import Recommend from '@/components/Index/Recommend'
 import suppliers from '@/components/Index/suppliers'
 
 import subdivision from '@/components/merchandise/subdivision'
-import addSubdivision from '@/components/merchandise/addSubdivision'
+import addAttribute from '@/components/merchandise/addAttribute'
 Vue.use(Router)
 
 export default new Router({
@@ -41,8 +41,8 @@ export default new Router({
       		component: subdivision,
         },
         {
-        	path: '/addSubdivision',
-      		component: addSubdivision,
+        	path: '/addAttribute',
+      		component: addAttribute,
         },
         
       ]  
