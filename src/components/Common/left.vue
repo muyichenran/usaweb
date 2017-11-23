@@ -12,7 +12,7 @@
                  <router-link to="/subdivision">分区列表<i class="iconfont">&#xe602;</i></router-link>
             </li>
             <li>
-                 <router-link to="/subdivision">商品属性<i class="iconfont">&#xe602;</i></router-link>
+                 <router-link to="/addAttribute">商品属性<i class="iconfont">&#xe602;</i></router-link>
             </li>
             <li>
                  <router-link to="/">商品录入<i class="iconfont">&#xe602;</i></router-link>

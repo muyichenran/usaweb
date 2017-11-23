@@ -8,7 +8,7 @@
             <table class="merchandise-table">
                 <thead>
                     <tr>
-                    		<td width="60">序号</td>
+                    	<td width="60">序号</td>
                         <td width="180">LOGO</td>
                         <td width="140">供应商名称</td>
                         <td width="180">发布时间</td>

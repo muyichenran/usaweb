@@ -9,20 +9,23 @@
 			<div class="attribute-block-center">
 				<div class="add-attribute">
 						<div class="add-newattri-top clearfix">
-					 			<el-button class="f-l" type="primary" round>添加属性类别</el-button>
+					 		<el-button class="f-l" type="primary" round>添加属性类别</el-button>
 					 	</div>
 					 	<div class="add-newattri">
 					 		<div class="first-input clearfix">
 					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
+								<a class="delect-button f-r">
+					 				<i class="iconfont">&#xe606;</i>
+					 			</a> 
 					 			<a class="add-button f-r">
 					 				<i class="iconfont">&#xe600;</i>
 					 			</a>
 					 		</div>
 					 		<div class="second-input clearfix">
 					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
-					 			<a class="add-button f-r">
-					 				<i class="iconfont">&#xe600;</i>
-					 			</a>
+								<a class="delect-button f-r">
+					 				<i class="iconfont">&#xe606;</i>
+					 			</a> 								
 					 		</div>
 					 	</div>
 				</div>
@@ -31,7 +34,7 @@
 
 
 		<div v-if="selectShow" class="select-division">
-			<div class="box-shade"></div>
+			<div @click="selectShow=false"  class="box-shade"></div>
 			<div class="usa-up-box">
 				<div class="division-list">
 					<div class="first-division">
@@ -88,33 +91,6 @@
 				</div>
 			</div>
 		</div>
-
-
-		<div v-if="addSize3Show"> 
-				<div class="box-shade"></div>
-				<div class="add-color-box">
-						<a @click="addSize3Show=false" class="close" href="javascript:;">
-					<i class="iconfont">&#xe605;</i>
-				</a>
-						<table>
-							<tr>
-								<td width="120" align="right">Size Name</td>
-								<td width="220">
-									<el-input v-model="shoesSizeObj.Name"></el-input>
-								</td>
-							</tr>
-							<tr>
-								<td width="120" align="right">Size Number</td>
-								<td width="220">
-									<el-input v-model="shoesSizeObj.Number"></el-input>
-								</td>
-							</tr>
-						</table>
-						<p class="align-center">
-								<el-button @click="subSize3Fun()" type="primary"  class="submit-btn">Submit</el-button>
-						</p>
-				</div>
-		</div>
   	</div>
 </template>
 
@@ -122,7 +98,6 @@
 export default {
    data(){
       return{
-		    addSize3Show:false,
 		    selectShow:false
       }
     },
@@ -194,15 +169,34 @@ export default {
 						color: #409EFF;
 					}
 			}
+			.delect-button{
+				display: inline-block;	
+				padding-left: 10px;
+				height: 36px;
+				line-height: 36px;				
+				i{
+					font-size:29px;
+					color: #fe4343;
+				}
+			}
 			.add-newattri-top{
 				margin-bottom: 15px;
 			}
 			.add-newattri{
 				.first-input{
 					.input{
-						width: 360px;
+						width: 320px;
 					}
 				}
+				.second-input{
+					margin-top: 10px;
+					width: 360px;
+					margin-left: 40px;
+					.input{
+						width: 280px;
+					}
+				}
+
 			}
 		}
 	}

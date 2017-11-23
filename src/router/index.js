@@ -7,6 +7,9 @@ import adverAdmin from '@/components/Index/adverAdmin'
 import Recommend from '@/components/Index/Recommend'
 import suppliers from '@/components/Index/suppliers'
 
+
+
+import addGoods from '@/components/merchandise/addGoods'   //添加商品
 import subdivision from '@/components/merchandise/subdivision'
 import addAttribute from '@/components/merchandise/addAttribute'
 Vue.use(Router)
@@ -44,7 +47,10 @@ export default new Router({
         	path: '/addAttribute',
       		component: addAttribute,
         },
-        
+        {
+        	path: '/addGoods',
+      		component: addGoods,
+        },
       ]  
    },
     {
