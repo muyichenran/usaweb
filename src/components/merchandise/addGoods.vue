@@ -185,7 +185,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.width300{
 		width: 300px;
 	}
