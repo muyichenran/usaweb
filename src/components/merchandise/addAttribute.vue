@@ -1,90 +1,91 @@
   <template>
   	<!--添加分区属性管理-->
   	<div class="admin-center">
-			<div class="attribute-block">
-				<div class="attribute-block-top">
-					<el-button  @click="selectShow=true" type="primary" plain>选择分区</el-button>
-					<span class="attribute-name">衬衣分区</span>
+		<div class="attribute-block">
+			<div class="attribute-block-top">
+				<span style="font-size:18px;">分区：</span><el-select v-model="value" placeholder="请选择">
+					<el-option
+					v-for="item in options"
+					:key="item.value1"
+					:label="item.label1"
+					:value="item.id">
+					</el-option>
+				</el-select>
+			</div>
+			<div class="attribute-block-center">
+				<div class="add-attribute">
+						<div class="add-newattri-top clearfix">
+					 		<p class="add-fg">风格版式</p>
+					 	</div>
+					 	<div class="add-newattri">
+					 		<div class="first-input clearfix">
+					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
+					 			<a class="add-button f-r">
+					 				<i class="iconfont">&#xe600;</i>
+					 			</a>
+					 		</div>
+					 		<div class="second-input clearfix">
+					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
+								<a class="delect-button f-r">
+					 				<i class="iconfont">&#xe606;</i>
+					 			</a> 								
+					 		</div>
+					 	</div>
 				</div>
-				<div class="attribute-block-center">
-					<p class="title">
-						请添加你需要的属性：
-					</p>
-					<el-checkbox-group v-model="checkList">
-            <el-checkbox v-for="(item,index) in attributeList" :label="item">{{item.name}}</el-checkbox>
-        	</el-checkbox-group>
-        	
-        	<el-button  @click="alert()" class="sub" type="primary" >提交</el-button>
-				</div>
-			</div>	
-
-
-			<div v-if="selectShow" class="select-division">
-				<div @click="selectShow=false"  class="box-shade"></div>
-				<div class="usa-up-box">
-					<div class="division-list">
-						<div class="first-division">
-							<p class="title">
-								衬衣
-							</p>
-							<div class="second-division">
-								<p class="second-title">
-									长袖
-								</p>
-								<p class="second-title">
-									短袖
-								</p>
-							</div>
-						</div><div class="first-division">
-							<p class="title">
-								衬衣
-							</p>
-							<div class="second-division">
-								<p class="second-title">
-									长袖
-								</p>
-								<p class="second-title">
-									短袖
-								</p>
-							</div>
-						</div>
-						<div class="first-division">
-							<p class="title">
-								衬衣
-							</p>
-							<div class="second-division">
-								<p class="second-title">
-									长袖
-								</p>
-								<p class="second-title">
-									短袖
-								</p>
-							</div>
-						</div>
-						<div class="first-division">
-							<p class="title">
-								衬衣
-							</p>
-							<div class="second-division">
-								<p class="second-title">
-									长袖
-								</p>
-								<p class="second-title">
-									短袖
-								</p>
-							</div>
-						</div>
-					</div>
+				<div class="add-attribute">
+						<div class="add-newattri-top clearfix">
+					 		<el-button class="f-l" type="primary" round>添加属性类别</el-button>
+					 	</div>
+					 	<div class="add-newattri">
+					 		<div class="first-input clearfix">
+					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
+								<a class="delect-button f-r">
+					 				<i class="iconfont">&#xe606;</i>
+					 			</a> 
+					 			<a class="add-button f-r">
+					 				<i class="iconfont">&#xe600;</i>
+					 			</a>
+					 		</div>
+					 		<div class="second-input clearfix">
+					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
+								<a class="delect-button f-r">
+					 				<i class="iconfont">&#xe606;</i>
+					 			</a> 								
+					 		</div>
+					 	</div>
 				</div>
 			</div>
-  	
+		</div>	
+
+
   	</div>
 </template>
-
 <script>
 export default {
    data(){
       return{
+		 	options: [{
+				id:1,
+				value1: '选项1',
+				label1: '衬衣'
+				}, {
+				id:2,
+				value1: '选项2',
+				label1: '鞋子'
+				}, {
+					id:3,
+				value1: '选项3',
+				label1: '西装'
+				}, {
+					id:4,
+				value1: '选项4',
+				label1: '毛衣'
+				}, {
+					id:5,
+				value1: '选项5',
+				label1: '北京烤鸭'
+			}],
+			value: '',
 		    selectShow:false,
 		    attributeList:[
 		    	{
@@ -111,10 +112,13 @@ export default {
     }
 }
 </script>
-
 <style lang="scss" scoped>
+	.el-select-dropdown__item{
+		display: block;
+	}
 	.attribute-block{
 		min-height: 400px;
+		
 		.attribute-block-top{
 			.attribute-name{
 				color: #409eff;
@@ -157,20 +161,52 @@ export default {
 		
 	}
 	.attribute-block-center{
-		margin-top: 30px;
-		&>.title{
-			font-size: 20px;
-			margin-bottom: 20px;
-		}
-		.el-checkbox-group{
-			label{
-				display: block;
-				margin:0 auto 10px !important ;
+			margin-top: 30px;
+		.add-attribute{
+			width: 400px;
+			margin-bottom: 40px;
+			.add-button{
+					display: inline-block;	
+					height: 36px;
+					line-height: 36px;				
+					i{
+						font-size:30px;
+						color: #409EFF;
+					}
 			}
-		}	
-	}
-	.sub{
-		margin-top: 20px;
+			.delect-button{
+				display: inline-block;	
+				padding-left: 10px;
+				height: 36px;
+				line-height: 36px;				
+				i{
+					font-size:29px;
+					color: #fe4343;
+				}
+			}
+			.add-newattri-top{
+				margin-bottom: 15px;
+				.add-fg{
+					font-size: 18px
+				}
+			}
+			.add-newattri{
+				.first-input{
+					.input{
+						width: 320px;
+					}
+				}
+				.second-input{
+					margin-top: 10px;
+					width: 360px;
+					margin-left: 40px;
+					.input{
+						width: 280px;
+					}
+				}
+
+			}
+		}
 	}
 </style>
 

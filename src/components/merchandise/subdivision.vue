@@ -17,45 +17,17 @@
                 </thead>
                 <tbody>
                     <tr>
-                    		<td valign="top">
-                    			<span class="height36">1</span>
-                    		</td>
-                        <td valign="top">
+						<td valign="middle">
+							<span class="height36">1</span>
+						</td>
+                        <td valign="middle">
                       	 	<span class="height36"> 衬衫</span>
                         </td>
                         <td valign="middle">
-                        	  <p class="align-right">
-                        	  	<el-button>编辑</el-button>
-                        	  	<el-button v-on:click="delect()" type="warning">删除</el-button>
-                            	<el-button type="primary">添加子分区</el-button>
-                        	  </p>
-                            <table class="second-table">
-                            	<thead>
-	                            		<tr>
-							                    		<td width="60">序号</td>
-							                        <td width="150">分区名称</td>
-							                        <td align="right">
-							                        	<span style="padding-right: 25px;">操作</span>
-							                        </td>
-							                    </tr>
-						   								</thead>	  
-						   								<tbody>
-							                    <tr>
-							                    		<td valign="top">
-							                    			<span class="height36">1</span>
-							                    		</td>
-							                        <td valign="top">
-							                      	 	<span class="height36"> 衬衫</span>
-							                        </td>
-							                        <td valign="middle" style="padding-right: 0;">
-							                        	  <p class="align-right">
-							                        	  	<el-button>编辑</el-button>
-							                        	  	<el-button v-on:click="delect()" type="warning">删除</el-button>
-							                         		 </p>
-							                        </td>	  
-							                    </tr>    
-							                 </tbody>   
-                            </table>
+							<p class="align-right">
+								<el-button type="primary">编辑</el-button>
+								<el-button v-on:click="delect()" type="warning">删除</el-button>
+							</p>
                         </td>
                     </tr>
                 </tbody>                   
@@ -68,22 +40,22 @@
         				<i class="iconfont">&#xe605;</i>
 	        		</a>	
         			<table>
-									<tr>
-										<td width="120" align="right">序号</td>
-										<td width="220">
-											<el-input v-model="addSubShow"></el-input>
-										</td>
-									</tr>
-									<tr>
-										<td width="120" align="right">名称</td>
-										<td width="220">
-											<el-input v-model="addSubShow"></el-input>
-										</td>
-									</tr>
-							</table>
-							<p class="align-center">
-								 <el-button  type="primary"  class="submit-btn">Submit</el-button>
-							</p>
+							<tr>
+								<td width="120" align="right">序号</td>
+								<td width="220">
+									<el-input v-model="addSubShow"></el-input>
+								</td>
+							</tr>
+							<tr>
+								<td width="120" align="right">名称</td>
+								<td width="220">
+									<el-input v-model="addSubShow"></el-input>
+								</td>
+							</tr>
+					</table>
+					<p class="align-center">
+							<el-button  type="primary"  class="submit-btn">Submit</el-button>
+					</p>
         	</div>
         </div>
   </div>
@@ -129,64 +101,44 @@ export default {
 
 <style lang="scss">
 		.subdivision-list {  
-				font-size: 16px;
-				.height36{
-					display: inline-block;
-					line-height: 36px;
-				}
-				.el-button--primary{
-					padding:10px 15px;
-				}
+			font-size: 16px;
+			.height36{
+				display: inline-block;
+				line-height: 36px;
+			}
+			.el-button--primary{
+				padding:10px 15px;
+			}
 		    .subdivision-table {
-				    width: 100%;
-				    &>thead {
-					    width: 100%;
-					    margin-bottom: 10px;
-					    height: 40px;
-					    line-height: 40px;
-					    text-align: center;
-					    background: #f2f2f2;
-					    border-bottom: 1px solid #e5e5e5;
-					    font-size: 18px;
-					    td {
-							    padding: 0 10px
-							}
-					}
-					&>tbody{
-						&>tr{
-							&>td{
-								padding: 10px;
-						    text-align: center;
-							}
-						}  
-					}
-				}
-				.second-table{
+				width: 100%;
+				&>thead {
 					width: 100%;
-					margin-top: 10px;
-					
-					&>thead {
-					    width: 100%;
-					    margin-bottom: 10px;
-					    height: 40px;
-					    line-height: 40px;
-					    text-align: center;
-					    background: #f2f2f2;
-					    border-bottom: 1px solid #e5e5e5;
-					    font-size: 18px;
-					    td {
-							    padding: 0 8px
-							}
-					}
-					&>tbody{
-						&>tr{
-							&>td{
-								padding: 8px;
-						    text-align: center;
-							}
-						}  
-					}
+					margin-bottom: 10px;
+					height: 40px;
+					line-height: 40px;
+					text-align: center;
+					background: #f2f2f2;
+					border-bottom: 1px solid #e5e5e5;
+					font-size: 18px;
+					td {
+							padding: 0 10px
+						}
 				}
+				&>tbody{
+					&>tr{
+						&>td{
+							padding: 10px;
+						text-align: center;
+						}
+					}  
+				}
+				// .retrieve-list{
+				// 	text-align: center;
+				// 	p{
+				// 		line-height: 28px;
+				// 	}
+				// }
+			}
 		}
 		.add-sub-box{
 			z-index: 100;
@@ -218,3 +170,9 @@ export default {
 	    }
 		}
 </style>
+  
+  
+  
+  
+  
+ 

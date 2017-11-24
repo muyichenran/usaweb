@@ -12,6 +12,8 @@ import suppliers from '@/components/Index/suppliers'
 import addGoods from '@/components/merchandise/addGoods'   //添加商品
 import subdivision from '@/components/merchandise/subdivision'
 import addAttribute from '@/components/merchandise/addAttribute'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -51,6 +53,7 @@ export default new Router({
         	path: '/addGoods',
       		component: addGoods,
         },
+
       ]  
    },
     {
