@@ -3,18 +3,45 @@
   	<div class="admin-center">
         <div class="goods-table">
                 <table>
-                    <tr>
+                    <!-- <tr>
                         <td align="right"  width="120">序号</td>
                         <td width="750">
                             <el-input class="width300"  placeholder="请输入序号"></el-input>
                         </td>
-                    </tr>
+                    </tr> -->
 					<tr>
-                        <td align="right"  width="120">标题</td>
+                        <td align="right"  width="120">商品名称</td>
                         <td width="750">
-                            <el-input class="width300"  placeholder="请输入标题"></el-input>
+                            <el-input class="width300"  placeholder="请输入商品名称"></el-input>
                         </td>
                     </tr>
+					<tr>
+                        <td align="right"  width="120">风格版式</td>
+                        <td width="750">
+							<el-select v-model="value" class="width300" placeholder="请选择">
+								<el-option
+								v-for="item in options"
+								:key="item.value"
+								:label="item.label"
+								:value="item.value">
+								</el-option>
+							</el-select>
+                        </td>
+                    </tr>
+					<tr>
+                        <td align="right"  width="120">品牌</td>
+                        <td width="750">
+							<el-select v-model="value" class="width300" placeholder="请选择">
+								<el-option
+								v-for="item in options"
+								:key="item.value"
+								:label="item.label"
+								:value="item.value">
+								</el-option>
+							</el-select>
+                        </td>
+                    </tr>
+					
 					<tr>
                         <td align="right" valign="top" width="120">商品图片</td>
                         <td width="750">
@@ -24,7 +51,7 @@
 									action="https://jsonplaceholder.typicode.com/posts/"
 									:on-preview="handlePreview"
 									:on-remove="handleRemove"
-									:file-list="fileList2"
+									:file-list="fileList"
 									list-type="picture">
 									<el-button size="small" type="primary">点击上传</el-button>
 									<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -32,6 +59,7 @@
 						   </div>
                         </td>
                     </tr>
+					
 					<tr>
                         <td align="right" valign="top">商品规格</td>
                         <td>
@@ -45,7 +73,21 @@
 									</div>
 								</div>
 								<div class="item-block">
-									<p class="title">标尺</p>	
+									<p class="title">标尺：</p>	
+									<div class="attribute-list">
+										<el-checkbox-group v-model="checkList2">
+											<el-checkbox v-for="(item,index) in List" :label="item"></el-checkbox>
+										</el-checkbox-group>    
+									</div>
+								</div>
+								<div class="item-block">
+									<p class="title">商品销售规格：</p>
+									<p class="prompting">注意：颜色、标尺，两个属性必须勾选，如果不勾选将会导致无法保存库存；库存为0的商品将在前段不予展示</p>	
+									<div class="batch-fill">
+										批量填充：<el-input class="width150"  placeholder="请输入商品价格"></el-input>
+										<el-input class="width150"  placeholder="请输入商品库存"></el-input>
+										<el-button plain>确认</el-button>
+									</div>
 									<div class="attribute-list">
 										<el-checkbox-group v-model="checkList2">
 											<el-checkbox v-for="(item,index) in List" :label="item"></el-checkbox>
@@ -53,6 +95,18 @@
 									</div>
 								</div>
 							</div>
+                        </td>
+                    </tr>
+					<tr>
+                        <td align="right"  width="120">商品描述</td>
+                        <td width="750">
+							<el-input
+							class="width300"
+							type="textarea"
+							autosize
+							placeholder="请输入描述"
+							>
+							</el-input>
                         </td>
                     </tr>
                 </table>
@@ -84,7 +138,7 @@
 export default {
    data(){
       return{
-		  fileList2: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
+		fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
       	colorObj:{},
       	colorList:['red','blue'],
       	sizeTypeList:[],
@@ -98,7 +152,24 @@ export default {
 		List:['S','M','L'],
 		checkList2: [],
 		List2:['32','33','34'],
-		AllArrey:[]
+		AllArrey:[],
+		options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
+        value: ''
       }
     },
     components: {
@@ -183,7 +254,9 @@ export default {
     		this.sizeTypeList.push(this.shoesSizeObj);
     		this.addSize3Show=false;
     		this.shoesSizeObj={};
-    	}
+    	},
+		handlePreview:function(){},
+		handleRemove:function(){},
     },
     created(){
     	
@@ -194,6 +267,9 @@ export default {
 <style lang="scss" scoped>
 	.width300{
 		width: 300px;
+	}
+	.width150{
+		width: 150px;
 	}
 	.admin-center{
 		width: 100%;
@@ -225,6 +301,31 @@ export default {
                 border: 1px solid #bfcbd9;
                 color: #1f2d3d;
             }
+		}
+		.product-speci{
+			background: #f2f2f2;
+			
+			.item-block{
+				padding: 20px 10px;
+				border-bottom: 1px solid #e5e5e5;
+				&:last-child{
+					border-bottom: none;
+				}
+				.title{
+					// margin-bottom: 15px;
+				}
+				.prompting{
+					color: #95989a;
+					font-size: 14px;
+					margin-top:10px; 
+				}
+				.attribute-list{
+					margin-top: 15px;
+				}
+				.batch-fill{
+					margin-top: 10px;
+				}
+			}
 		}
 	}
 	

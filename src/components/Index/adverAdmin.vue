@@ -8,11 +8,12 @@
             <table class="adver-table">
                 <thead>
                     <tr>
-                    		<td width="60">序号</td>
+                    	<td width="60">序号</td>
                         <td width="180">商品图片</td>
-                        <td width="100">商品ID</td>
-                        <td width="160">发布时间</td>
-                        <td width="160">修改时间</td>
+                        <td width="80">商品ID</td>
+						<td width="100">商品推荐</td>
+                        <td width="120">发布时间</td>
+                        <td width="120">修改时间</td>
                         <td>操作</td>
                     </tr>
                 </thead>
@@ -23,6 +24,7 @@
                             <img src="../../assets/logo.png"/>
                         </td>
                         <td valign="middle">商品ID</td>
+						<td valign="middle">新品</td>
                         <td valign="middle">发布时间</td>
                         <td valign="middle">修改时间</td>
                         <td valign="middle" class="operate-table">
@@ -51,6 +53,12 @@
         					<td align="right" width="90">商品ID</td>
         					<td>
         						<el-input  placeholder="请输入ID"></el-input>
+        					</td>
+        				</tr>
+						<tr >
+        					<td align="right" width="90">商品推荐</td>
+        					<td>
+        						<el-input  placeholder="请输入推荐"></el-input>
         					</td>
         				</tr>
         			</table>
