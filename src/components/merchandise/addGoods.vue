@@ -59,25 +59,24 @@
                 <p class="align-center">
                         <el-button class="sub-allinfo" @click="checkArreyFunction()" type="primary">提交</el-button>
                 </p>
-                    <div class="clearfix"  v-for="(item,index) in AllArrey">
-                        <div style="width:60px;float:left">
-                            {{item.name}}
-                        </div>
-                        <div class="clearfix" v-for="(item2,index2) in item.sizeArray" style="width:400px;float:left;">
-                            <div style="height:20px;width:100px;float:left">
-                                {{item2.sizeName}}
-                            </div>
-                            <div style="height:20px;width:100px;float:left">
-                                {{item2.inventory}}
-                            </div>
-                            <div style="height:20px;width:100px;float:left">
-                                {{item2.price}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-			
+				<div class="clearfix"  v-for="(item,index) in AllArrey">
+					<div style="width:60px;float:left">
+						{{item.name}}
+					</div>
+					<div class="clearfix" v-for="(item2,index2) in item.sizeArray" style="width:400px;float:left;">
+						<div style="height:20px;width:100px;float:left">
+							{{item2.sizeName}}
+						</div>
+						<div style="height:20px;width:100px;float:left">
+							{{item2.inventory}}
+						</div>
+						<div style="height:20px;width:100px;float:left">
+							{{item2.price}}
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>	
   	</div>
 </template>
 
