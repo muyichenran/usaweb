@@ -9,58 +9,58 @@
                             <el-input class="width300"  placeholder="请输入序号"></el-input>
                         </td>
                     </tr> -->
-					<tr>
+										<tr>
                         <td align="right"  width="120">商品名称</td>
                         <td width="750">
                             <el-input class="width300"  placeholder="请输入商品名称"></el-input>
                         </td>
                     </tr>
-					<tr>
+										<tr>
                         <td align="right"  width="120">风格版式</td>
                         <td width="750">
-							<el-select v-model="value" class="width300" placeholder="请选择">
-								<el-option
-								v-for="item in options"
-								:key="item.value"
-								:label="item.label"
-								:value="item.value">
-								</el-option>
-							</el-select>
+													<el-select v-model="value" class="width300" placeholder="请选择">
+														<el-option
+														v-for="item in options"
+														:key="item.value"
+														:label="item.label"
+														:value="item.value">
+														</el-option>
+													</el-select>
                         </td>
                     </tr>
-					<tr>
+										<tr>
                         <td align="right"  width="120">品牌</td>
                         <td width="750">
-							<el-select v-model="value" class="width300" placeholder="请选择">
-								<el-option
-								v-for="item in options"
-								:key="item.value"
-								:label="item.label"
-								:value="item.value">
-								</el-option>
-							</el-select>
+												<el-select v-model="value" class="width300" placeholder="请选择">
+													<el-option
+													v-for="item in options"
+													:key="item.value"
+													:label="item.label"
+													:value="item.value">
+													</el-option>
+												</el-select>
                         </td>
                     </tr>
 					
-					<tr>
+										<tr>
                         <td align="right" valign="top" width="120">商品图片</td>
                         <td width="750">
                            <div class="pic-list">
-							    <el-upload
-									class="upload-demo"
-									action="https://jsonplaceholder.typicode.com/posts/"
-									:on-preview="handlePreview"
-									:on-remove="handleRemove"
-									:file-list="fileList"
-									list-type="picture">
-									<el-button size="small" type="primary">点击上传</el-button>
-									<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-								</el-upload>
-						   </div>
+							    					<el-upload
+															class="upload-demo"
+															action="https://jsonplaceholder.typicode.com/posts/"
+															:on-preview="handlePreview"
+															:on-remove="handleRemove"
+															:file-list="fileList"
+															list-type="picture">
+															<el-button size="small" type="primary">点击上传</el-button>
+															<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+														</el-upload>
+										   		</div>
                         </td>
                     </tr>
 					
-					<tr>
+										<tr>
                         <td align="right" valign="top">商品规格</td>
                         <td>
                             <div class="product-speci">

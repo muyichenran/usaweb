@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 		.subdivision-list {  
 			font-size: 16px;
 			.height36{

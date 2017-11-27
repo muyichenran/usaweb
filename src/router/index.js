@@ -13,6 +13,8 @@ import addGoods from '@/components/merchandise/addGoods'   //添加商品
 import subdivision from '@/components/merchandise/subdivision'
 import addAttribute from '@/components/merchandise/addAttribute'
 
+import admin from '@/components/admin/index'
+
 
 Vue.use(Router)
 
@@ -53,7 +55,13 @@ export default new Router({
         	path: '/addGoods',
       		component: addGoods,
         },
-
+				
+				
+				
+				{
+        	path: '/admin',
+      		component: admin,
+        },
       ]  
    },
     {
