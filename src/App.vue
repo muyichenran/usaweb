@@ -46,6 +46,7 @@ export default {
 @import "./assets/index.scss";
 .admin-top {
     height: 60px;
+    min-width:1200px;
     background: #292929;
 		.center1200{
 		    height: 100%;

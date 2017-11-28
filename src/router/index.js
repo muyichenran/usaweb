@@ -14,7 +14,7 @@ import subdivision from '@/components/merchandise/subdivision'
 import addAttribute from '@/components/merchandise/addAttribute'
 
 import admin from '@/components/admin/index'
-
+import signCode from '@/components/Common/signCode'
 
 Vue.use(Router)
 
@@ -61,6 +61,10 @@ export default new Router({
 				{
         	path: '/admin',
       		component: admin,
+        },
+        {
+        	path: '/signCode',
+      		component: signCode,
         },
       ]  
    },

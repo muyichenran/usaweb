@@ -38,7 +38,7 @@
         <div v-if="addSuppShow">
         	<div class="box-shade"></div>
         	<div class="add-tkbox">
-        		<a @click="addSuppShow=false" class="close" href="javascript:;">
+        		<a @click="closeTk()" class="close" href="javascript:;">
         			<i class="iconfont">&#xe605;</i>
         		</a>
         			<table>
@@ -59,7 +59,8 @@
         					<td>
         						<el-upload
 										  class="avatar-uploader"
-										  action="https://jsonplaceholder.typicode.com/posts/"
+										  name="uploadFile"
+										  action="http://manager.luxtonusa.com/picture/upload"
 										  :show-file-list="false"
 										  :on-success="handleAvatarSuccess"
 										  :before-upload="beforeAvatarUpload">
@@ -136,6 +137,10 @@ export default {
 	        }, response => {
 	        });	
     	},
+    	closeTk:function(){
+    			this.supplier={};
+          this.addSuppShow=false;
+    	},
     	bodyReady:function(){
 	    			var url='http://manager.luxtonusa.com/supplier/get/list';
 		        var vm=this;
@@ -177,6 +182,7 @@ export default {
 			    padding: 10px;
 			    text-align: center;
 			    img{
+			    	max-width: 100%;
 			    	max-height:100px ;
 			    }
 			}
