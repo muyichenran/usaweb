@@ -2,7 +2,7 @@
   	<!--供应商录入-->
   <div class="admin-center">
 	   	  <div class="admin-center-top clearfix">
-	   	  	  <el-button @click="addAdverShow=true" class="f-r" type="primary">添加供应商</el-button>
+	   	  	  <el-button @click="addSuppShow=true" class="f-r" type="primary">添加供应商</el-button>
         </div>
         <div class="adver-list">
             <table class="adver-table">
@@ -17,41 +17,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    		<td valign="middle">1</td>
+                    <tr v-for="(item,index) in supplierList">
+                    		<td valign="middle">{{item.sortNum}}</td>
                         <td>
-                            <img src="../../assets/logo.png"/>
+                            <img :src="item.picUrl"/>
                         </td>
                         <td>
-                        	nick
+                        	{{item.name}}
                         </td>
-                        <td valign="middle">发布时间</td>
-                        <td valign="middle">修改时间</td>
+                        <td valign="middle">{{item.createTime |formatTime}}</td>
+                        <td valign="middle">{{item.updateTime |formatTime}}</td>
                         <td valign="middle" class="operate-table">
-                            <el-button>编辑</el-button>
-                    	  	  <el-button v-on:click="delect()" type="warning">删除</el-button>
+                            <el-button @click="edit(index,item.supplierId)">编辑</el-button>
+                    	  	  <el-button @click="delect(item.supplierId)" type="warning">删除</el-button>
                         </td>
                     </tr>
                 </tbody>                   
             </table>
         </div>
-        <div v-if="addAdverShow">
+        <div v-if="addSuppShow">
         	<div class="box-shade"></div>
         	<div class="add-tkbox">
-        		<a @click="addAdverShow=false" class="close" href="javascript:;">
+        		<a @click="addSuppShow=false" class="close" href="javascript:;">
         			<i class="iconfont">&#xe605;</i>
         		</a>
         			<table>
         				<tr>
         					<td align="right"  width="90">序号</td>
         					<td width="195">
-        						<el-input  placeholder="请输入序号"></el-input>
+        						<el-input v-model="supplier.sortNum" placeholder="请输入序号"></el-input>
         					</td>
         				</tr>
         				<tr>
         					<td align="right" width="90">名称</td>
         					<td>
-        						<el-input  placeholder="请输入名称"></el-input>
+        						<el-input  v-model="supplier.name" placeholder="请输入名称"></el-input>
         					</td>
         				</tr>
         				<tr>
@@ -63,14 +63,14 @@
 										  :show-file-list="false"
 										  :on-success="handleAvatarSuccess"
 										  :before-upload="beforeAvatarUpload">
-										  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+										  <img v-if="supplier.picUrl" :src="supplier.picUrl" class="avatar">
 										  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 										</el-upload>
         					</td>
         				</tr>
         			</table>
         			<p class="sub-adver" >
-        				<el-button type="primary">提交</el-button>
+        				<el-button @click="subSupplier()" type="primary">提交</el-button>
         			</p>
         			
         	</div>
@@ -82,44 +82,71 @@
 <script>
 export default {
    data(){
-      return{
-      	imageUrl: '',
-      	addAdverShow:false,
-      }
+	      return{
+		      	addSuppShow:false,
+		      	supplierList:[],
+		      	supplier:{}
+	      }
     },
     components: {
     },
     methods:{
     	handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
+        	this.supplier.picUrl = URL.createObjectURL(file.raw);
       },
       beforeAvatarUpload(file) {
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isLt2M;
+        	const isLt2M = file.size / 1024 / 1024 < 2;
+	        if (!isLt2M) {
+	          	this.$message.error('上传头像图片大小不能超过 2MB!');
+	        }
+	        return isLt2M;
+      },
+      edit:function(e,f){
+	      	this.supplier=this.supplierList[e];
+	      	this.addSuppShow=true;
       },
     	delect:function(){
-    		this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });          
-        });
-    	}
+	    		this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+		          confirmButtonText: '确定',
+		          cancelButtonText: '取消',
+		          type: 'warning'
+	        }).then(() => {
+		          this.$message({
+		            type: 'success',
+		            message: '删除成功!'
+		          });
+	        }).catch(() => {
+		          this.$message({
+		            type: 'info',
+		            message: '已取消删除'
+		          });          
+	        });
+    	},
+    	subSupplier:function(){
+    			var url='http://manager.luxtonusa.com/supplier/insert';
+	        var vm=this;
+	        this.$http.post(url,vm.supplier).then(response => {   
+	            this.$message({
+		            type: 'success',
+		            message: '提交成功!'
+		          });
+		          this.bodyReady();
+		          this.supplier={};
+		          this.addSuppShow=false;
+	        }, response => {
+	        });	
+    	},
+    	bodyReady:function(){
+	    			var url='http://manager.luxtonusa.com/supplier/get/list';
+		        var vm=this;
+		        this.$http.post(url).then(response => {   
+		            this.supplierList=response.data.data;
+		        }, response => {
+		        });
+	    	}
     },
     created(){
-    	
+    	this.bodyReady();
     }
 }
 </script>
@@ -146,6 +173,7 @@ export default {
 					}
 			}
 			tbody td {
+					font-size: 14px;
 			    padding: 10px;
 			    text-align: center;
 			    img{

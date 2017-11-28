@@ -66,16 +66,25 @@
 export default {
    data(){
       return{
-      	addSubShow:false
+      	addSubShow:false,
+      	supplier:[]
       }
     },
     components: {
     },
     methods:{
-    	delect:function(){}
+	    	delect:function(){},
+	    	bodyReady:function(){
+	    			var url='http://manager.luxtonusa.com/supplier/get/list';
+		        var vm=this;
+		        this.$http.post(url).then(response => {   
+		            this.supplier=response.data.data;
+		        }, response => {
+		        });
+	    	}
     },
     created(){
-    	
+    		this.bodyReady();
     }
 }
 </script>

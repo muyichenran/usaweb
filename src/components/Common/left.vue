@@ -1,5 +1,10 @@
 <template>
    <div class="admin-left f-l">
+   		<ul>
+   			<li>
+   				<router-link to="/signCode">登陆验证码<i class="iconfont">&#xe602;</i></router-link>
+   			</li>
+   		</ul>
    		<ul class="meau-list">
             <li class="list-title">供应商</li>
             <li>
