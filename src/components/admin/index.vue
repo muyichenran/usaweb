@@ -7,23 +7,25 @@
           <table class="admin-table">
               <thead>
                 <tr>
-					<td width="150">姓名</td>
-                    <td width="250">密码</td>
-                    <td align="center">
-                    	<span style="padding-right: 25px;">操作</span>
+					<td width="150">名称</td>
+                    <td width="250">管理员级别</td>
+                    <td width="150" align="center">
+                    	<span>操作</span>
                     </td>
+					<td></td>
                 </tr>
               </thead>
               <tbody>
-              	<tr>
-					<td width="150">姓名</td>
-                    <td width="250">密码</td>
+              	<tr v-for="(item,index) in adminList">
+					<td  width="150">{{item.username}}</td>
+                    <td width="250">
+						<span v-if="item.identity=='admin'">高级</span>
+						<span v-else>普通</span>
+					</td>
                     <td valign="middle" align="center">
-                    	<p class="align-center">
-							<el-button type="primary">编辑</el-button>
-							<el-button v-on:click="delect()" type="warning">删除</el-button>
-						</p>
+						<el-button v-on:click="delect(item.id,item.identity)" type="warning">删除</el-button>
                     </td>
+					<td></td>
                 </tr>
               </tbody>
         	</table>    
@@ -31,31 +33,31 @@
   		<div v-if="addSubShow">
         	<div class="box-shade"></div>
         	<div class="add-sub-box">
-        			<a  class="close" href="javascript:;">
+        			<a @click="closeTk" class="close" href="javascript:;">
         				<i class="iconfont">&#xe605;</i>
 	        		</a>	
         			<table>
 						<tr>
-							<td width="120" align="right">姓名</td>
+							<td width="120" align="right">Name</td>
 							<td width="220">
-								<el-input v-model="addSubShow"></el-input>
+								<el-input v-model="adminUser.username"></el-input>
 							</td>
 						</tr>
 						<tr>
 							<td width="120" align="right">密码</td>
 							<td width="220">
-								<el-input v-model="addSubShow"></el-input>
+								<el-input v-model="adminUser.password"></el-input>
 							</td>
 						</tr>
 						<tr>
 							<td width="120" align="right">确认密码</td>
 							<td width="220">
-								<el-input v-model="addSubShow"></el-input>
+								<el-input v-model="password"></el-input>
 							</td>
 						</tr>
 					</table>
 					<p class="align-center">
-						<el-button  type="primary"  class="submit-btn">Submit</el-button>
+						<el-button @click="addAdmin()" type="primary"  class="submit-btn">Submit</el-button>
 					</p>
         	</div>
     	</div>	
@@ -67,18 +69,77 @@ export default {
     data(){
 		return{
 			addSubShow:false,
-			supplier:[]
+			adminList:[],
+			adminUser:{},
+			password:''
 		}
     },
     components: {
     },
     methods:{
-		delect:function(){},
+		closeTk:function(){
+			this.addSubShow=false;
+			this.adminUser={};
+			this.password="";
+		},
+		delect:function(e,f){
+			if(f=='admin'){
+				this.$message.error('高级管理员不能删除');
+				return false;
+			}
+			this.$confirm('管理员删除后无法恢复, 是否继续?', '提示', {
+				confirmButtonText: '确定',
+				cancelButtonText: '取消',
+				type: 'warning'
+			}).then(() => {
+				var url='http://luxma.helpyoulove.com/back/admin/delete/'+e;
+				var vm=this;
+				this.$http.post(url).then(response => {   
+					if(response.data.status==200){
+						this.$message({
+							type: 'success',
+							message: '删除成功!'
+						});
+						this.bodyReady();
+					}
+				}, response => {
+				});
+				
+			}).catch(() => {
+				this.$message({
+					type: 'info',
+					message: '已取消删除'
+				});          
+			});
+
+		},
+		addAdmin:function(){
+			if(this.adminUser.username==''||this.adminUser.password==''||this.adminUser.username==null||this.adminUser.password==null){
+				this.$message.error('姓名、密码不得为空');
+				return false;
+			}
+			if(this.adminUser.password!==this.password){
+				this.$message.error('两次密码不一致');
+				return false;
+			}
+			var url='http://luxma.helpyoulove.com/back/admin/add/adminUser';
+			var vm=this;
+			this.$http.post(url,vm.adminUser).then(response => {   
+				if(response.data.status==200){
+					this.$message.success('添加成功');
+					this.addSubShow=false;
+					this.adminUser={};
+					this.password="";
+					this.bodyReady();
+				}
+			}, response => {
+			});
+		},
 		bodyReady:function(){
-				var url='http://manager.luxtonusa.com/supplier/get/list';
+			var url='http://luxma.helpyoulove.com/back/admin/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
-				this.supplier=response.data.data;
+				this.adminList=response.data.data;
 			}, response => {
 			});
 		}

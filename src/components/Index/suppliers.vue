@@ -60,7 +60,7 @@
         						<el-upload
 										  class="avatar-uploader"
 										  name="uploadFile"
-										  action="http://manager.luxtonusa.com/picture/upload"
+										  action="http://luxma.helpyoulove.com/picture/upload"
 										  :show-file-list="false"
 										  :on-success="handleAvatarSuccess"
 										  :before-upload="beforeAvatarUpload">
@@ -125,7 +125,7 @@ export default {
 	        });
     	},
     	subSupplier:function(){
-    			var url='http://manager.luxtonusa.com/supplier/insert';
+    			var url='http://luxma.helpyoulove.com/supplier/insert';
 	        var vm=this;
 	        this.$http.post(url,vm.supplier).then(response => {   
 	            this.$message({
@@ -143,7 +143,7 @@ export default {
           this.addSuppShow=false;
     	},
     	bodyReady:function(){
-	    			var url='http://manager.luxtonusa.com/supplier/get/list';
+	    			var url='http://luxma.helpyoulove.com/supplier/get/list';
 		        var vm=this;
 		        this.$http.post(url).then(response => {   
 		            this.supplierList=response.data.data;

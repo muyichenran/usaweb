@@ -20,7 +20,7 @@
                  <router-link to="/addAttribute">商品属性<i class="iconfont">&#xe602;</i></router-link>
             </li>
             <li>
-                 <router-link to="/">商品录入<i class="iconfont">&#xe602;</i></router-link>
+                 <router-link to="/addGoods">商品录入<i class="iconfont">&#xe602;</i></router-link>
             </li>
         </ul> 
         <ul class="meau-list">
@@ -32,6 +32,13 @@
             <li>
         		<router-link to="/Recommend">商品推荐<i class="iconfont">&#xe602;</i></router-link>
                 <!--<router-link to="/Home/hd/hdCode">Recommend<i class="iconfont">&#xe602;</i></router-link>-->
+            </li>
+        </ul>  
+		<ul class="meau-list">
+            <li class="list-title">管理员管理</li>
+            <li>
+            	<router-link to="/admin">管理员列表<i class="iconfont">&#xe602;</i></router-link>
+                <!--<router-link to="/Home/hd/hdIndex">Banner Adver<i class="iconfont">&#xe602;</i></router-link>-->
             </li>
         </ul>  
     </div>			

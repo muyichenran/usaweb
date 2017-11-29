@@ -20,7 +20,6 @@
     export default{
         data:function(){
             return{
-                
                 item:{},
                 msg:''
             }
@@ -28,22 +27,17 @@
         methods:{
             goLogin:function(){
                 var vm=this;
-                var apiUrl='http://manager.helpyoulove.com/admin/login';
+                var apiUrl='http://luxma.helpyoulove.com/back/admin/login';
                 if(vm.item.username==undefined||vm.item.password==undefined){
-                    this.msg="用户名、密码不得为空！";
+                    this.$message.error('用户名、密码不得为空！');
                     return false;
                 }
-                this.$http.post(vm.apiUrl, vm.item).then(response => {                
+                this.$http.post(apiUrl, vm.item).then(response => {                
                     if(response.body.msg=="OK" && response.body.status=="200"){
-                        if(typeof(Storage) !== "undefined") {
-                            localStorage.username =response.body.data;
-                        } else {
-                            alert("抱歉！您的浏览器不支持 Web Storage ...");
-                        }
                         this.$router.replace({ path: '/' });
 
                     }else{
-                        this.msg=response.body.msg;
+                        this.$message.error(response.body.msg);
                     }
                 }, response => {
                     // error callback

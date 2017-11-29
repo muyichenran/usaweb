@@ -14,7 +14,7 @@
         },
         methods:{
             getCode:function(){
-            	var url='http://manager.luxtonusa.com/back/admin/create/registerCode';
+            	var url='http://luxma.helpyoulove.com/back/admin/create/registerCode';
 	            var vm=this;
 	            this.$http.post(url).then(response => {   
 	                this.code=response.data.data;

@@ -48,7 +48,7 @@
                            <div class="pic-list">
 							    					<el-upload
 															class="upload-demo"
-															action="http://manager.luxtonusa.com/picture/list/upload"
+															action="http://luxma.helpyoulove.com/picture/list/upload"
 															multiple="true"
 															:on-preview="handlePreview"
 															:on-remove="handleRemove"
