@@ -7,7 +7,7 @@
           <table class="admin-table">
               <thead>
                 <tr>
-                	  <td width="150">姓名</td>
+					<td width="150">姓名</td>
                     <td width="250">密码</td>
                     <td align="center">
                     	<span style="padding-right: 25px;">操作</span>
@@ -16,13 +16,13 @@
               </thead>
               <tbody>
               	<tr>
-                	  <td width="150">姓名</td>
+					<td width="150">姓名</td>
                     <td width="250">密码</td>
                     <td valign="middle" align="center">
                     	<p class="align-center">
-												<el-button type="primary">编辑</el-button>
-												<el-button v-on:click="delect()" type="warning">删除</el-button>
-											</p>
+							<el-button type="primary">编辑</el-button>
+							<el-button v-on:click="delect()" type="warning">删除</el-button>
+						</p>
                     </td>
                 </tr>
               </tbody>
@@ -35,27 +35,27 @@
         				<i class="iconfont">&#xe605;</i>
 	        		</a>	
         			<table>
-							<tr>
-								<td width="120" align="right">姓名</td>
-								<td width="220">
-									<el-input v-model="addSubShow"></el-input>
-								</td>
-							</tr>
-							<tr>
-								<td width="120" align="right">密码</td>
-								<td width="220">
-									<el-input v-model="addSubShow"></el-input>
-								</td>
-							</tr>
-							<tr>
-								<td width="120" align="right">确认密码</td>
-								<td width="220">
-									<el-input v-model="addSubShow"></el-input>
-								</td>
-							</tr>
+						<tr>
+							<td width="120" align="right">姓名</td>
+							<td width="220">
+								<el-input v-model="addSubShow"></el-input>
+							</td>
+						</tr>
+						<tr>
+							<td width="120" align="right">密码</td>
+							<td width="220">
+								<el-input v-model="addSubShow"></el-input>
+							</td>
+						</tr>
+						<tr>
+							<td width="120" align="right">确认密码</td>
+							<td width="220">
+								<el-input v-model="addSubShow"></el-input>
+							</td>
+						</tr>
 					</table>
 					<p class="align-center">
-							<el-button  type="primary"  class="submit-btn">Submit</el-button>
+						<el-button  type="primary"  class="submit-btn">Submit</el-button>
 					</p>
         	</div>
     	</div>	
@@ -64,27 +64,27 @@
 
 <script>
 export default {
-   data(){
-      return{
-      	addSubShow:false,
-      	supplier:[]
-      }
+    data(){
+		return{
+			addSubShow:false,
+			supplier:[]
+		}
     },
     components: {
     },
     methods:{
-	    	delect:function(){},
-	    	bodyReady:function(){
-	    			var url='http://manager.luxtonusa.com/supplier/get/list';
-		        var vm=this;
-		        this.$http.post(url).then(response => {   
-		            this.supplier=response.data.data;
-		        }, response => {
-		        });
-	    	}
+		delect:function(){},
+		bodyReady:function(){
+				var url='http://manager.luxtonusa.com/supplier/get/list';
+			var vm=this;
+			this.$http.post(url).then(response => {   
+				this.supplier=response.data.data;
+			}, response => {
+			});
+		}
     },
     created(){
-    		this.bodyReady();
+		this.bodyReady();
     }
 }
 </script>

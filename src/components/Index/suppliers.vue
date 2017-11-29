@@ -8,7 +8,7 @@
             <table class="adver-table">
                 <thead>
                     <tr>
-                    		<td width="60">序号</td>
+						<td width="60">序号</td>
                         <td width="160">LOGO</td>
                         <td width="140">供应商名称</td>
                         <td width="160">发布时间</td>
@@ -93,7 +93,8 @@ export default {
     },
     methods:{
     	handleAvatarSuccess(res, file) {
-        	this.supplier.picUrl = URL.createObjectURL(file.raw);
+			console.log(res)
+        	this.supplier.picUrl = res.data;
       },
       beforeAvatarUpload(file) {
         	const isLt2M = file.size / 1024 / 1024 < 2;
