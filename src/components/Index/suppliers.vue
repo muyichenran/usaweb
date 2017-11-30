@@ -131,10 +131,10 @@ export default {
 	            this.$message({
 		            type: 'success',
 		            message: '提交成功!'
-		          });
-		          this.bodyReady();
-		          this.supplier={};
-		          this.addSuppShow=false;
+				});
+				this.bodyReady();
+				this.supplier={};
+				this.addSuppShow=false;
 	        }, response => {
 	        });	
     	},

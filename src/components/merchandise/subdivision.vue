@@ -16,16 +16,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="(item,index) in itemList">
 						<td valign="middle">
-							<span class="height36">1</span>
+							<span class="height36">{{item.sortOrder}}</span>
 						</td>
                         <td valign="middle">
-                      	 	<span class="height36"> 衬衫</span>
+                      	 	<span class="height36">{{item.title}}</span>
                         </td>
                         <td valign="middle">
 							<p class="align-right">
-								<el-button type="primary">编辑</el-button>
+								<el-button  @click="edit(index)" type="primary">编辑</el-button>
 								<el-button v-on:click="delect()" type="warning">删除</el-button>
 							</p>
                         </td>
@@ -40,21 +40,21 @@
         				<i class="iconfont">&#xe605;</i>
 	        		</a>	
         			<table>
-							<tr>
-								<td width="120" align="right">序号</td>
-								<td width="220">
-									<el-input v-model="addSubShow"></el-input>
-								</td>
-							</tr>
-							<tr>
-								<td width="120" align="right">名称</td>
-								<td width="220">
-									<el-input v-model="addSubShow"></el-input>
-								</td>
-							</tr>
+						<tr>
+							<td width="120" align="right">序号</td>
+							<td width="220">
+								<el-input v-model="item.sortOrder"></el-input>
+							</td>
+						</tr>
+						<tr>
+							<td width="120" align="right">名称</td>
+							<td width="220">
+								<el-input v-model="item.title"></el-input>
+							</td>
+						</tr>
 					</table>
 					<p class="align-center">
-							<el-button  type="primary"  class="submit-btn">Submit</el-button>
+						<el-button @click="submitItem()"  type="primary"  class="submit-btn">Submit</el-button>
 					</p>
         	</div>
         </div>
@@ -63,10 +63,12 @@
 
 <script>
 export default {
-   data(){
-      return{
-      	addSubShow:false,
-      }
+    data(){
+      	return{
+		  	itemList:[],
+			item:{},
+      		addSubShow:false,
+      	}
     },
     components: {
     },
@@ -90,10 +92,37 @@ export default {
     	},
     	delectSubdivision:function(){
     		
-    	}
+    	},
+		bodyReady:function(){
+			var url='http://luxma.helpyoulove.com/item/cat/get/list';
+			var vm=this;
+			this.$http.post(url).then(response => {   
+				this.itemList=response.data.data;
+			}, response => {
+			});
+		},
+		submitItem:function(){
+			var url='http://luxma.helpyoulove.com/item/cat/insert';
+			var vm=this;
+			this.$http.post(url,vm.item).then(response => {   
+				this.$message({
+		            type: 'success',
+		            message: '提交成功!'
+				});
+				this.bodyReady();
+				this.item={};
+				this.addSubShow=false;
+			}, response => {
+			});
+		},
+		edit:function(e){
+			this.item=this.itemList[e];
+			this.addSubShow=true;
+		}
     	
     },
     created(){
+		this.bodyReady()
     	
     }
 }
