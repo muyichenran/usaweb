@@ -95,14 +95,14 @@ export default {
     	handleAvatarSuccess(res, file) {
 			console.log(res)
         	this.supplier.picUrl = res.data;
-      },
-      beforeAvatarUpload(file) {
-        	const isLt2M = file.size / 1024 / 1024 < 2;
-	        if (!isLt2M) {
-	          	this.$message.error('上传头像图片大小不能超过 2MB!');
-	        }
-	        return isLt2M;
-      },
+        },
+		beforeAvatarUpload(file) {
+				const isLt2M = file.size / 1024 / 1024 < 2;
+				if (!isLt2M) {
+					this.$message.error('上传头像图片大小不能超过 2MB!');
+				}
+				return isLt2M;
+		},
       edit:function(e,f){
 	      	this.supplier=this.supplierList[e];
 	      	this.addSuppShow=true;
@@ -143,13 +143,13 @@ export default {
           this.addSuppShow=false;
     	},
     	bodyReady:function(){
-	    			var url='http://luxma.helpyoulove.com/supplier/get/list';
-		        var vm=this;
-		        this.$http.post(url).then(response => {   
-		            this.supplierList=response.data.data;
-		        }, response => {
-		        });
-	    	}
+			var url='http://luxma.helpyoulove.com/supplier/get/list';
+			var vm=this;
+			this.$http.post(url).then(response => {   
+				this.supplierList=response.data.data;
+			}, response => {
+			});
+		}
     },
     created(){
     	this.bodyReady();

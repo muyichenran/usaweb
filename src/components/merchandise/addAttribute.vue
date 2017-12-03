@@ -15,26 +15,7 @@
 			<div v-if="catId" class="attribute-block-center">
 				<div class="add-attribute">
 						<div class="add-newattri-top clearfix">
-					 		<p class="add-fg">风格版式</p>
-					 	</div>
-					 	<div class="add-newattri">
-					 		<div class="first-input clearfix">
-					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
-					 			<a class="add-button f-r">
-					 				<i class="iconfont">&#xe600;</i>
-					 			</a>
-					 		</div>
-					 		<div class="second-input clearfix">
-					 			<div class="input f-l"><el-input  placeholder="请输入内容"></el-input></div>
-								<a class="delect-button f-r">
-					 				<i class="iconfont">&#xe606;</i>
-					 			</a> 								
-					 		</div>
-					 	</div>
-				</div>
-				<div class="add-attribute">
-						<div class="add-newattri-top clearfix">
-					 		<el-button @click="addNewTri()" class="f-l" type="primary" round>添加属性类别</el-button>
+					 		<el-button @click="addNewTriShow=true" class="f-l" type="primary" round>添加属性类别</el-button>
 					 	</div>
 					 	<div class="add-newattri" v-for="(item,index) in propertyList">
 					 		<div class="first-input clearfix">
@@ -57,8 +38,60 @@
 				</div>
 			</div>
 		</div>	
-		<div v-if="addNewTriSecondShow" class="v-modal" style="z-index: 2001;"></div>
-		<div v-if="addNewTriSecondShow" class="el-message-box__wrapper" style="z-index: 2009;">
+		<div v-if="addNewTriShow">
+			<div class="v-modal" style="z-index: 2001;"></div>
+			<div  class="el-message-box__wrapper" style="z-index: 2009;">
+			<div class="el-message-box">
+				<div class="el-message-box__header">
+					<div class="el-message-box__title">提示</div>
+					<button @click="addNewTriSecondClose()" type="button" class="el-message-box__headerbtn">
+						<i class="el-message-box__close el-icon-close"></i>
+					</button>
+				</div>
+				<div class="el-message-box__content">
+					<div class="el-message-box__status"></div>
+					<div class="el-message-box__message" style="margin-left: 0px;">
+						<p>请输入属性名</p>
+					</div>
+					<div class="el-message-box__input">
+						<div class="el-input">
+							<input v-model="addFirstObj.title" autocomplete="off" placeholder="" type="text" rows="2" class="el-input__inner">
+						</div>
+					</div>
+					<div class="el-message-box__message" style="margin-left: 0px;">
+						<p>属性类型</p>
+					</div>
+					<div class="el-message-box__input">
+						<div class="el-input">
+							<el-select v-model="optionsValue" placeholder="请选择">
+						    <el-option
+						      v-for="item in options"
+						      :key="item.value"
+						      :label="item.label"
+						      :value="item.value">
+						    </el-option>
+						  </el-select>
+						</div>
+					</div>
+					<div class="el-message-box__btns">
+						<button @click="addNewTriShowClose()" type="button" class="el-button el-button--default">
+							<span>
+								取消
+							</span>
+						</button>
+						<button @click="addNewTri()" type="button" class="el-button el-button--default el-button--primary ">
+							<span>
+								确定
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>	
+		</div>
+		</div>	
+		<div v-if="addNewTriSecondShow">
+			<div  class="v-modal" style="z-index: 2001;"></div>
+			<div  class="el-message-box__wrapper" style="z-index: 2009;">
 			<div class="el-message-box">
 				<div class="el-message-box__header">
 					<div class="el-message-box__title">提示</div>
@@ -99,21 +132,35 @@
 				</div>
 			</div>	
 		</div>
+		</div>	
 	</div>
 </template>
 <script>
 export default {
-   data(){
-      return{
+   	data(){
+      	return{
+			options: [{
+			value: '1',
+			label: '是否是检索'
+			}, {
+			value: '2',
+			label: '是否是颜色'
+			}, {
+			value: '3',
+			label: '是否是销售'
+			}],
+        	optionsValue:'',
 			itemList:[],
 			catId: '',
+			addNewTriShow:false,
+			addFirstObj:{},
 			addNewTriSecondShow:false,
 			addSecondObj:{},
 			propertyId:'',
 		    selectShow:false,
 		    propertyList:[],
 		    // checkList:[]
-      }
+      	}
     },
 	watch:{
 		catId(val){
@@ -137,30 +184,46 @@ export default {
 			});
 		},
 		addNewTri:function(){
-			this.$prompt('请输入属性名', '提示', {
-				confirmButtonText: '确定',
-				cancelButtonText: '取消',
-			}).then(({ value }) => {
+			this.addFirstObj.catId=this.catId;
+			if(this.optionsValue=='1'){
+				this.addFirstObj.isSearch=true;
+			}else if(this.optionsValue=='2'){
+				this.addFirstObj.isColor=true;
+			}else if(this.optionsValue=='2'){
+				this.addFirstObj.isSale=true;
+			}
+			if(this.addFirstObj.valueTitle==''){
+				this.$message({
+					type: 'error',
+					message: '不得为空'
+				}); 
+			}else{
 				var url='http://luxma.helpyoulove.com/property/insert';
 				var vm=this;
-				var item={};
-				item.title=value;
-				item.catId=this.catId;
-				this.$http.post(url,item).then(response => {   
+				this.$http.post(url,vm.addFirstObj).then(response => {   
 					this.$message({
 						type: 'success',
 						message: '提交成功'
 					});
+					this.optionsValue=false;
+					this.addNewTriShow=false;
+					this.addFirstObj={};
 					this.getPropertyAll()
 				}, response => {
 				});
+			}
+			
 				
-			}).catch(() => {
-				this.$message({
-					type: 'info',
-					message: '取消输入'
-				});       
-			});
+			
+		},
+		addNewTriClose:function(){
+			this.$message({
+				type: 'info',
+				message: '取消输入'
+			}); 
+			this.optionsValue=false;
+			this.addNewTriShow=false;
+			this.addFirstObj={};
 		},
 		addNewTriSecond:function(e){
 			this.propertyId=e;
@@ -192,6 +255,7 @@ export default {
 						message: '提交成功'
 					}); 
 					this.getPropertyAll();
+					this.addSecondObj={};
 					this.addNewTriSecondShow=false;
 				}, response => {
 				});

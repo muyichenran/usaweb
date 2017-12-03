@@ -112,3 +112,34 @@ $F76260:#F76260;
 .el-select-dropdown__item{
     display: block
 }
+.el-select-dropdown{
+    z-index: 2050 !important;
+}
+
+
+
+.color-block{
+    .el-checkbox__inner{
+        background: transparent;
+        border: none !important;
+        border-radius: 0;
+        height: 20px;
+    }
+    .el-checkbox__label{
+        display: inline-block;
+        background: #fff;
+        padding-right: 5px;
+    }
+    .el-checkbox, .el-checkbox__input{
+        display: initial;
+    }
+}
+.avatar-uploader-icon{
+    line-height: 118px !important;
+}
+.uploadpic-list{
+    .avatar-uploader{
+        float: left;
+        margin-right: 15px
+    }
+}
