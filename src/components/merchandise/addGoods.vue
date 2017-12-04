@@ -150,14 +150,29 @@
 									<p class="title">商品销售规格：</p>
 									<p class="prompting">注意：颜色、标尺，两个属性必须勾选，如果不勾选将会导致无法保存库存；库存为0的商品将在前段不予展示</p>	
 									<div class="batch-fill">
-										批量填充：<el-input class="width150"  placeholder="请输入商品价格"></el-input>
-										<el-input class="width150"  placeholder="请输入商品库存"></el-input>
-										<el-button plain>确认</el-button>
+										批量填充：<el-input class="width150"  v-model="price" placeholder="请输入商品价格"></el-input>
+										<el-input class="width150" v-model="quantity" placeholder="请输入商品库存"></el-input>
+										<el-button  @click="subPrice()" plain>确认</el-button>
 									</div>
 									<div class="attribute-list">
-										<el-checkbox-group v-model="checkList2">
-											<el-checkbox v-for="(item,index) in List" :label="item"></el-checkbox>
-										</el-checkbox-group>    
+										<table class="goods-list">
+											<thead>
+												<tr>
+													<td>color</td>
+													<td>size</td>
+													<td>quantity</td>
+													<td>price</td>
+												</tr>
+											</thead>
+											<tbody>
+												 <tr v-for="(item,index) in skuList">
+													<td>{{item.colorName}}</td>
+													<td>{{item.sizeName}}</td>
+													<td><el-input style="width:150px" v-model="item.quantity"></el-input></td>
+													<td><el-input style="width:150px"  v-model="item.price"></el-input></td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -180,22 +195,6 @@
                 <p class="align-center">
 					<el-button class="sub-allinfo" @click="subGoods()" type="primary">提交</el-button>
                 </p>
-				<div class="clearfix"  v-for="(item,index) in AllArrey">
-					<div style="width:60px;float:left">
-						{{item.name}}
-					</div>
-					<div class="clearfix" v-for="(item2,index2) in item.sizeArray" style="width:400px;float:left;">
-						<div style="height:20px;width:100px;float:left">
-							{{item2.sizeName}}
-						</div>
-						<div style="height:20px;width:100px;float:left">
-							{{item2.inventory}}
-						</div>
-						<div style="height:20px;width:100px;float:left">
-							{{item2.price}}
-						</div>
-					</div>
-				</div>
 			</div>
         </div>	
   	</div>
@@ -223,7 +222,12 @@ export default {
 			picList3:'',
 			picList4:'',
 			picList:[],
-			
+
+
+
+			skuList:[],
+			quantity:'',
+			price:'',
 
 
 
@@ -232,28 +236,7 @@ export default {
 			addSubShow:false,
 			addColorShow:false,
 			addSize3Show:false,
-			checkList: [],
-			List:['S','M','L'],
-			checkList2: [],
-			List2:['32','33','34'],
-			AllArrey:[],
-			options: [{
-			value: '选项1',
-			label: '黄金糕'
-			}, {
-			value: '选项2',
-			label: '双皮奶'
-			}, {
-			value: '选项3',
-			label: '蚵仔煎'
-			}, {
-			value: '选项4',
-			label: '龙须面'
-			}, {
-			value: '选项5',
-			label: '北京烤鸭'
-			}],
-			value: ''
+			
 		}
     },
 	watch:{
@@ -263,36 +246,56 @@ export default {
 				this.getPropertyAll();
 			}
 		},
+		colorList(val){
+			if(val.length>0){
+				if(this.sizeList.length>0){
+					this.skuList=[]; 
+					var i,j,m;
+					for(i in this.colorList){
+						
+						for(j in this.sizeList){
+							var newArray={};
+							newArray.colorName=this.colorList[i].valueTitle;
+							newArray.sizeName=this.sizeList[j].valueTitle;
+							newArray.properties=this.colorList[i].propertyId+','+this.sizeList[j].propertyId;
+							newArray.quantity='';
+							newArray.price='';
+							this.skuList.push(newArray);
+						}
+						
+					}
+					console.log(this.skuList)
+				}
+			}
+		},
+		sizeList(val){
+			alert(1)
+			if(val.length>0){
+				
+				if(this.colorList.length>0){
+					this.skuList=[]; 
+					var i,j,m;
+					for(i in this.colorList){
+						
+						for(j in this.sizeList){
+							var newArray={};
+							newArray.colorName=this.colorList[i].valueTitle;
+							newArray.sizeName=this.sizeList[j].valueTitle;
+							newArray.properties=this.colorList[i].propertyId+','+this.sizeList[j].propertyId;
+							newArray.quantity='';
+							newArray.price='';
+							this.skuList.push(newArray);
+						}
+						
+					}
+					console.log(this.skuList)
+				}
+			}
+		},
 	},
     components: {
     },
     methods:{
-		checkArreyFunction:function(){
-			var Array1=[];
-			var i,j,m;
-			for(i in this.checkList){
-				var newArray={};
-				newArray.name=this.checkList[i];
-				newArray.sizeArray=[];
-				for(j in this.checkList2){
-					var pro={};
-					pro.sizeName=this.checkList2[j];
-					console.log(this.checkList2[j])
-					pro.inventory=100;
-					pro.price=100;
-					newArray.sizeArray.push(pro);
-				}
-				Array1.push(newArray);
-				
-			}
-			this.AllArrey=	Array1
-			console.log(Array1)
-			
-		},
-
-//  	conslogFun:function(){
-//  		console.log(sizeType1ListInput)
-//  	},
     	delectSubdivision:function(){
     		
     	},
@@ -419,28 +422,50 @@ export default {
 			var url='http://luxma.helpyoulove.com/item/insert';
 			var vm=this;
 			this.$http.post(url,vm.GoodsInfo).then(response => {   
-				var newObj=this.isSearchObj.values[this.searchObjIndex]
-				this.isSearchObj.values=[];
-				this.isSearchObj.values.push(newObj);
-				this.isColorObj.values=this.colorList;
-				this.isSizeObj.values=this.sizeList;
-				var propertyNewList=[];
-				propertyNewList.push(this.isSearchObj)
-				propertyNewList.push(this.isColorObj)
-				propertyNewList.push(this.isSizeObj);
+				
 				if(response.data){
-					console.log(response.data.data)
-					var url2='http://luxma.helpyoulove.com/item/insert/property/'+response.data.data;
-					this.$http.post(url2,propertyNewList).then(response => {  
-
-					}, response => {
-
-					});
+					this.subPropertyNewList(response.data)
+					
 				}
 			}, response => {
 			});
+		}, 
+		subPropertyNewList:function(e){
+			var newObj=this.isSearchObj.values[this.searchObjIndex]
+			this.isSearchObj.values=[];
+			this.isSearchObj.values.push(newObj);
+			this.isColorObj.values=this.colorList;
+			this.isSizeObj.values=this.sizeList;
+			var propertyNewList=[];
+			propertyNewList.push(this.isSearchObj)
+			propertyNewList.push(this.isColorObj)
+			propertyNewList.push(this.isSizeObj);
+			var url2='http://luxma.helpyoulove.com/item/insert/property/'+e.data;
+			this.$http.post(url2,propertyNewList).then(response => {  
+				
+			}, response => {
+
+			});
+
+
+			for(var i in this.skuList){
+				this.skuList[i].itemId=e.data;
+			}
+			var vm=this;
+			var url3='http://luxma.helpyoulove.com/item/insert/property/'+e.data;
+			this.$http.post(url3,vm.skuList).then(response => {  
+				
+			}, response => {
+
+			});
+
 		},
-		
+		subPrice:function(){
+			for(var i in this.skuList){
+				this.skuList[i].price=this.price;
+				this.skuList[i].quantity=this.quantity;
+			}
+		},
     },
     created(){
     	this.fqItemListReady();
@@ -522,5 +547,19 @@ export default {
 	.sub-allinfo{
 		margin-top: 40px;
 		padding:15px 50px;
+	}
+	.goods-list{
+		width: 100%;
+		background: #ffffff;
+		
+		td{
+			padding: 10px;
+			height: 50px;
+			border:1px solid #e5e5e5;
+		}
+		thead{
+			background: #e5e5e5;
+			font-size: 16px;
+		}
 	}
 </style>
