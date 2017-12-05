@@ -9,7 +9,8 @@ import suppliers from '@/components/Index/suppliers'
 
 
 
-import addGoods from '@/components/merchandise/addGoods'   //添加商品
+import GoodsList from '@/components/merchandise/GoodsList'   //添加商品
+import addGoods from '@/components/merchandise/addGoods' 
 import subdivision from '@/components/merchandise/subdivision'
 import addAttribute from '@/components/merchandise/addAttribute'
 
@@ -54,6 +55,10 @@ export default new Router({
         {
         	path: '/addGoods',
       		component: addGoods,
+        },
+        {
+        	path: '/GoodsList',
+      		component: GoodsList,
         },
 				
 				

@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(item,index) in supplierList">
-                    		<td valign="middle">{{item.sortNum}}</td>
+                    	<td valign="middle">{{item.sortNum}}</td>
                         <td>
                             <img :src="item.picUrl"/>
                         </td>

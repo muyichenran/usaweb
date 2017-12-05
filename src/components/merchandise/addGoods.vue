@@ -191,6 +191,13 @@
 							</el-input>
                         </td>
                     </tr>
+					<tr>
+                        <td align="right"  width="120">是否上架</td>
+                        <td width="750">
+							<el-radio v-model="GoodsInfo.status" label="true">上架</el-radio>
+							<el-radio v-model="GoodsInfo.status" label="false">下架</el-radio>
+                        </td>
+                    </tr>
                 </table>
                 <p class="align-center">
 					<el-button class="sub-allinfo" @click="subGoods()" type="primary">提交</el-button>
@@ -206,7 +213,9 @@ export default {
 		return{
 			fileList:[],
 			catId:'',
-			GoodsInfo:{},
+			GoodsInfo:{
+				status:'true'
+			},
 			itemList:[],	
 			supplierList:[],
 			propertyList:[],
@@ -269,7 +278,6 @@ export default {
 			}
 		},
 		sizeList(val){
-			alert(1)
 			if(val.length>0){
 				
 				if(this.colorList.length>0){
@@ -419,6 +427,7 @@ export default {
 		},
 		subGoods:function(){
 			this.GoodsInfo.picList=this.picList;
+			this.GoodsInfo.price=this.price;
 			var url='http://luxma.helpyoulove.com/item/insert';
 			var vm=this;
 			this.$http.post(url,vm.GoodsInfo).then(response => {   
@@ -452,8 +461,14 @@ export default {
 				this.skuList[i].itemId=e.data;
 			}
 			var vm=this;
-			var url3='http://luxma.helpyoulove.com/item/insert/property/'+e.data;
-			this.$http.post(url3,vm.skuList).then(response => {  
+			var url3='http://luxma.helpyoulove.com/item/sku/insert';
+			this.$http.post(url3,vm.skuList).then(response => { 
+				if(response.data.data==200){
+					this.$message({
+						message: '恭喜你，这是一条成功消息',
+						type: 'success'
+					});
+				} 
 				
 			}, response => {
 
