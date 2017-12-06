@@ -143,3 +143,14 @@ $F76260:#F76260;
         margin-right: 15px
     }
 }
+
+.goods-list{
+    .cell{
+		text-align: center;
+		padding: 10px 0;
+		img{
+			max-width: 120px;
+			max-height:90px;
+		}
+	}
+}

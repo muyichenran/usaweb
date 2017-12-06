@@ -29,7 +29,7 @@
                         <td valign="middle">{{item.updateTime |formatTime}}</td>
                         <td valign="middle" class="operate-table">
                             <el-button @click="edit(index,item.supplierId)">编辑</el-button>
-                    	  	  <el-button @click="delect(item.supplierId)" type="warning">删除</el-button>
+                    	  	<el-button @click="delect(item.supplierId)" type="warning">删除</el-button>
                         </td>
                     </tr>
                 </tbody>                   

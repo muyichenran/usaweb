@@ -5,35 +5,63 @@
 	   	  	  <el-button @click="addSuppShow=true" class="f-r" type="primary">添加商品</el-button>
         </div>
         <div class="goods-list">
-            <table class="goods-table">
-                <thead>
-                    <tr>
-						<td width="80">商品Id</td>
-                        <td width="160">名称</td>
-                        <td width="140">头图</td>
-                        <td width="160">价格</td>
-                        <td width="160">修改时间</td>
-                        <td>操作</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- <tr v-for="(item,index) in supplierList">
-                    	<td valign="middle">{{item.sortNum}}</td>
-                        <td>
-                            <img :src="item.picUrl"/>
-                        </td>
-                        <td>
-                        	{{item.name}}
-                        </td>
-                        <td valign="middle">{{item.createTime |formatTime}}</td>
-                        <td valign="middle">{{item.updateTime |formatTime}}</td>
-                        <td valign="middle" class="operate-table">
-                            <el-button @click="edit(index,item.supplierId)">编辑</el-button>
-                    	  	  <el-button @click="delect(item.supplierId)" type="warning">删除</el-button>
-                        </td>
-                    </tr> -->
-                </tbody>                   
-            </table>
+			<div class="top-search">
+				<el-select v-model="select"  placeholder="请选择">
+					<el-option label="上架" value="1"></el-option>
+					<el-option label="下架" value="2"></el-option>
+				</el-select>
+				<el-button type="primary" icon="search">搜索</el-button>
+			</div>
+			<div class="top-bar">
+				<el-button  type="info">全部下架</el-button>
+				<el-button  type="success">全部上架</el-button>
+				<el-button  type="warning">全部删除</el-button>
+			</div>
+			<el-table
+				ref="multipleTable"
+				:data="goodsList"
+				tooltip-effect="dark"
+				style="width: 100%"
+				class="goods-table"
+				@selection-change="handleSelectionChange">
+				<el-table-column
+				type="selection"
+				width="55">
+				</el-table-column>
+				<el-table-column
+				label="Id"
+				prop="itemId"
+				width="120">
+				</el-table-column>
+				<el-table-column
+				prop="title"
+				label="名称"
+				width="160">
+				</el-table-column>
+				<el-table-column
+				label="头图"
+				width="160">
+				<template slot-scope="scope">
+					<img :src="scope.row.picUrl">
+				</template>
+				</el-table-column>
+				<el-table-column
+				prop="price"
+				label="价格"
+				width="100">
+				</el-table-column>
+				<el-table-column
+				label="操作"
+				>
+					<template slot-scope="scope">
+						<el-button v-if="scope.row.status" @click="edit(index,item.supplierId)" type="info">下架</el-button>
+						<el-button v-else @click="edit(index,item.supplierId)" type="success">上架</el-button>
+						<el-button @click="edit(index,item.supplierId)">编辑</el-button>
+						<el-button @click="delect(item.supplierId)" type="warning">删除</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
+            
         </div>
 
         
@@ -42,16 +70,31 @@
 
 <script>
 export default {
-   data(){
-	      return{
-		      	addSuppShow:false,
-		      	goodsList:[],
-		      	supplier:{}
-	      }
+   	data(){
+		return{
+			select:'',
+			addSuppShow:false,
+			goodsList:[],
+			supplier:{},
+			multipleSelection: []
+		}
     },
     components: {
     },
     methods:{
+		// toggleSelection(rows) {
+		// 	if (rows) {
+		// 		rows.forEach(row => {
+		// 			this.$refs.multipleTable.toggleRowSelection(row);
+		// 		});
+		// 	} else {
+		// 		this.$refs.multipleTable.clearSelection();
+		// 	}
+		// },
+		handleSelectionChange(val) {
+			this.multipleSelection = val;
+			console.log(this.multipleSelection)
+		},
         edit:function(e,f){
         },
     	delect:function(){
@@ -91,7 +134,13 @@ export default {
 	.admin-center{
 		width: 100%;
 		.goods-list {
-	        font-size: 18px;
+			font-size: 18px;
+			.top-search{
+				margin-bottom: 20px;
+			}
+			.top-bar{
+				margin-bottom: 20px;
+			}
             .goods-table {
                 width: 100%;
 			}
@@ -128,4 +177,5 @@ export default {
 			}
 		}
 	}
+	
 </style>
