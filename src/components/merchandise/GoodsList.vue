@@ -2,7 +2,7 @@
   	<!--供应商录入-->
   <div class="admin-center">
 	   	<div class="admin-center-top clearfix">
-	   	  	  <el-button @click="addSuppShow=true" class="f-r" type="primary">添加商品</el-button>
+	   	  	  <el-button @click="goAddGoods()" class="f-r" type="primary">添加商品</el-button>
         </div>
         <div class="goods-list">
 			<div class="top-search">
@@ -13,9 +13,8 @@
 				<el-button type="primary" icon="search">搜索</el-button>
 			</div>
 			<div class="top-bar">
-				<el-button  type="info">全部下架</el-button>
-				<el-button  type="success">全部上架</el-button>
-				<el-button  type="warning">全部删除</el-button>
+				<el-button  @click="modifyState(false)"  type="info">全部下架</el-button>
+				<el-button  @click="modifyState(true)" type="success">全部上架</el-button>
 			</div>
 			<el-table
 				ref="multipleTable"
@@ -54,10 +53,9 @@
 				label="操作"
 				>
 					<template slot-scope="scope">
-						<el-button v-if="scope.row.status" @click="edit(index,item.supplierId)" type="info">下架</el-button>
-						<el-button v-else @click="edit(index,item.supplierId)" type="success">上架</el-button>
+						<el-button v-if="scope.row.status" @click="modifyStateSingle(scope.row.itemId,false)" type="info">下架</el-button>
+						<el-button v-else @click="modifyStateSingle(scope.row.itemId,true)" type="success">上架</el-button>
 						<el-button @click="edit(index,item.supplierId)">编辑</el-button>
-						<el-button @click="delect(item.supplierId)" type="warning">删除</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -82,6 +80,55 @@ export default {
     components: {
     },
     methods:{
+		goAddGoods:function(){
+			this.$router.push({path:'/addGoods'})
+		},
+		modifyState:function(e){
+			if(this.multipleSelection.length>0){
+				var url='http://luxma.helpyoulove.com/item/update/status/'+e;
+				var vm=this;
+				this.$http.post(url,vm.multipleSelection).then(response => {   
+					if(response.data.status==200){
+							this.$message({
+								message: '修改成功',
+								type: 'success'
+							});
+							this.multipleSelecti=[];
+							this.$refs.multipleTable.clearSelection();
+							this.bodyReady();
+					}else{
+						this.$message({
+							message: response.data.status,
+							type: 'error'
+						});
+					} 
+								
+				}, response => {
+				});
+			}
+			
+		},
+		modifyStateSingle:function(e,f){
+			var url='http://luxma.helpyoulove.com/item/update/status/'+f;
+			var vm=this;
+			this.multipleSelection.push(e);
+			this.$http.post(url,vm.multipleSelection).then(response => {   
+				if(response.data.status==200){
+						this.$message({
+							message: '修改成功',
+							type: 'success'
+						});
+						this.multipleSelecti=[];
+						this.$refs.multipleTable.clearSelection();
+						this.bodyReady();
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}
+			})	 
+		},
 		// toggleSelection(rows) {
 		// 	if (rows) {
 		// 		rows.forEach(row => {
@@ -91,30 +138,19 @@ export default {
 		// 		this.$refs.multipleTable.clearSelection();
 		// 	}
 		// },
-		handleSelectionChange(val) {
-			this.multipleSelection = val;
-			console.log(this.multipleSelection)
+		handleSelectionChange(rows) {
+			if (rows) {
+				this.multipleSelection=[];
+				rows.forEach(row => {
+					this.multipleSelection.push(row.itemId);
+				});
+			} else {
+				this.$refs.multipleTable.clearSelection();
+			}
+			// this.multipleSelection = val;
 		},
         edit:function(e,f){
         },
-    	delect:function(){
-	    		this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-		          confirmButtonText: '确定',
-		          cancelButtonText: '取消',
-		          type: 'warning'
-	        }).then(() => {
-		          this.$message({
-		            type: 'success',
-		            message: '删除成功!'
-		          });
-	        }).catch(() => {
-		          this.$message({
-		            type: 'info',
-		            message: '已取消删除'
-		          });          
-	        });
-    	},
-
     	bodyReady:function(){
 			var url='http://luxma.helpyoulove.com/item/get/list';
 			var vm=this;

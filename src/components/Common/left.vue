@@ -22,13 +22,16 @@
             <li>
                  <router-link to="/addGoods">商品录入<i class="iconfont">&#xe602;</i></router-link>
             </li>
+			<li>
+                 <router-link to="/GoodsList">商品列表<i class="iconfont">&#xe602;</i></router-link>
+            </li>
         </ul> 
         <ul class="meau-list">
             <li class="list-title">首页(Index)</li>
-            <li>
+            <!-- <li>
             	<router-link to="/adverAdmin">广告<i class="iconfont">&#xe602;</i></router-link>
-                <!--<router-link to="/Home/hd/hdIndex">Banner Adver<i class="iconfont">&#xe602;</i></router-link>-->
-            </li>
+                <router-link to="/Home/hd/hdIndex">Banner Adver<i class="iconfont">&#xe602;</i></router-link>
+            </li> -->
             <li>
         		<router-link to="/Recommend">商品推荐<i class="iconfont">&#xe602;</i></router-link>
                 <!--<router-link to="/Home/hd/hdCode">Recommend<i class="iconfont">&#xe602;</i></router-link>-->

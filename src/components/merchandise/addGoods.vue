@@ -463,9 +463,9 @@ export default {
 			var vm=this;
 			var url3='http://luxma.helpyoulove.com/item/sku/insert';
 			this.$http.post(url3,vm.skuList).then(response => { 
-				if(response.data.data==200){
+				if(response.data.status==200){
 					this.$message({
-						message: '恭喜你，这是一条成功消息',
+						message: '提交成功',
 						type: 'success'
 					});
 				} 

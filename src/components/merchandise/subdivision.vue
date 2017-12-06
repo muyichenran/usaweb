@@ -1,7 +1,7 @@
   <template>
   	<!--分区管理-->
-  <div class="admin-center">
-	   	  <div class="admin-center-top clearfix">
+   <div class="admin-center">
+		<div class="admin-center-top clearfix">
             <el-button @click="addSubShow=true" class="f-r" type="primary">添加分区</el-button>
         </div>
         <div class="subdivision-list">
@@ -89,9 +89,6 @@ export default {
             message: '已取消删除'
           });          
         });
-    	},
-    	delectSubdivision:function(){
-    		
     	},
 		bodyReady:function(){
 			var url='http://luxma.helpyoulove.com/item/cat/get/list';
