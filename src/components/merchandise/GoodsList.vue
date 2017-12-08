@@ -7,10 +7,11 @@
         <div class="goods-list">
 			<div class="top-search">
 				<el-select v-model="select"  placeholder="请选择">
-					<el-option label="上架" value="1"></el-option>
-					<el-option label="下架" value="2"></el-option>
+					<el-option label="全部" value=""></el-option>
+					<el-option label="上架" value="true"></el-option>
+					<el-option label="下架" value="false"></el-option>
 				</el-select>
-				<el-button type="primary" icon="search">搜索</el-button>
+				<el-button @click="goSearch()" type="primary" icon="search">搜索</el-button>
 			</div>
 			<div class="top-bar">
 				<el-button  @click="modifyState(false)"  type="info">全部下架</el-button>
@@ -55,7 +56,7 @@
 					<template slot-scope="scope">
 						<el-button v-if="scope.row.status" @click="modifyStateSingle(scope.row.itemId,false)" type="info">下架</el-button>
 						<el-button v-else @click="modifyStateSingle(scope.row.itemId,true)" type="success">上架</el-button>
-						<el-button @click="edit(index,item.supplierId)">编辑</el-button>
+						<el-button @click="edit(index,item.supplierId)">编辑库存</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -152,12 +153,15 @@ export default {
         edit:function(e,f){
         },
     	bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/item/get/list';
+			var url='http://luxma.helpyoulove.com/item/get/list?status='+this.select;
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.goodsList=response.data.data;
 			}, response => {
 			});
+		},
+		goSearch:function(){
+			this.bodyReady()
 		}
     },
     created(){
