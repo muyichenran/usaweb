@@ -18,7 +18,7 @@ import admin from '@/components/admin/index'
 import signCode from '@/components/Common/signCode' //生成注册邀请码
 
 import userList from '@/components/user/userList'  //注册用户列表
-
+import orderIndex from '@/components/order/Index'  //注册用户列表
 Vue.use(Router)
 
 export default new Router({
@@ -69,7 +69,10 @@ export default new Router({
         	path: '/GoodsList',
       		component: GoodsList,
         },
-				
+				{
+        	path: '/orderIndex',
+      		component: orderIndex,
+        },
 				
 				
 				{

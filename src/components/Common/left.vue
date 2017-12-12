@@ -1,8 +1,12 @@
 <template>
    <div class="admin-left f-l">
    		<ul>
+			
 			<li>
    				<router-link to="/userList">用户列表<i class="iconfont">&#xe602;</i></router-link>
+   			</li>
+			<li>
+   				<router-link to="/orderIndex">订单列表<i class="iconfont">&#xe602;</i></router-link>
    			</li>
    			<li>
    				<router-link to="/signCode">登陆验证码<i class="iconfont">&#xe602;</i></router-link>
