@@ -468,6 +468,9 @@ export default {
 						message: '提交成功',
 						type: 'success'
 					});
+					setTimeout(() => {
+						vm.$router.go(-1)
+					}, 1000);
 				} 
 				
 			}, response => {

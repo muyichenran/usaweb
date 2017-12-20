@@ -44,7 +44,7 @@
 			<div class="el-message-box">
 				<div class="el-message-box__header">
 					<div class="el-message-box__title">提示</div>
-					<button @click="addNewTriSecondClose()" type="button" class="el-message-box__headerbtn">
+					<button @click="addNewTriClose()" type="button" class="el-message-box__headerbtn">
 						<i class="el-message-box__close el-icon-close"></i>
 					</button>
 				</div>
@@ -61,20 +61,20 @@
 					<div class="el-message-box__message" style="margin-left: 0px;">
 						<p>属性类型</p>
 					</div>
+
+
+
 					<div class="el-message-box__input">
-						<div class="el-input">
-							<el-select v-model="optionsValue" placeholder="请选择">
-						    <el-option
-						      v-for="item in options"
-						      :key="item.value"
-						      :label="item.label"
-						      :value="item.value">
-						    </el-option>
-						  </el-select>
-						</div>
+						<el-checkbox v-model="addFirstObj.isSearch">是否是检索</el-checkbox>
 					</div>
+					<div class="el-message-box__input">
+						<el-checkbox v-model="addFirstObj.isColor">是否是颜色</el-checkbox>
+					</div>	
+					<div class="el-message-box__input">
+						<el-checkbox v-model="addFirstObj.isSale">是否是销售</el-checkbox>
+					</div>	
 					<div class="el-message-box__btns">
-						<button @click="addNewTriShowClose()" type="button" class="el-button el-button--default">
+						<button @click="addNewTriClose()" type="button" class="el-button el-button--default">
 							<span>
 								取消
 							</span>
@@ -139,17 +139,6 @@
 export default {
    	data(){
       	return{
-			options: [{
-			value: '1',
-			label: '是否是检索'
-			}, {
-			value: '2',
-			label: '是否是颜色'
-			}, {
-			value: '3',
-			label: '是否是销售'
-			}],
-        	optionsValue:'',
 			itemList:[],
 			catId: '',
 			addNewTriShow:false,
@@ -185,13 +174,6 @@ export default {
 		},
 		addNewTri:function(){
 			this.addFirstObj.catId=this.catId;
-			if(this.optionsValue=='1'){
-				this.addFirstObj.isSearch=true;
-			}else if(this.optionsValue=='2'){
-				this.addFirstObj.isColor=true;
-			}else if(this.optionsValue=='2'){
-				this.addFirstObj.isSale=true;
-			}
 			if(this.addFirstObj.valueTitle==''){
 				this.$message({
 					type: 'error',
@@ -205,7 +187,6 @@ export default {
 						type: 'success',
 						message: '提交成功'
 					});
-					this.optionsValue=false;
 					this.addNewTriShow=false;
 					this.addFirstObj={};
 					this.getPropertyAll()
@@ -221,7 +202,6 @@ export default {
 				type: 'info',
 				message: '取消输入'
 			}); 
-			this.optionsValue=false;
 			this.addNewTriShow=false;
 			this.addFirstObj={};
 		},
