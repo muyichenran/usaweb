@@ -4,8 +4,8 @@
 			<div class="search-top1">
 				<el-select v-model="status" slot="prepend" placeholder="请选择">
 					<el-option label="全部订单" value=""></el-option>
-					<el-option label="已完成订单" value="1"></el-option>
-					<el-option label="未完成订单" value="2"></el-option>
+					<el-option label="已完成订单" value="2"></el-option>
+					<el-option label="未完成订单" value="1"></el-option>
 				</el-select>
 				<el-button @click="searchStatus()" slot="append" icon="search"></el-button>
 			</div>
@@ -21,7 +21,7 @@
 					<span>订单编号:</span>{{item.orderId}}
 					<span>下单时间：</span>{{item.createTime}}
 					<span>总金额：</span><i class="money">{{item.payment}}</i>
-					<span v-if="item.status==1" class="f-r">已完成</span>
+					<span v-if="item.status==2" class="f-r">已完成</span>
 					<a v-else @click="goSuccessStatus(item.orderId)" class="f-r"  href="javascript:;">确认完成</a>
 					
 				</div>
@@ -81,6 +81,11 @@ export default {
     },
     components: {
     },
+	watch:{
+		status(){
+			this.bodyReady();
+		}
+	},
     methods:{
 		handleSizeChange(val) {
 			this.pageSize=val;
@@ -116,7 +121,7 @@ export default {
 			});
 		},
 		goSuccessStatus:function(e){
-			var url='http://luxma.helpyoulove.com/back/order/update/'+e+'/1';
+			var url='http://luxma.helpyoulove.com/back/order/update/'+e+'/2';
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				if(response.data.status==200){

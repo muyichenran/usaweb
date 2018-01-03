@@ -158,7 +158,7 @@ export default {
 			},
 			methods:{
 					bodyReady:function(){
-							var url='http://luxma.helpyoulove.com/advert/get/list?typeId='+this.searchId;
+							var url='http://luxma.helpyoulove.com/back/advert/get/list?typeId='+this.searchId;
 							this.$http.post(url).then(response => { 
 									if(response.data.status==200){
 											this.adverList=response.data.data;
@@ -172,7 +172,7 @@ export default {
 					},
 					subColumnName:function(){
 							var vm=this;
-							var url='http://luxma.helpyoulove.com/advert/type/insert';
+							var url='http://luxma.helpyoulove.com/back/advert/type/insert';
 							this.$http.post(url,vm.typeObj).then(response => { 
 									if(response.data.status==200){
 											this.$message({
@@ -189,7 +189,7 @@ export default {
 							});
 					},
 					getAdverTypeList:function(){
-							var url='http://luxma.helpyoulove.com/advert/type/get/list';
+							var url='http://luxma.helpyoulove.com/back/advert/type/get/list';
 							this.$http.post(url).then(response => { 
 									if(response.data.status==200){
 											this.typeList=response.data.data;
@@ -203,7 +203,7 @@ export default {
 					},
 					subAdver:function(){
 							var vm=this;
-							var url='http://luxma.helpyoulove.com/advert/insert';
+							var url='http://luxma.helpyoulove.com/back/advert/insert';
 							this.$http.post(url,vm.newAdvver).then(response => { 
 									if(response.data.status==200){
 											this.$message({
@@ -226,7 +226,7 @@ export default {
 								type: 'warning'
 							}).then(() => {
 									var vm=this;
-									var url='http://luxma.helpyoulove.com/advert/type/delete/'+e;
+									var url='http://luxma.helpyoulove.com/back/advert/type/delete/'+e;
 									this.$http.post(url).then(response => { 
 											if(response.data.status==200){
 													this.$message({
@@ -262,7 +262,7 @@ export default {
 								type: 'warning'
 							}).then(() => {
 									var vm=this;
-									var url='http://luxma.helpyoulove.com/advert/delete/'+e;
+									var url='http://luxma.helpyoulove.com/back/advert/delete/'+e;
 									this.$http.post(url).then(response => { 
 											if(response.data.status==200){
 													this.$message({

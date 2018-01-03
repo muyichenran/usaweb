@@ -129,6 +129,7 @@
 								<div class="item-block color-block">
 									<p class="title">颜色：</p>	
 									<div class="attribute-list">
+										{{colorList}}
 										<el-checkbox-group v-model="colorList">
 											<el-checkbox  v-for="(item,index) in isColorObj.values" v-bind:style="{background:item.valueTitle}" :key="item.propertyValueId" :label="item" border>
 												{{item.remark}}
@@ -139,6 +140,7 @@
 								<div class="item-block">
 									<p class="title">标尺：</p>	
 									<div class="attribute-list">
+										{{sizeList}}
 										<el-checkbox-group v-model="sizeList">
 											<el-checkbox v-for="(item,index) in isSizeObj.values" :label="item" border>
 												{{item.valueTitle}}
@@ -259,14 +261,14 @@ export default {
 			if(val.length>0){
 				if(this.sizeList.length>0){
 					this.skuList=[]; 
-					var i,j,m;
+					var i=0,j=0,m;
 					for(i in this.colorList){
 						
 						for(j in this.sizeList){
 							var newArray={};
 							newArray.colorName=this.colorList[i].valueTitle;
 							newArray.sizeName=this.sizeList[j].valueTitle;
-							newArray.properties=this.colorList[i].propertyId+','+this.sizeList[j].propertyId;
+							newArray.properties=this.colorList[i].propertyValueId+','+this.sizeList[j].propertyValueId;
 							newArray.quantity='';
 							newArray.price='';
 							this.skuList.push(newArray);
@@ -282,14 +284,14 @@ export default {
 				
 				if(this.colorList.length>0){
 					this.skuList=[]; 
-					var i,j,m;
+					var i=0,j=0,m;
 					for(i in this.colorList){
 						
 						for(j in this.sizeList){
 							var newArray={};
 							newArray.colorName=this.colorList[i].valueTitle;
 							newArray.sizeName=this.sizeList[j].valueTitle;
-							newArray.properties=this.colorList[i].propertyId+','+this.sizeList[j].propertyId;
+							newArray.properties=this.colorList[i].propertyValueId+','+this.sizeList[j].propertyValueId;
 							newArray.quantity='';
 							newArray.price='';
 							this.skuList.push(newArray);
@@ -386,13 +388,15 @@ export default {
 				for(var i in this.propertyList){
 					if(this.propertyList[i].property.isSearch){
 						this.isSearchObj=this.propertyList[i];
-					}else if(this.propertyList[i].property.isColor){
+					}
+					if(this.propertyList[i].property.isColor){
 						this.isColorObj=this.propertyList[i];
-					}else{
+					}
+					if(this.propertyList[i].property.isSale){
 						this.isSizeObj=this.propertyList[i];
 					}
 				}
-				console.log(this.isSearchObj)
+				console.log(this.isColorObj)
 			}, response => {
 			});
 		},
@@ -469,7 +473,7 @@ export default {
 						type: 'success'
 					});
 					setTimeout(() => {
-						vm.$router.go(-1)
+						vm.$router.push('/GoodsList')
 					}, 1000);
 				} 
 				
