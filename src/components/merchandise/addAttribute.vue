@@ -71,8 +71,11 @@
 						<el-checkbox v-model="addFirstObj.isColor">是否是颜色</el-checkbox>
 					</div>	
 					<div class="el-message-box__input">
+						<el-checkbox v-model="addFirstObj.isSize">是否是尺寸</el-checkbox>
+					</div>
+					<!-- <div class="el-message-box__input">
 						<el-checkbox v-model="addFirstObj.isSale">是否是销售</el-checkbox>
-					</div>	
+					</div>	 -->
 					<div class="el-message-box__btns">
 						<button @click="addNewTriClose()" type="button" class="el-button el-button--default">
 							<span>

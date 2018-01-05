@@ -392,7 +392,7 @@ export default {
 					if(this.propertyList[i].property.isColor){
 						this.isColorObj=this.propertyList[i];
 					}
-					if(this.propertyList[i].property.isSale){
+					if(this.propertyList[i].property.isSize){
 						this.isSizeObj=this.propertyList[i];
 					}
 				}
