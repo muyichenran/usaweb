@@ -29,11 +29,21 @@ export default {
     },
     methods:{
     	 exit:function(){
-            localStorage.removeItem("username");
-            this.username='';
-            
-            this.$router.replace({ path: '/login' });
-            window.close() 
+            var url='http://luxma.helpyoulove.com/back/adminlogout';
+	        var vm=this;
+	        this.$http.post(url,vm.login).then(response => {   
+	            if(response.data.status==200){
+					this.$message.success('成功退出');
+					var vm=this;
+					setTimeout(() => {
+						vm.$router.push({path:'/Login'})
+					}, 1000);
+					
+				}else{
+					this.$message.error(response.data.msg);
+				}
+	        }, response => {
+	        });
         }
     },
     created(){
