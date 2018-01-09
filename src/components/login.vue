@@ -34,8 +34,8 @@
                 }
                 this.$http.post(apiUrl, vm.item).then(response => {                
                     if(response.body.msg=="OK" && response.body.status=="200"){
-                        this.$cookie.set('userLogin',true)
-                        this.$store.state.userLogin=true;
+                        this.$cookie.set('adminLogin',true)
+                        this.$store.state.adminLogin=true;
                         this.$message.success('登录成功，正在跳转……');
                         var vm=this;
                         this.sign={};

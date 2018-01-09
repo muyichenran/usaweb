@@ -186,13 +186,26 @@ export default {
 				var url='http://luxma.helpyoulove.com/property/insert';
 				var vm=this;
 				this.$http.post(url,vm.addFirstObj).then(response => {   
-					this.$message({
-						type: 'success',
-						message: '提交成功'
-					});
-					this.addNewTriShow=false;
-					this.addFirstObj={};
-					this.getPropertyAll()
+					if(response.data.status==432){
+						this.$message.error("登录过期，请重新登录！");
+						this.$cookie.delete('adminLogin');
+						this.$store.state.adminLogin='';
+						this.$router.replace("/Login")
+					}else if(response.data.status==200){
+						this.$message({
+							type: 'success',
+							message: '提交成功'
+						});
+						this.addNewTriShow=false;
+						this.addFirstObj={};
+						this.getPropertyAll()
+					}else{
+						this.$message({
+							message: response.data.status,
+							type: 'error'
+						});
+					}
+					
 				}, response => {
 				});
 			}
@@ -233,13 +246,25 @@ export default {
 				var url='http://luxma.helpyoulove.com/property/value/insert';
 				var vm=this;
 				this.$http.post(url,vm.addSecondObj).then(response => {  
-					this.$message({
-						type: 'success',
-						message: '提交成功'
-					}); 
-					this.getPropertyAll();
-					this.addSecondObj={};
-					this.addNewTriSecondShow=false;
+					if(response.data.status==432){
+						this.$message.error("登录过期，请重新登录！");
+						this.$cookie.delete('adminLogin');
+						this.$store.state.adminLogin='';
+						this.$router.replace("/Login")
+					}else if(response.data.status==200){
+						this.$message({
+							type: 'success',
+							message: '提交成功'
+						}); 
+						this.getPropertyAll();
+						this.addSecondObj={};
+						this.addNewTriSecondShow=false;
+					}else{
+						this.$message({
+							message: response.data.status,
+							type: 'error'
+						});
+					}
 				}, response => {
 				});
 			}
@@ -257,14 +282,24 @@ export default {
 					url='http://luxma.helpyoulove.com/property/value/delete/'+f;
 				}
 				var vm=this;
-				this.$http.post(url).then(response => {   
-					if(response.data.status==200){
+				this.$http.post(url).then(response => {
+					if(response.data.status==432){
+						this.$message.error("登录过期，请重新登录！");
+						this.$cookie.delete('adminLogin');
+						this.$store.state.adminLogin='';
+						this.$router.replace("/Login")
+					}else if(response.data.status==200){
 						this.$message({
 							type: 'success',
 							message: '删除成功!'
 						});
 						this.getPropertyAll();
-					}
+					}else{
+						this.$message({
+							message: response.data.status,
+							type: 'error'
+						});
+					}   
 				}, response => {
 				});
 				
@@ -279,8 +314,20 @@ export default {
 		getPropertyAll:function(){
 			var url='http://luxma.helpyoulove.com/property/get/info/'+this.catId;
 			var vm=this;
-			this.$http.post(url).then(response => {   
-				this.propertyList=response.data.data;
+			this.$http.post(url).then(response => {   		
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
+					this.propertyList=response.data.data;
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}   
 			}, response => {
 			});
 		}

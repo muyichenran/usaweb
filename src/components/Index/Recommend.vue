@@ -157,67 +157,97 @@ export default {
 			components: {
 			},
 			methods:{
-					bodyReady:function(){
-							var url='http://luxma.helpyoulove.com/back/advert/get/list?typeId='+this.searchId;
-							this.$http.post(url).then(response => { 
-									if(response.data.status==200){
-											this.adverList=response.data.data;
-									}else{
-											this.$message({
-													message:response.data.msg ,
-													type: 'error'
-											});
-									} 	 
-							})	
-					},
-					subColumnName:function(){
-							var vm=this;
-							var url='http://luxma.helpyoulove.com/back/advert/type/insert';
-							this.$http.post(url,vm.typeObj).then(response => { 
-									if(response.data.status==200){
-											this.$message({
-													message: '添加成功！',
-													type: 'success'
-											});
-											this.addColumnShow=false;
-											this.typeObj={};
-											this.getAdverTypeList();
-									} 
-								
-							}, response => {
-
+				bodyReady:function(){
+					var url='http://luxma.helpyoulove.com/back/advert/get/list?typeId='+this.searchId;
+					this.$http.post(url).then(response => {
+						if(response.data.status==432){
+							this.$message.error("登录过期，请重新登录！");
+							this.$cookie.delete('adminLogin');
+							this.$store.state.adminLogin='';
+							this.$router.replace("/Login")
+						}else if(response.data.status==200){
+							this.adverList=response.data.data;
+						}else{
+							this.$message({
+									message:response.data.msg ,
+									type: 'error'
 							});
+						} 	 
+					})	
+				},
+					subColumnName:function(){
+						var vm=this;
+						var url='http://luxma.helpyoulove.com/back/advert/type/insert';
+						this.$http.post(url,vm.typeObj).then(response => { 
+							if(response.data.status==432){
+								this.$message.error("登录过期，请重新登录！");
+								this.$cookie.delete('adminLogin');
+								this.$store.state.adminLogin='';
+								this.$router.replace("/Login")
+							}else if(response.data.status==200){
+								this.$message({
+										message: '添加成功！',
+										type: 'success'
+								});
+								this.addColumnShow=false;
+								this.typeObj={};
+								this.getAdverTypeList();
+							}else{
+								this.$message({
+									message:response.data.msg ,
+									type: 'error'
+								});
+							} 	  
+							
+						}, response => {
+
+						});
 					},
 					getAdverTypeList:function(){
-							var url='http://luxma.helpyoulove.com/back/advert/type/get/list';
-							this.$http.post(url).then(response => { 
-									if(response.data.status==200){
-											this.typeList=response.data.data;
-									}else{
-											this.$message({
-													message:response.data.msg ,
-													type: 'error'
-											});
-									} 	  	 
-							})	
+						var url='http://luxma.helpyoulove.com/back/advert/type/get/list';
+						this.$http.post(url).then(response => { 
+							if(response.data.status==432){
+								this.$message.error("登录过期，请重新登录！");
+								this.$cookie.delete('adminLogin');
+								this.$store.state.adminLogin='';
+								this.$router.replace("/Login")
+							}else if(response.data.status==200){
+								this.typeList=response.data.data;
+							}else{
+								this.$message({
+										message:response.data.msg ,
+										type: 'error'
+								});
+							} 	  	 
+						})	
 					},
 					subAdver:function(){
-							var vm=this;
-							var url='http://luxma.helpyoulove.com/back/advert/insert';
-							this.$http.post(url,vm.newAdvver).then(response => { 
-									if(response.data.status==200){
-											this.$message({
-													message: '添加成功！',
-													type: 'success'
-											});
-											this.addAdverShow=false;
-											this.newAdvver={};
-											this.bodyReady();
-									} 
-								
-							}, response => {
+						var vm=this;
+						var url='http://luxma.helpyoulove.com/back/advert/insert';
+						this.$http.post(url,vm.newAdvver).then(response => { 
+							if(response.data.status==432){
+								this.$message.error("登录过期，请重新登录！");
+								this.$cookie.delete('adminLogin');
+								this.$store.state.adminLogin='';
+								this.$router.replace("/Login")
+							}else if(response.data.status==200){
+								this.$message({
+										message: '添加成功！',
+										type: 'success'
+								});
+								this.addAdverShow=false;
+								this.newAdvver={};
+								this.bodyReady();
+							}else{
+								this.$message({
+										message:response.data.msg ,
+										type: 'error'
+								});
+							} 	   
+							
+						}, response => {
 
-							});
+						});
 					},
 					delectClumn:function(e){
 							this.$confirm('此操作将导致该栏目下所有推荐商品删除, 是否继续?', '提示', {
@@ -228,13 +258,23 @@ export default {
 									var vm=this;
 									var url='http://luxma.helpyoulove.com/back/advert/type/delete/'+e;
 									this.$http.post(url).then(response => { 
-											if(response.data.status==200){
-													this.$message({
-															type: 'success',
-															message: '删除成功!'
-													});
-													this.bodyReady();
-											} 
+										if(response.data.status==432){
+											this.$message.error("登录过期，请重新登录！");
+											this.$cookie.delete('adminLogin');
+											this.$store.state.adminLogin='';
+											this.$router.replace("/Login")
+										}else if(response.data.status==200){
+												this.$message({
+														type: 'success',
+														message: '删除成功!'
+												});
+												this.bodyReady();
+										}else{
+											this.$message({
+													message:response.data.msg ,
+													type: 'error'
+											});
+										} 	    
 										
 									}, response => {
 
@@ -256,86 +296,94 @@ export default {
 							this.addAdverShow=true;
 					},
 					delect:function(e){
-							this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-								confirmButtonText: '确定',
-								cancelButtonText: '取消',
-								type: 'warning'
-							}).then(() => {
-									var vm=this;
-									var url='http://luxma.helpyoulove.com/back/advert/delete/'+e;
-									this.$http.post(url).then(response => { 
-											if(response.data.status==200){
-													this.$message({
-															type: 'success',
-															message: '删除成功!'
-													});
-													this.bodyReady();
-											} 
-										
-									}, response => {
-
-									});	
-									
-							}).catch(() => {
+						this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+							confirmButtonText: '确定',
+							cancelButtonText: '取消',
+							type: 'warning'
+						}).then(() => {
+							var vm=this;
+							var url='http://luxma.helpyoulove.com/back/advert/delete/'+e;
+							this.$http.post(url).then(response => { 
+								if(response.data.status==432){
+									this.$message.error("登录过期，请重新登录！");
+									this.$cookie.delete('adminLogin');
+									this.$store.state.adminLogin='';
+									this.$router.replace("/Login")
+								}else if(response.data.status==200){
+										this.$message({
+												type: 'success',
+												message: '删除成功!'
+										});
+										this.bodyReady();
+								}else{
 									this.$message({
-											type: 'info',
-											message: '已取消删除'
-									});          
-							});
+											message:response.data.msg ,
+											type: 'error'
+									});
+								} 	   
+							}, response => {
+
+							});	
+								
+						}).catch(() => {
+							this.$message({
+									type: 'info',
+									message: '已取消删除'
+							});          
+						});
 					}
 			},
 			created(){
-					this.bodyReady();
-					this.getAdverTypeList();
+				this.bodyReady();
+				this.getAdverTypeList();
 				
 			}
 }
 </script>
 
 <style lang="scss" scoped>
-	
 	.el-select-dropdown__item{
-			width: 100%;
-			display: block;
+		width: 100%;
+		display: block;
 	}
 	.admin-center{
-			width: 100%;
-			.add-column{
-					margin-bottom: 20px;
-					.column-list{
-							.item{
-									padding: 3px 10px;
-									background: #f2f2f2;
-									border: 1px solid #e5e5e5;
-									border-radius: 3px;
-									margin-right: 10px;
-									margin-bottom: 10px;
-									cursor: pointer;
-									display: inline-block;
-									position: relative;
-									.delect{
-											display: inline-block;
-											box-sizing: border-box;
-											border: 1px solid #52a8f9;
-											background: #FFFFFF;
-											position: absolute;
-											top: -8px;
-											right: -8px;
-											width: 16px;
-											height: 16px;
-											text-align: center;
-											line-height: 14px;
-											border-radius: 8px;
-										
-										i{
-												font-size: 12px;
-												vertical-align: bottom;
-												color: #95989a;
-										}
-								}
-						}
+		width: 100%;
+		.add-column{
+				margin-bottom: 20px;
+				.column-list{
+						.item{
+								padding: 3px 10px;
+								background: #f2f2f2;
+								border: 1px solid #e5e5e5;
+								border-radius: 3px;
+								margin-right: 10px;
+								margin-bottom: 10px;
+								cursor: pointer;
+								display: inline-block;
+								position: relative;
+								.delect{
+										display: inline-block;
+										box-sizing: border-box;
+										border: 1px solid #52a8f9;
+										background: #FFFFFF;
+										position: absolute;
+										top: -8px;
+										right: -8px;
+										width: 16px;
+										height: 16px;
+										text-align: center;
+										line-height: 14px;
+										border-radius: 8px;
+									
+									i{
+											font-size: 12px;
+											vertical-align: bottom;
+											color: #95989a;
+									}
+							}
 					}
-			}
+				}
+		}
 		.adver-list {
 				margin-top: 15px;
 				font-size: 18px;

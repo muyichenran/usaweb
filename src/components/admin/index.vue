@@ -95,7 +95,12 @@ export default {
 				var url='http://luxma.helpyoulove.com/back/admin/delete/'+e;
 				var vm=this;
 				this.$http.post(url).then(response => {   
-					if(response.data.status==200){
+					if(response.data.status==432){
+						this.$message.error("登录过期，请重新登录！");
+						this.$cookie.delete('adminLogin');
+						this.$store.state.adminLogin='';
+						this.$router.replace("/Login")
+					}else if(response.data.status==200){
 						this.$message({
 							type: 'success',
 							message: '删除成功!'
@@ -125,12 +130,19 @@ export default {
 			var url='http://luxma.helpyoulove.com/back/admin/add/adminUser';
 			var vm=this;
 			this.$http.post(url,vm.adminUser).then(response => {   
-				if(response.data.status==200){
+				if(response.data.status==432){
+                    this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+                    this.$router.replace("/Login")
+                }else if(response.data.status==200){
 					this.$message.success('添加成功');
 					this.addSubShow=false;
 					this.adminUser={};
 					this.password="";
 					this.bodyReady();
+				}else{
+					this.$message.error(response.data.msg);
 				}
 			}, response => {
 			});
@@ -138,8 +150,17 @@ export default {
 		bodyReady:function(){
 			var url='http://luxma.helpyoulove.com/back/admin/get/list';
 			var vm=this;
-			this.$http.post(url).then(response => {   
-				this.adminList=response.data.data;
+			this.$http.post(url).then(response => {
+				if(response.data.status==432){
+                    this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+                    this.$router.replace("/Login")
+                }else if(response.data.status==200){   
+					this.adminList=response.data.data;
+				}else{
+					this.$message.error(response.data.msg);
+				}
 			}, response => {
 			});
 		}

@@ -368,7 +368,17 @@ export default {
 			var url='http://luxma.helpyoulove.com/item/cat/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
-				this.itemList=response.data.data;
+				if(response.data.status==432){
+                    this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+                    this.$router.replace("/Login")
+                }else if(response.data.status==200){   
+					this.itemList=response.data.data;
+				}else{
+					this.$message.error(response.data.msg);
+				}
+				
 			}, response => {
 			});
 		},
@@ -377,6 +387,7 @@ export default {
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.supplierList=response.data.data;
+				
 			}, response => {
 			});
 		},
@@ -435,11 +446,10 @@ export default {
 			var url='http://luxma.helpyoulove.com/item/insert';
 			var vm=this;
 			this.$http.post(url,vm.GoodsInfo).then(response => {   
-				
 				if(response.data){
 					this.subPropertyNewList(response.data)
-					
 				}
+				
 			}, response => {
 			});
 		}, 
@@ -455,7 +465,12 @@ export default {
 			propertyNewList.push(this.isSizeObj);
 			var url2='http://luxma.helpyoulove.com/item/insert/property/'+e.data;
 			this.$http.post(url2,propertyNewList).then(response => {  
-				
+				if(response.data.status==432){
+                    this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+                    this.$router.replace("/Login")
+                }
 			}, response => {
 
 			});
@@ -467,7 +482,12 @@ export default {
 			var vm=this;
 			var url3='http://luxma.helpyoulove.com/item/sku/insert';
 			this.$http.post(url3,vm.skuList).then(response => { 
-				if(response.data.status==200){
+				if(response.data.status==432){
+                    this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+                    this.$router.replace("/Login")
+                }else if(response.data.status==200){   
 					this.$message({
 						message: '提交成功',
 						type: 'success'
@@ -475,7 +495,9 @@ export default {
 					setTimeout(() => {
 						vm.$router.push('/GoodsList')
 					}, 1000);
-				} 
+				}else{
+					this.$message.error(response.data.msg);
+				}
 				
 			}, response => {
 

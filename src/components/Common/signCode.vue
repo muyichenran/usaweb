@@ -16,8 +16,17 @@
             getCode:function(){
             	var url='http://luxma.helpyoulove.com/back/admin/create/registerCode';
 	            var vm=this;
-	            this.$http.post(url).then(response => {   
-	                this.code=response.data.data;
+	            this.$http.post(url).then(response => { 
+					if(response.data.status==432){
+						this.$message.error("登录过期，请重新登录！");
+						this.$cookie.delete('adminLogin');
+						this.$store.state.adminLogin='';
+						this.$router.replace("/Login")
+					}else if(response.data.status==200){   
+						this.code=response.data.data;
+					}else{
+						this.$message.error(esponse.data.msg);
+					}  
 	            }, response => {
 	            });
             }

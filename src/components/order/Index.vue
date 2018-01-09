@@ -100,11 +100,24 @@ export default {
 			var url='http://luxma.helpyoulove.com/back/order/get/list/'+this.currentPage+'?status='+this.status+'&stage='+this.pageSize;
 			var vm=this;
 			this.$http.post(url).then(response => {   
-				this.orderList=response.data.data.rows;
-				this.total=response.data.data.total;
-				if(this.total<10){
-					this.pageShow=false
-				}
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
+					this.orderList=response.data.data.rows;
+					this.total=response.data.data.total;
+					if(this.total<10){
+						this.pageShow=false
+					}
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}      
+				
 			}, response => {
 			});
 		},
@@ -114,23 +127,46 @@ export default {
 		goSearch:function(){
 			var url='http://luxma.helpyoulove.com/back/order/get/'+this.searchId;
 			var vm=this;
-			this.$http.post(url).then(response => {   
-				this.orderList=response.data.data;
-				this.pageShow=false
+			this.$http.post(url).then(response => { 
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
+					this.orderList=response.data.data;
+					this.pageShow=false
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}     
+				
 			}, response => {
 			});
 		},
 		goSuccessStatus:function(e){
 			var url='http://luxma.helpyoulove.com/back/order/update/'+e+'/2';
 			var vm=this;
-			this.$http.post(url).then(response => {   
-				if(response.data.status==200){
+			this.$http.post(url).then(response => {  
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
 					this.$message({
 						message: '修改成功',
 						type: 'success'
 					});
 					this.bodyReady();
-				}
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}      
 			}, response => {
 			});
 		}

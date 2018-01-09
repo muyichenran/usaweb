@@ -32,7 +32,12 @@ export default {
             var url='http://luxma.helpyoulove.com/back/adminlogout';
 	        var vm=this;
 	        this.$http.post(url,vm.login).then(response => {   
-	            if(response.data.status==200){
+	            if(response.data.status==432){
+                    this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+                    this.$router.replace("/Login")
+                }else if(response.data.status==200){
 					this.$message.success('成功退出');
 					var vm=this;
 					setTimeout(() => {

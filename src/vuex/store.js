@@ -5,19 +5,14 @@ Vue.use(Vuex);
 Vue.use(cookie);
 // 需要维护的状态
 const state = {
-  common:{},  
   userInfo:{},
+  adminLogin:''
 };
 var vm=this;
 const mutations = {
   // 登陆
-  LOG_IN(state, common){
-      state.common=common;
-  },
-  LOG_OFF(state) {
-    state.common='';
-    cookie.delete('userId', {domain: 'helpyoulove.com'});
-    cookie.delete('token', {domain: 'helpyoulove.com'});
+  LOG_IN(state, adminLogin){
+    state.adminLogin=adminLogin;
   },
 };
 export default new Vuex.Store({

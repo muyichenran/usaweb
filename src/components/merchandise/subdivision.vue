@@ -93,22 +93,48 @@ export default {
 		bodyReady:function(){
 			var url='http://luxma.helpyoulove.com/item/cat/get/list';
 			var vm=this;
-			this.$http.post(url).then(response => {   
-				this.itemList=response.data.data;
+			this.$http.post(url).then(response => {  
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
+					this.itemList=response.data.data;
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				} 
+				
 			}, response => {
 			});
 		},
 		submitItem:function(){
 			var url='http://luxma.helpyoulove.com/item/cat/insert';
 			var vm=this;
-			this.$http.post(url,vm.item).then(response => {   
-				this.$message({
-		            type: 'success',
-		            message: '提交成功!'
-				});
-				this.bodyReady();
-				this.item={};
-				this.addSubShow=false;
+			this.$http.post(url,vm.item).then(response => { 
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
+					this.$message({
+						type: 'success',
+						message: '提交成功!'
+					});
+					this.bodyReady();
+					this.item={};
+					this.addSubShow=false;
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}   
+				
 			}, response => {
 			});
 		},

@@ -89,14 +89,19 @@ export default {
 				var url='http://luxma.helpyoulove.com/item/update/status/'+e;
 				var vm=this;
 				this.$http.post(url,vm.multipleSelection).then(response => {   
-					if(response.data.status==200){
-							this.$message({
-								message: '修改成功',
-								type: 'success'
-							});
-							this.multipleSelecti=[];
-							this.$refs.multipleTable.clearSelection();
-							this.bodyReady();
+					if(response.data.status==432){
+						this.$message.error("登录过期，请重新登录！");
+						this.$cookie.delete('adminLogin');
+						this.$store.state.adminLogin='';
+						this.$router.replace("/Login")
+					}else if(response.data.status==200){
+						this.$message({
+							message: '修改成功',
+							type: 'success'
+						});
+						this.multipleSelecti=[];
+						this.$refs.multipleTable.clearSelection();
+						this.bodyReady();
 					}else{
 						this.$message({
 							message: response.data.status,
@@ -114,7 +119,12 @@ export default {
 			var vm=this;
 			this.multipleSelection.push(e);
 			this.$http.post(url,vm.multipleSelection).then(response => {   
-				if(response.data.status==200){
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
 						this.$message({
 							message: '修改成功',
 							type: 'success'
@@ -155,8 +165,20 @@ export default {
     	bodyReady:function(){
 			var url='http://luxma.helpyoulove.com/item/get/list?status='+this.select;
 			var vm=this;
-			this.$http.post(url).then(response => {   
-				this.goodsList=response.data.data;
+			this.$http.post(url).then(response => {   				
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
+					this.goodsList=response.data.data;
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}
 			}, response => {
 			});
 		},
