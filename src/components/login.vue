@@ -34,7 +34,14 @@
                 }
                 this.$http.post(apiUrl, vm.item).then(response => {                
                     if(response.body.msg=="OK" && response.body.status=="200"){
-                        this.$router.replace({ path: '/' });
+                        this.$cookie.set('userLogin',true)
+                        this.$store.state.userLogin=true;
+                        this.$message.success('登录成功，正在跳转……');
+                        var vm=this;
+                        this.sign={};
+                        setTimeout(() => {
+                            vm.$router.push({path:'/'})
+                        }, 1000);
 
                     }else{
                         this.$message.error(response.body.msg);

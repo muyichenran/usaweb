@@ -47,7 +47,14 @@ export default {
         }
     },
     created(){
-    	
+    	if(this.$store.state.adminLogin==undefined||this.$store.state.adminLogin==null||this.$store.state.adminLogin==""){
+            var adminLogin='';
+            adminLogin=this.$cookie.get('adminLogin');
+            this.$store.commit('LOG_IN',adminLogin);
+            
+        }else{
+            
+        }
     }
 }
 </script>

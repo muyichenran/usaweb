@@ -13,6 +13,29 @@ import 'element-ui/lib/theme-default/index.css'
 Vue.use(cookie);
 Vue.use(ElementUI)
 Vue.use(VueResource);
+
+Vue.http.options.credentials = true
+Vue.http.options.xhr = {withCredentials: true}
+router.beforeEach(({meta, path}, from, next) => {
+  if(cookie.get('adminLogin')==null||cookie.get('adminLogin')==undefined){
+    if(path=="/login"||path=="/Login"){
+      next()
+    }else{       
+      next({
+        path: '/Login'
+      })
+    }
+  }else{     
+    if(path=="/login"||path=="/Login"){
+      next({
+        path: '/'
+      })
+    }else{
+      next()
+    }
+  }    
+})
+
 Vue.filter('formatTime',function(time){
     var year=new Date(time).getFullYear();
     var mou=new Date(time).getMonth()+1;
