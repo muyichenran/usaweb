@@ -7,7 +7,7 @@
                 <span class="company-name">魔卡情感-后台</span>
             </router-link>
             
-            <div class="admin-login">
+            <div v-if="adminLogin"  class="admin-login">
                 <a href="javascript:;"><i class="iconfont">&#xe601;</i>用户</a>
                 <a href="javascript:;" v-on:click="exit">退出</a>
             </div>
@@ -21,8 +21,18 @@
 export default {
    data(){
       return{
-        requestItem:this.$store.state.common,
       }
+	},
+	computed:{
+        adminLogin(){
+            return this.$store.state.adminLogin;
+        }
+	},
+	 watch:{
+        adminLogin(){
+            if(this.adminLogin){
+            }
+        }
     },
     components: {
     	
@@ -31,7 +41,7 @@ export default {
     	 exit:function(){
             var url='http://luxma.helpyoulove.com/back/adminlogout';
 	        var vm=this;
-	        this.$http.post(url,vm.login).then(response => {   
+	        this.$http.post(url).then(response => {   
 	            if(response.data.status==432){
                     this.$message.error("登录过期，请重新登录！");
 					this.$cookie.delete('adminLogin');

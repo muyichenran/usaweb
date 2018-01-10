@@ -28,8 +28,7 @@
 				<table class="order-table">
 					<thead>
 						<tr>
-							<td width="100">ID</td>
-							<td width="250">Name</td>
+							<td width="450">GoodsInfo</td>
 							<td width="100">Num</td>
 							<td width="120">Price</td>
 							<td>Price Total</td>
@@ -37,11 +36,17 @@
 					</thead>
 					<tbody>
 						<tr v-for="(item1,index) in item.items">
-							<td>{{item1.itemId}}</td>
-							<td>{{item1.itemTitle}}</td>
+							<td>
+								<div class="goods-info">
+									<img class="img" :src="item1.picUrl">
+									<p class="title">{{item1.itemTitle}}</p>
+								</div>
+								<div class="goods-size" v-html="item1.itemType">
+								</div>
+							</td>
 							<td>{{item1.num}}</td>
-							<td>{{item1.price}}</td>
-							<td>{{item1.priceTotal}}</td>
+							<td>${{item1.price}}</td>
+							<td>${{item1.priceTotal}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -245,6 +250,26 @@ export default {
 				}
 			}
 		}
+	}
+}
+.goods-info{
+	width: 300px;
+	float: left;
+	cursor: pointer;
+	margin-right: 15px;
+	.img{
+		width: 100px;
+		height: 100px;
+		float: left;
+		margin-right: 8px;
+	}
+	.title{
+		font-size:14px
+	}
+}
+.goods-size{
+	p{
+		line-height: 24px
 	}
 }
 </style>

@@ -269,6 +269,7 @@ export default {
 							newArray.colorName=this.colorList[i].valueTitle;
 							newArray.sizeName=this.sizeList[j].valueTitle;
 							newArray.properties=this.colorList[i].propertyValueId+','+this.sizeList[j].propertyValueId;
+							newArray.title='COLOR:'+this.colorList[i].remark+'<br/>SIZE:'+this.sizeList[j].remark
 							newArray.quantity='';
 							newArray.price='';
 							this.skuList.push(newArray);
@@ -292,6 +293,7 @@ export default {
 							newArray.colorName=this.colorList[i].valueTitle;
 							newArray.sizeName=this.sizeList[j].valueTitle;
 							newArray.properties=this.colorList[i].propertyValueId+','+this.sizeList[j].propertyValueId;
+							newArray.title='COLOR:'+this.colorList[i].remark+'<br/>SIZE:'+this.sizeList[j].remark
 							newArray.quantity='';
 							newArray.price='';
 							this.skuList.push(newArray);

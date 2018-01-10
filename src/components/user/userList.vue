@@ -19,19 +19,24 @@
                 label="userName"
                 width="180">
                 </el-table-column>
+				<el-table-column
+                prop="name"
+                label="Name"
+                width="140">
+                </el-table-column>
                 <el-table-column
                 prop="phone"
-                label="phone"
+                label="Phone"
                 width="140">
                 </el-table-column>
 				<el-table-column
                 prop="email"
-                label="email"
+                label="Email"
                 width="140">
                 </el-table-column>
                 <el-table-column
                 prop="remark"
-                label="remark"
+                label="Remark"
                 width="260">
                 </el-table-column>
                 <el-table-column
@@ -65,6 +70,12 @@
 							<td width="150" align="right">userName</td>
 							<td width="220">
 								<el-input v-model="User.username"></el-input>
+							</td>
+						</tr>
+						<tr>
+							<td  align="right">Name</td>
+							<td width="220">
+								<el-input v-model="User.name"></el-input>
 							</td>
 						</tr>
 						<tr>

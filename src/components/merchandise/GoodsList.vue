@@ -56,7 +56,7 @@
 					<template slot-scope="scope">
 						<el-button v-if="scope.row.status" @click="modifyStateSingle(scope.row.itemId,false)" type="info">下架</el-button>
 						<el-button v-else @click="modifyStateSingle(scope.row.itemId,true)" type="success">上架</el-button>
-						<el-button @click="edit(index,item.supplierId)">编辑库存</el-button>
+						<el-button @click="edit(scope.row.itemId,scope.row)">编辑库存</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -75,7 +75,8 @@ export default {
 			addSuppShow:false,
 			goodsList:[],
 			supplier:{},
-			multipleSelection: []
+			multipleSelection: [],
+			editSku:[]
 		}
     },
     components: {
@@ -161,6 +162,8 @@ export default {
 			// this.multipleSelection = val;
 		},
         edit:function(e,f){
+			this.$router.push({ path: '/editSku', query: { Id: e }})
+			localStorage.setItem("goodsDetail",JSON.stringify(f))
         },
     	bodyReady:function(){
 			var url='http://luxma.helpyoulove.com/item/get/list?status='+this.select;
