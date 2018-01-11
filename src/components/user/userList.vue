@@ -17,12 +17,12 @@
                 <el-table-column
                 prop="username"
                 label="userName"
-                width="180">
+                width="160">
                 </el-table-column>
 				<el-table-column
                 prop="name"
                 label="Name"
-                width="140">
+                width="120">
                 </el-table-column>
                 <el-table-column
                 prop="phone"
@@ -32,12 +32,12 @@
 				<el-table-column
                 prop="email"
                 label="Email"
-                width="140">
+                width="120">
                 </el-table-column>
                 <el-table-column
                 prop="remark"
                 label="Remark"
-                width="260">
+                width="220">
                 </el-table-column>
                 <el-table-column
                 label="操作"

@@ -52,8 +52,8 @@
 															<img :src="item.picUrl"/>
 													</td>
 													<td valign="middle">{{item.itemId}}</td>
-													<td valign="middle">{{item.title}}</td>
-													<td >{{item.itemRecommend}}</td>
+													<td valign="middle">{{item.itemRecommend}}</td>
+													<td >{{item.createTime | formatTime}}</td>
 													
 													<td valign="middle" class="operate-table">
 															<el-button @click="edit(index)">编辑</el-button>
@@ -224,7 +224,7 @@ export default {
 					subAdver:function(){
 						var vm=this;
 						var url='http://luxma.helpyoulove.com/back/advert/insert';
-						this.$http.post(url,vm.newAdvver).then(response => { 
+						this.$http.post(url,vm.newAdver).then(response => { 
 							if(response.data.status==432){
 								this.$message.error("登录过期，请重新登录！");
 								this.$cookie.delete('adminLogin');
@@ -236,7 +236,7 @@ export default {
 										type: 'success'
 								});
 								this.addAdverShow=false;
-								this.newAdvver={};
+								this.newAdver={};
 								this.bodyReady();
 							}else{
 								this.$message({

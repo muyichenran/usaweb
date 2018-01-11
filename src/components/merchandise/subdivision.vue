@@ -36,7 +36,7 @@
         <div v-if="addSubShow">
         	<div class="box-shade"></div>
         	<div class="add-sub-box">
-        			<a  class="close" href="javascript:;">
+        			<a  class="close" @click="addSubShow=false;item={}" href="javascript:;">
         				<i class="iconfont">&#xe605;</i>
 	        		</a>	
         			<table>

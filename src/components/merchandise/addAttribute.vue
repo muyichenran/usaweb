@@ -145,7 +145,11 @@ export default {
 			itemList:[],
 			catId: '',
 			addNewTriShow:false,
-			addFirstObj:{},
+			addFirstObj:{
+				isSearch:false,
+				isColor:false,
+				isSize:false,
+			},
 			addNewTriSecondShow:false,
 			addSecondObj:{},
 			propertyId:'',
