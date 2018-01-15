@@ -129,7 +129,7 @@
 								<div class="item-block color-block">
 									<p class="title">颜色：</p>	
 									<div class="attribute-list">
-										{{colorList}}
+										<!-- {{colorList}} -->
 										<el-checkbox-group v-model="colorList">
 											<el-checkbox  v-for="(item,index) in isColorObj.values" v-bind:style="{background:item.valueTitle}" :key="item.propertyValueId" :label="item" border>
 												{{item.remark}}
@@ -140,7 +140,7 @@
 								<div class="item-block">
 									<p class="title">标尺：</p>	
 									<div class="attribute-list">
-										{{sizeList}}
+										<!-- {{sizeList}} -->
 										<el-checkbox-group v-model="sizeList">
 											<el-checkbox v-for="(item,index) in isSizeObj.values" :label="item" border>
 												{{item.valueTitle}}
@@ -168,7 +168,7 @@
 											</thead>
 											<tbody>
 												 <tr v-for="(item,index) in skuList">
-													<td>{{item.colorName}}</td>
+													<td>{{item.colorName}}({{item.colorRemark}})</td>
 													<td>{{item.sizeName}}</td>
 													<td><el-input style="width:150px" v-model="item.quantity"></el-input></td>
 													<td><el-input style="width:150px"  v-model="item.price"></el-input></td>
@@ -267,6 +267,7 @@ export default {
 						for(j in this.sizeList){
 							var newArray={};
 							newArray.colorName=this.colorList[i].valueTitle;
+							newArray.colorRemark=this.colorList[i].remark;
 							newArray.sizeName=this.sizeList[j].valueTitle;
 							newArray.properties=this.colorList[i].propertyValueId+','+this.sizeList[j].propertyValueId;
 							newArray.title='COLOR:'+this.colorList[i].remark+'<br/>SIZE:'+this.sizeList[j].remark
@@ -291,6 +292,7 @@ export default {
 						for(j in this.sizeList){
 							var newArray={};
 							newArray.colorName=this.colorList[i].valueTitle;
+							newArray.colorRemark=this.colorList[i].remark;
 							newArray.sizeName=this.sizeList[j].valueTitle;
 							newArray.properties=this.colorList[i].propertyValueId+','+this.sizeList[j].propertyValueId;
 							newArray.title='COLOR:'+this.colorList[i].remark+'<br/>SIZE:'+this.sizeList[j].remark

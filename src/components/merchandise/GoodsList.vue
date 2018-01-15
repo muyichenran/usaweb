@@ -31,7 +31,7 @@
 				<el-table-column
 				label="Id"
 				prop="itemId"
-				width="120">
+				width="80">
 				</el-table-column>
 				<el-table-column
 				prop="title"
@@ -48,7 +48,7 @@
 				<el-table-column
 				prop="price"
 				label="价格"
-				width="100">
+				width="80">
 				</el-table-column>
 				<el-table-column
 				label="操作"
@@ -57,6 +57,7 @@
 						<el-button v-if="scope.row.status" @click="modifyStateSingle(scope.row.itemId,false)" type="info">下架</el-button>
 						<el-button v-else @click="modifyStateSingle(scope.row.itemId,true)" type="success">上架</el-button>
 						<el-button @click="edit(scope.row.itemId,scope.row)">编辑库存</el-button>
+						<el-button type="danger" @click="delect(scope.row.itemId)">删除</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -165,6 +166,30 @@ export default {
 			this.$router.push({ path: '/editSku', query: { Id: e }})
 			localStorage.setItem("goodsDetail",JSON.stringify(f))
         },
+		delect(e){
+			var url='http://luxma.helpyoulove.com/item/deleteItemInfo/'+e;
+			var vm=this;
+			this.$http.post(url).then(response => {   				
+				if(response.data.status==432){
+					this.$message.error("登录过期，请重新登录！");
+					this.$cookie.delete('adminLogin');
+					this.$store.state.adminLogin='';
+					this.$router.replace("/Login")
+				}else if(response.data.status==200){
+					this.$message({
+						message: '删除',
+						type: 'success'
+					});
+					this.bodyReady()
+				}else{
+					this.$message({
+						message: response.data.status,
+						type: 'error'
+					});
+				}
+			}, response => {
+			});
+		},
     	bodyReady:function(){
 			var url='http://luxma.helpyoulove.com/item/get/list?status='+this.select;
 			var vm=this;
