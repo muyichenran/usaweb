@@ -2,17 +2,17 @@
   	<!--商品列表-->
   <div class="merchandise">
 	   	  <div class="allMerchandise-top clearfix">
-            <a href="javascript:;" class="add-merchandise f-r">添加供应商</a>
+            <a href="javascript:;" class="add-merchandise f-r">Add Vendor </a>
         </div>
         <div class="merchandise-list">
             <table class="merchandise-table">
                 <thead>
                     <tr>
-                    	<td width="60">序号</td>
+                    	<td width="60">Numver</td>
                         <td width="180">LOGO</td>
-                        <td width="140">供应商名称</td>
-                        <td width="180">发布时间</td>
-                        <td width="180">修改时间</td>
+                        <td width="140">Vendor Names</td>
+                        <td width="180">Issue Date</td>
+                        <td width="180">Modify Date</td>
                         <td>操作</td>
                     </tr>
                 </thead>
@@ -70,7 +70,7 @@
         				</tr>
         			</table>
         			<p class="sub-adver" >
-        				<el-button type="primary">提交</el-button>
+        				<el-button type="primary">Submit</el-button>
         			</p>
         			
         	</div>
@@ -101,19 +101,19 @@ export default {
         return isLt2M;
       },
     	delect:function(){
-    		this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+    		this.$confirm('This will permanently delete this file, Continue?', 'Prompt', {
+          confirmButtonText: 'Confirm',
+          cancelButtonText: 'Cancel',
           type: 'warning'
         }).then(() => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: 'Delect Success!'
           });
         }).catch(() => {
           this.$message({
             type: 'info',
-            message: '已取消删除'
+            message: 'Deleted'
           });          
         });
     	}

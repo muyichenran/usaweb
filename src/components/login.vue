@@ -27,7 +27,7 @@
         methods:{
             goLogin:function(){
                 var vm=this;
-                var apiUrl='http://luxma.helpyoulove.com/back/admin/login';
+                var apiUrl='http://manager.luxtonusa.com/back/admin/login';
                 if(vm.item.username==undefined||vm.item.password==undefined){
                     this.$message.error('用户名、密码不得为空！');
                     return false;

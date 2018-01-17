@@ -158,7 +158,7 @@ export default {
 			},
 			methods:{
 				bodyReady:function(){
-					var url='http://luxma.helpyoulove.com/back/advert/get/list?typeId='+this.searchId;
+					var url='http://manager.luxtonusa.com/back/advert/get/list?typeId='+this.searchId;
 					this.$http.post(url).then(response => {
 						if(response.data.status==432){
 							this.$message.error("登录过期，请重新登录！");
@@ -177,7 +177,7 @@ export default {
 				},
 					subColumnName:function(){
 						var vm=this;
-						var url='http://luxma.helpyoulove.com/back/advert/type/insert';
+						var url='http://manager.luxtonusa.com/back/advert/type/insert';
 						this.$http.post(url,vm.typeObj).then(response => { 
 							if(response.data.status==432){
 								this.$message.error("登录过期，请重新登录！");
@@ -186,7 +186,7 @@ export default {
 								this.$router.replace("/Login")
 							}else if(response.data.status==200){
 								this.$message({
-										message: '添加成功！',
+										message: 'Add Success！',
 										type: 'success'
 								});
 								this.addColumnShow=false;
@@ -204,7 +204,7 @@ export default {
 						});
 					},
 					getAdverTypeList:function(){
-						var url='http://luxma.helpyoulove.com/back/advert/type/get/list';
+						var url='http://manager.luxtonusa.com/back/advert/type/get/list';
 						this.$http.post(url).then(response => { 
 							if(response.data.status==432){
 								this.$message.error("登录过期，请重新登录！");
@@ -223,7 +223,7 @@ export default {
 					},
 					subAdver:function(){
 						var vm=this;
-						var url='http://luxma.helpyoulove.com/back/advert/insert';
+						var url='http://manager.luxtonusa.com/back/advert/insert';
 						this.$http.post(url,vm.newAdver).then(response => { 
 							if(response.data.status==432){
 								this.$message.error("登录过期，请重新登录！");
@@ -232,7 +232,7 @@ export default {
 								this.$router.replace("/Login")
 							}else if(response.data.status==200){
 								this.$message({
-										message: '添加成功！',
+										message: 'Add Success！',
 										type: 'success'
 								});
 								this.addAdverShow=false;
@@ -250,13 +250,13 @@ export default {
 						});
 					},
 					delectClumn:function(e){
-							this.$confirm('此操作将导致该栏目下所有推荐商品删除, 是否继续?', '提示', {
-								confirmButtonText: '确定',
-								cancelButtonText: '取消',
+							this.$confirm('This will permanently delete this file, Continue?', 'Prompt', {
+								confirmButtonText: 'Confirm',
+								cancelButtonText: 'Cancel',
 								type: 'warning'
 							}).then(() => {
 									var vm=this;
-									var url='http://luxma.helpyoulove.com/back/advert/type/delete/'+e;
+									var url='http://manager.luxtonusa.com/back/advert/type/delete/'+e;
 									this.$http.post(url).then(response => { 
 										if(response.data.status==432){
 											this.$message.error("登录过期，请重新登录！");
@@ -266,7 +266,7 @@ export default {
 										}else if(response.data.status==200){
 												this.$message({
 														type: 'success',
-														message: '删除成功!'
+														message: 'Delect Success!'
 												});
 												this.bodyReady();
 										}else{
@@ -283,7 +283,7 @@ export default {
 							}).catch(() => {
 									this.$message({
 											type: 'info',
-											message: '已取消删除'
+											message: 'Deleted'
 									});          
 							});
 					},
@@ -296,13 +296,13 @@ export default {
 							this.addAdverShow=true;
 					},
 					delect:function(e){
-						this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-							confirmButtonText: '确定',
-							cancelButtonText: '取消',
+						this.$confirm('This will permanently delete this file, Continue?', 'Prompt', {
+							confirmButtonText: 'Confirm',
+							cancelButtonText: 'Cancel',
 							type: 'warning'
 						}).then(() => {
 							var vm=this;
-							var url='http://luxma.helpyoulove.com/back/advert/delete/'+e;
+							var url='http://manager.luxtonusa.com/back/advert/delete/'+e;
 							this.$http.post(url).then(response => { 
 								if(response.data.status==432){
 									this.$message.error("登录过期，请重新登录！");
@@ -312,7 +312,7 @@ export default {
 								}else if(response.data.status==200){
 										this.$message({
 												type: 'success',
-												message: '删除成功!'
+												message: 'Delect Success!'
 										});
 										this.bodyReady();
 								}else{
@@ -328,7 +328,7 @@ export default {
 						}).catch(() => {
 							this.$message({
 									type: 'info',
-									message: '已取消删除'
+									message: 'Deleted'
 							});          
 						});
 					}

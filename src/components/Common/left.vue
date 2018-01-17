@@ -3,51 +3,51 @@
    		<ul>
 			
 			<li>
-   				<router-link to="/userList">用户列表<i class="iconfont">&#xe602;</i></router-link>
+   				<router-link to="/userList">User List<i class="iconfont">&#xe602;</i></router-link>
    			</li>
 			<li>
-   				<router-link to="/orderIndex">订单列表<i class="iconfont">&#xe602;</i></router-link>
+   				<router-link to="/orderIndex">Order List<i class="iconfont">&#xe602;</i></router-link>
    			</li>
    			<li>
-   				<router-link to="/signCode">登陆验证码<i class="iconfont">&#xe602;</i></router-link>
+   				<router-link to="/signCode">Login Access Code<i class="iconfont">&#xe602;</i></router-link>
    			</li>
    		</ul>
    		<ul class="meau-list">
-            <li class="list-title">供应商</li>
+            <li class="list-title">Vendor</li>
             <li>
-                 <router-link to="/suppliers">供应商录入<i class="iconfont">&#xe602;</i></router-link>
+                 <router-link to="/suppliers">Vendor Entry<i class="iconfont">&#xe602;</i></router-link>
             </li>
         </ul> 
         <ul class="meau-list">
-            <li class="list-title">商品</li>
+            <li class="list-title">Merchandise</li>
             <li>
-                 <router-link to="/subdivision">分区列表<i class="iconfont">&#xe602;</i></router-link>
+                 <router-link to="/subdivision">Category List<i class="iconfont">&#xe602;</i></router-link>
             </li>
             <li>
-                 <router-link to="/addAttribute">商品属性<i class="iconfont">&#xe602;</i></router-link>
+                 <router-link to="/addAttribute">Merchandise Category	<i class="iconfont">&#xe602;</i></router-link>
             </li>
             <li>
-                 <router-link to="/addGoods">商品录入<i class="iconfont">&#xe602;</i></router-link>
+                 <router-link to="/addGoods">Merchandise Entry	<i class="iconfont">&#xe602;</i></router-link>
             </li>
 			<li>
-                 <router-link to="/GoodsList">商品列表<i class="iconfont">&#xe602;</i></router-link>
+                 <router-link to="/GoodsList">Product list<i class="iconfont">&#xe602;</i></router-link>
             </li>
         </ul> 
         <ul class="meau-list">
-            <li class="list-title">首页(Index)</li>
+            <li class="list-title">Index</li>
             <!-- <li>
             	<router-link to="/adverAdmin">广告<i class="iconfont">&#xe602;</i></router-link>
                 <router-link to="/Home/hd/hdIndex">Banner Adver<i class="iconfont">&#xe602;</i></router-link>
             </li> -->
             <li>
-        		<router-link to="/Recommend">商品推荐<i class="iconfont">&#xe602;</i></router-link>
+        		<router-link to="/Recommend">Product recommendation<i class="iconfont">&#xe602;</i></router-link>
                 <!--<router-link to="/Home/hd/hdCode">Recommend<i class="iconfont">&#xe602;</i></router-link>-->
             </li>
         </ul>  
 		<ul class="meau-list">
-            <li class="list-title">管理员管理</li>
+            <li class="list-title">Administrator </li>
             <li>
-            	<router-link to="/admin">管理员列表<i class="iconfont">&#xe602;</i></router-link>
+            	<router-link to="/admin">Administrator List	<i class="iconfont">&#xe602;</i></router-link>
                 <!--<router-link to="/Home/hd/hdIndex">Banner Adver<i class="iconfont">&#xe602;</i></router-link>-->
             </li>
         </ul>  
@@ -63,7 +63,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 	.admin-left {
-	    width: 200px;
+	    width: 290px;
 	    background: #fff;
 	    box-shadow: 0 2px 3px rgba(0,0,0,.4);
 	    padding: 20px 20px 50px;

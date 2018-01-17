@@ -43,7 +43,7 @@
 			<div  class="el-message-box__wrapper" style="z-index: 2009;">
 			<div class="el-message-box">
 				<div class="el-message-box__header">
-					<div class="el-message-box__title">提示</div>
+					<div class="el-message-box__title">Prompt</div>
 					<button @click="addNewTriClose()" type="button" class="el-message-box__headerbtn">
 						<i class="el-message-box__close el-icon-close"></i>
 					</button>
@@ -79,12 +79,12 @@
 					<div class="el-message-box__btns">
 						<button @click="addNewTriClose()" type="button" class="el-button el-button--default">
 							<span>
-								取消
+								Cancel
 							</span>
 						</button>
 						<button @click="addNewTri()" type="button" class="el-button el-button--default el-button--primary ">
 							<span>
-								确定
+								Confirm
 							</span>
 						</button>
 					</div>
@@ -97,7 +97,7 @@
 			<div  class="el-message-box__wrapper" style="z-index: 2009;">
 			<div class="el-message-box">
 				<div class="el-message-box__header">
-					<div class="el-message-box__title">提示</div>
+					<div class="el-message-box__title">Prompt</div>
 					<button @click="addNewTriSecondClose()" type="button" class="el-message-box__headerbtn">
 						<i class="el-message-box__close el-icon-close"></i>
 					</button>
@@ -123,12 +123,12 @@
 					<div class="el-message-box__btns">
 						<button @click="addNewTriSecondClose()" type="button" class="el-button el-button--default">
 							<span>
-								取消
+								Cancel
 							</span>
 						</button>
 						<button @click="subNewTriSecond()" type="button" class="el-button el-button--default el-button--primary ">
 							<span>
-								确定
+								Confirm
 							</span>
 						</button>
 					</div>
@@ -172,7 +172,7 @@ export default {
 			console.log(this.checkList)
 		},
 		bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/item/cat/get/list';
+			var url='http://manager.luxtonusa.com/item/cat/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.itemList=response.data.data;
@@ -184,10 +184,10 @@ export default {
 			if(this.addFirstObj.valueTitle==''){
 				this.$message({
 					type: 'error',
-					message: '不得为空'
+					message: 'Must not be empty'
 				}); 
 			}else{
-				var url='http://luxma.helpyoulove.com/property/insert';
+				var url='http://manager.luxtonusa.com/property/insert';
 				var vm=this;
 				this.$http.post(url,vm.addFirstObj).then(response => {   
 					if(response.data.status==432){
@@ -198,7 +198,7 @@ export default {
 					}else if(response.data.status==200){
 						this.$message({
 							type: 'success',
-							message: '提交成功'
+							message: 'Submit Success'
 						});
 						this.addNewTriShow=false;
 						this.addFirstObj={};
@@ -220,7 +220,7 @@ export default {
 		addNewTriClose:function(){
 			this.$message({
 				type: 'info',
-				message: '取消输入'
+				message: 'Cancel the input'
 			}); 
 			this.addNewTriShow=false;
 			this.addFirstObj={};
@@ -232,7 +232,7 @@ export default {
 		addNewTriSecondClose:function(){
 			this.$message({
 				type: 'info',
-				message: '取消输入'
+				message: 'Cancel the input'
 			});  
 			this.propertyId='';
 			this.addNewTriSecondShow=false;
@@ -242,12 +242,12 @@ export default {
 			if(this.addSecondObj.valueTitle==''){
 				this.$message({
 					type: 'error',
-					message: '不得为空'
+					message: 'Must not be empty'
 				}); 
 			}else{
 				this.addSecondObj.propertyId=this.propertyId;
 				this.addSecondObj.catId=this.catId;
-				var url='http://luxma.helpyoulove.com/property/value/insert';
+				var url='http://manager.luxtonusa.com/property/value/insert';
 				var vm=this;
 				this.$http.post(url,vm.addSecondObj).then(response => {  
 					if(response.data.status==432){
@@ -258,7 +258,7 @@ export default {
 					}else if(response.data.status==200){
 						this.$message({
 							type: 'success',
-							message: '提交成功'
+							message: 'Submit Success'
 						}); 
 						this.getPropertyAll();
 						this.addSecondObj={};
@@ -274,16 +274,16 @@ export default {
 			}
 		},
 		delectNewTri:function(e,f){
-			this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-				confirmButtonText: '确定',
-				cancelButtonText: '取消',
+			this.$confirm('This will permanently delete this file, Continue?', 'Prompt', {
+				confirmButtonText: 'Confirm',
+				cancelButtonText: 'Cancel',
 				type: 'warning'
 			}).then(() => {
 				var url="";
 				if(e=='1'){
-					url='http://luxma.helpyoulove.com/property/delete/'+f;
+					url='http://manager.luxtonusa.com/property/delete/'+f;
 				}else{
-					url='http://luxma.helpyoulove.com/property/value/delete/'+f;
+					url='http://manager.luxtonusa.com/property/value/delete/'+f;
 				}
 				var vm=this;
 				this.$http.post(url).then(response => {
@@ -295,7 +295,7 @@ export default {
 					}else if(response.data.status==200){
 						this.$message({
 							type: 'success',
-							message: '删除成功!'
+							message: 'Delect Success!'
 						});
 						this.getPropertyAll();
 					}else{
@@ -310,13 +310,13 @@ export default {
 			}).catch(() => {
 				this.$message({
 					type: 'info',
-					message: '已取消删除'
+					message: 'Deleted'
 				});          
 			});
 			
 		},	
 		getPropertyAll:function(){
-			var url='http://luxma.helpyoulove.com/property/get/info/'+this.catId;
+			var url='http://manager.luxtonusa.com/property/get/info/'+this.catId;
 			var vm=this;
 			this.$http.post(url).then(response => {   		
 				if(response.data.status==432){

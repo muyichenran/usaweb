@@ -74,24 +74,24 @@ export default {
     },
     methods:{
     	delect:function(){
-    		this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+    		this.$confirm('This will permanently delete this file, Continue?', 'Prompt', {
+          confirmButtonText: 'Confirm',
+          cancelButtonText: 'Cancel',
           type: 'warning'
         }).then(() => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: 'Delect Success!'
           });
         }).catch(() => {
           this.$message({
             type: 'info',
-            message: '已取消删除'
+            message: 'Deleted'
           });          
         });
     	},
 		bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/item/cat/get/list';
+			var url='http://manager.luxtonusa.com/item/cat/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {  
 				if(response.data.status==432){
@@ -112,7 +112,7 @@ export default {
 			});
 		},
 		submitItem:function(){
-			var url='http://luxma.helpyoulove.com/item/cat/insert';
+			var url='http://manager.luxtonusa.com/item/cat/insert';
 			var vm=this;
 			this.$http.post(url,vm.item).then(response => { 
 				if(response.data.status==432){
@@ -123,7 +123,7 @@ export default {
 				}else if(response.data.status==200){
 					this.$message({
 						type: 'success',
-						message: '提交成功!'
+						message: 'Submit Success!'
 					});
 					this.bodyReady();
 					this.item={};

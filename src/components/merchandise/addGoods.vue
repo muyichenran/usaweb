@@ -10,15 +10,15 @@
                         </td>
                     </tr> -->
 					<tr>
-                        <td align="right"  width="120">商品名称</td>
+                        <td align="right"  width="120">Merchandise Names</td>
                         <td width="750">
-                            <el-input v-model="GoodsInfo.title" class="width300"  placeholder="请输入商品名称"></el-input>
+                            <el-input v-model="GoodsInfo.title" class="width300"  placeholder="Please Enter Merchandise Names"></el-input>
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">品牌</td>
+                        <td align="right"  width="120">Brand</td>
                         <td width="750">
-							<el-select v-model="GoodsInfo.supplierId" class="width300" placeholder="请选择">
+							<el-select v-model="GoodsInfo.supplierId" class="width300" placeholder="Please Select">
 								<el-option
 								v-for="(item,index) in supplierList"
 								:key="index"
@@ -29,9 +29,9 @@
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">所属分区</td>
+                        <td align="right"  width="120">Category Belongs	</td>
                         <td width="750">
-							<el-select v-model="catId" class="width300" placeholder="请选择">
+							<el-select v-model="catId" class="width300" placeholder="Please Select">
 								<el-option
 								v-for="(item, index) in itemList"
 								:key="index"
@@ -44,7 +44,7 @@
 					<tr v-if="isSearchObj.property">
                         <td align="right"  width="120">{{isSearchObj.property.title}}</td>
                         <td width="750">
-							<el-select v-model="searchObjIndex" class="width300" placeholder="请选择">
+							<el-select v-model="searchObjIndex" class="width300" placeholder="Please Select">
 								<el-option
 								v-for="(item,index) in isSearchObj.values"
 								:key="index"
@@ -56,12 +56,12 @@
 						</td>
                     </tr>
 					<tr>
-                        <td align="right" valign="top" width="120">商品头图</td>
+                        <td align="right" valign="top" width="120"> Primary picture</td>
                         <td width="750">
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://luxma.helpyoulove.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess"
 								:before-upload="beforeAvatarUpload">
@@ -73,12 +73,12 @@
                     </tr>
 					
 					<tr>
-                        <td align="right" valign="top" width="120">商品图片</td>
+                        <td align="right" valign="top" width="120">Merchandise Picture</td>
                         <td class="uploadpic-list" width="750">
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://luxma.helpyoulove.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess1"
 								:before-upload="beforeAvatarUpload">
@@ -89,7 +89,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://luxma.helpyoulove.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess2"
 								:before-upload="beforeAvatarUpload">
@@ -100,7 +100,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://luxma.helpyoulove.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess3"
 								:before-upload="beforeAvatarUpload">
@@ -111,7 +111,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://luxma.helpyoulove.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess4"
 								:before-upload="beforeAvatarUpload">
@@ -123,11 +123,11 @@
                     </tr>
 					
 					<tr v-if="catId">
-                        <td align="right" valign="top">商品规格</td>
+                        <td align="right" valign="top">Product Specification</td>
                         <td>
                             <div class="product-speci">
 								<div class="item-block color-block">
-									<p class="title">颜色：</p>	
+									<p class="title">color</p>	
 									<div class="attribute-list">
 										<!-- {{colorList}} -->
 										<el-checkbox-group v-model="colorList">
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="item-block">
-									<p class="title">标尺：</p>	
+									<p class="title">Size：</p>	
 									<div class="attribute-list">
 										<!-- {{sizeList}} -->
 										<el-checkbox-group v-model="sizeList">
@@ -149,12 +149,12 @@
 									</div>
 								</div>
 								<div class="item-block">
-									<p class="title">商品销售规格：</p>
-									<p class="prompting">注意：颜色、标尺，两个属性必须勾选，如果不勾选将会导致无法保存库存；库存为0的商品将在前段不予展示</p>	
+									<p class="title">Merchandise Sales Specification：</p>
+									<p class="prompting">Notice:  Colors and Sizes must be selected, or a vender’s inventory cannot be saved </p>	
 									<div class="batch-fill">
-										批量填充：<el-input class="width150"  v-model="price" placeholder="请输入商品价格"></el-input>
-										<el-input class="width150" v-model="quantity" placeholder="请输入商品库存"></el-input>
-										<el-button  @click="subPrice()" plain>确认</el-button>
+										Batch Filling：<el-input class="width150"  v-model="price" placeholder="Please enter product price"></el-input>
+										<el-input class="width150" v-model="quantity" placeholder="Please enter product inventory "></el-input>
+										<el-button  @click="subPrice()" plain>Determine</el-button>
 									</div>
 									<div class="attribute-list">
 										<table class="goods-list">
@@ -181,23 +181,23 @@
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">商品描述</td>
+                        <td align="right"  width="120">Product Description</td>
                         <td width="750">
 							<el-input
 							v-model="GoodsInfo.sellPoint"
 							class="width300"
 							type="textarea"
 							autosize
-							placeholder="请输入描述"
+							placeholder="Please enter product description"
 							>
 							</el-input>
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">是否上架</td>
+                        <td align="right"  width="120">If Added to</td>
                         <td width="750">
-							<el-radio v-model="GoodsInfo.status" label="true">上架</el-radio>
-							<el-radio v-model="GoodsInfo.status" label="false">下架</el-radio>
+							<el-radio v-model="GoodsInfo.status" label="true">Added to</el-radio>
+							<el-radio v-model="GoodsInfo.status" label="false">No Added</el-radio>
                         </td>
                     </tr>
                 </table>
@@ -331,9 +331,9 @@ export default {
     		this.colorList.splice(e,1);
     	},
     	addSizeType1:function(){
-    		this.$prompt('请输入尺码', '提示', {
-			confirmButtonText: '确定',
-			cancelButtonText: '取消',
+    		this.$prompt('请输入尺码', 'Prompt', {
+			confirmButtonText: 'Confirm',
+			cancelButtonText: 'Cancel',
 			inputPattern: /\S/,
 			inputErrorMessage: '格式不正确'
         }).then(({ value }) => {
@@ -343,7 +343,7 @@ export default {
         }).catch(() => {
 			this.$message({
 				type: 'info',
-				message: '取消输入'
+				message: 'Cancel the input'
 			});       
         });
     	},
@@ -369,7 +369,7 @@ export default {
 
 
 		fqItemListReady:function(){
-			var url='http://luxma.helpyoulove.com/item/cat/get/list';
+			var url='http://manager.luxtonusa.com/item/cat/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				if(response.data.status==432){
@@ -387,7 +387,7 @@ export default {
 			});
 		},
 		supplierListReady:function(){
-			var url='http://luxma.helpyoulove.com/supplier/get/list';
+			var url='http://manager.luxtonusa.com/supplier/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.supplierList=response.data.data;
@@ -396,7 +396,7 @@ export default {
 			});
 		},
 		getPropertyAll:function(){
-			var url='http://luxma.helpyoulove.com/property/get/info/'+this.GoodsInfo.catId;
+			var url='http://manager.luxtonusa.com/property/get/info/'+this.GoodsInfo.catId;
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.propertyList=response.data.data;
@@ -447,7 +447,7 @@ export default {
 		subGoods:function(){
 			this.GoodsInfo.picList=this.picList;
 			this.GoodsInfo.price=this.price;
-			var url='http://luxma.helpyoulove.com/item/insert';
+			var url='http://manager.luxtonusa.com/item/insert';
 			var vm=this;
 			this.$http.post(url,vm.GoodsInfo).then(response => {   
 				if(response.data){
@@ -467,7 +467,7 @@ export default {
 			propertyNewList.push(this.isSearchObj)
 			propertyNewList.push(this.isColorObj)
 			propertyNewList.push(this.isSizeObj);
-			var url2='http://luxma.helpyoulove.com/item/insert/property/'+e.data;
+			var url2='http://manager.luxtonusa.com/item/insert/property/'+e.data;
 			this.$http.post(url2,propertyNewList).then(response => {  
 				if(response.data.status==432){
                     this.$message.error("登录过期，请重新登录！");
@@ -484,7 +484,7 @@ export default {
 				this.skuList[i].itemId=e.data;
 			}
 			var vm=this;
-			var url3='http://luxma.helpyoulove.com/item/sku/insert';
+			var url3='http://manager.luxtonusa.com/item/sku/insert';
 			this.$http.post(url3,vm.skuList).then(response => { 
 				if(response.data.status==432){
                     this.$message.error("登录过期，请重新登录！");
@@ -493,7 +493,7 @@ export default {
                     this.$router.replace("/Login")
                 }else if(response.data.status==200){   
 					this.$message({
-						message: '提交成功',
+						message: 'Submit Success',
 						type: 'success'
 					});
 					setTimeout(() => {

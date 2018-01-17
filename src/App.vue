@@ -8,8 +8,8 @@
             </router-link>
             
             <div v-if="adminLogin"  class="admin-login">
-                <a href="javascript:;"><i class="iconfont">&#xe601;</i>用户</a>
-                <a href="javascript:;" v-on:click="exit">退出</a>
+                <a href="javascript:;"><i class="iconfont">&#xe601;</i>Admin</a>
+                <a href="javascript:;" v-on:click="exit">Exit</a>
             </div>
         </div>
     </header>
@@ -39,7 +39,7 @@ export default {
     },
     methods:{
     	 exit:function(){
-            var url='http://luxma.helpyoulove.com/back/admin/logout';
+            var url='http://manager.luxtonusa.com/back/admin/logout';
 	        var vm=this;
 	        this.$http.post(url).then(response => {   
 	            if(response.data.status==432){

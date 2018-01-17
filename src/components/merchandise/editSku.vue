@@ -2,19 +2,19 @@
   	<!--分区管理-->
    <div class="admin-center">
 		<div class="admin-center-top clearfix">
-            <el-button @click="submitItem()" class="f-r" type="primary">提交</el-button>
+            <el-button @click="submitItem()" class="f-r" type="primary">Submit</el-button>
         </div>
         <div class="subdivision-list">
             <table class="subdivision-table">
                 <thead>
                     <tr>
-                    	<td width="350">商品信息</td>
-                        <td width="200">颜色&尺寸</td>
+                    	<td width="350">Product Info</td>
+                        <td width="200">Color&Size</td>
                         <td width="150">
-                        	价格
+                        	Price
                         </td>
 						<td>
-                        	库存
+                        	Inventory
                         </td>
                     </tr>
                 </thead>
@@ -46,7 +46,7 @@
             </table>
 
 			<p style="text-align:center;margin-top:40px;">
-				<el-button type="primary" @click="submitItem()">提交</el-button>
+				<el-button type="primary" @click="submitItem()">Submit</el-button>
 			</p>
         </div>
   </div>
@@ -66,7 +66,7 @@ export default {
     methods:{
 		bodyReady:function(){
 			
-			var url='http://luxma.helpyoulove.com/item/sku/get/list/'+this.Id;
+			var url='http://manager.luxtonusa.com/item/sku/get/list/'+this.Id;
 			var vm=this;
 			this.$http.post(url).then(response => {   				
 				if(response.data.status==432){
@@ -86,7 +86,7 @@ export default {
 			});
 		},
 		submitItem:function(){
-			var url='http://luxma.helpyoulove.com/item/sku/update';
+			var url='http://manager.luxtonusa.com/item/sku/update';
 			var vm=this;
 			this.$http.post(url,vm.editSku).then(response => { 
 				if(response.data.status==432){
@@ -97,7 +97,7 @@ export default {
 				}else if(response.data.status==200){
 					this.$message({
 						type: 'success',
-						message: '提交成功!'
+						message: 'Submit Success!'
 					});
 					this.$router.go(-1)
 				}else{

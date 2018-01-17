@@ -1,21 +1,20 @@
   <template>
-  	<!--供应商录入-->
   <div class="admin-center">
 	   	<div class="admin-center-top clearfix">
-	   	  	  <el-button @click="goAddGoods()" class="f-r" type="primary">添加商品</el-button>
+	   	  	  <el-button @click="goAddGoods()" class="f-r" type="primary">Add Merchandise</el-button>
         </div>
         <div class="goods-list">
 			<div class="top-search">
-				<el-select v-model="select"  placeholder="请选择">
-					<el-option label="全部" value=""></el-option>
+				<el-select v-model="select"  placeholder="Please Select">
+					<el-option label="All" value=""></el-option>
 					<el-option label="上架" value="true"></el-option>
 					<el-option label="下架" value="false"></el-option>
 				</el-select>
-				<el-button @click="goSearch()" type="primary" icon="search">搜索</el-button>
+				<el-button @click="goSearch()" type="primary" icon="search">Search</el-button>
 			</div>
 			<div class="top-bar">
-				<el-button  @click="modifyState(false)"  type="info">全部下架</el-button>
-				<el-button  @click="modifyState(true)" type="success">全部上架</el-button>
+				<el-button  @click="modifyState(false)"  type="info">All added</el-button>
+				<el-button  @click="modifyState(true)" type="success">Sold out</el-button>
 			</div>
 			<el-table
 				ref="multipleTable"
@@ -35,11 +34,11 @@
 				</el-table-column>
 				<el-table-column
 				prop="title"
-				label="名称"
+				label="Title"
 				width="160">
 				</el-table-column>
 				<el-table-column
-				label="头图"
+				label="Picture"
 				width="160">
 				<template slot-scope="scope">
 					<img :src="scope.row.picUrl">
@@ -47,17 +46,17 @@
 				</el-table-column>
 				<el-table-column
 				prop="price"
-				label="价格"
+				label="Price"
 				width="80">
 				</el-table-column>
 				<el-table-column
-				label="操作"
+				label="Operating"
 				>
 					<template slot-scope="scope">
 						<el-button v-if="scope.row.status" @click="modifyStateSingle(scope.row.itemId,false)" type="info">下架</el-button>
 						<el-button v-else @click="modifyStateSingle(scope.row.itemId,true)" type="success">上架</el-button>
-						<el-button @click="edit(scope.row.itemId,scope.row)">编辑库存</el-button>
-						<el-button type="danger" @click="delect(scope.row.itemId)">删除</el-button>
+						<el-button @click="edit(scope.row.itemId,scope.row)">Edit inventory</el-button>
+						<el-button type="danger" @click="delect(scope.row.itemId)">Delect</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -88,7 +87,7 @@ export default {
 		},
 		modifyState:function(e){
 			if(this.multipleSelection.length>0){
-				var url='http://luxma.helpyoulove.com/item/update/status/'+e;
+				var url='http://manager.luxtonusa.com/item/update/status/'+e;
 				var vm=this;
 				this.$http.post(url,vm.multipleSelection).then(response => {   
 					if(response.data.status==432){
@@ -98,7 +97,7 @@ export default {
 						this.$router.replace("/Login")
 					}else if(response.data.status==200){
 						this.$message({
-							message: '修改成功',
+							message: 'Edit Success',
 							type: 'success'
 						});
 						this.multipleSelecti=[];
@@ -117,7 +116,7 @@ export default {
 			
 		},
 		modifyStateSingle:function(e,f){
-			var url='http://luxma.helpyoulove.com/item/update/status/'+f;
+			var url='http://manager.luxtonusa.com/item/update/status/'+f;
 			var vm=this;
 			this.multipleSelection.push(e);
 			this.$http.post(url,vm.multipleSelection).then(response => {   
@@ -128,7 +127,7 @@ export default {
 					this.$router.replace("/Login")
 				}else if(response.data.status==200){
 						this.$message({
-							message: '修改成功',
+							message: 'Edit Success',
 							type: 'success'
 						});
 						this.multipleSelecti=[];
@@ -167,7 +166,7 @@ export default {
 			localStorage.setItem("goodsDetail",JSON.stringify(f))
         },
 		delect(e){
-			var url='http://luxma.helpyoulove.com/item/deleteItemInfo/'+e;
+			var url='http://manager.luxtonusa.com/item/deleteItemInfo/'+e;
 			var vm=this;
 			this.$http.post(url).then(response => {   				
 				if(response.data.status==432){
@@ -177,7 +176,7 @@ export default {
 					this.$router.replace("/Login")
 				}else if(response.data.status==200){
 					this.$message({
-						message: '删除',
+						message: 'Delect',
 						type: 'success'
 					});
 					this.bodyReady()
@@ -191,7 +190,7 @@ export default {
 			});
 		},
     	bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/item/get/list?status='+this.select;
+			var url='http://manager.luxtonusa.com/item/get/list?status='+this.select;
 			var vm=this;
 			this.$http.post(url).then(response => {   				
 				if(response.data.status==432){

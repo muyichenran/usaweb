@@ -2,15 +2,15 @@
   <div class="admin-center">
   		<div class="admin-center-top clearfix">
 			<div class="search-top1">
-				<el-select v-model="status" slot="prepend" placeholder="请选择">
-					<el-option label="全部订单" value=""></el-option>
-					<el-option label="已完成订单" value="2"></el-option>
-					<el-option label="未完成订单" value="1"></el-option>
+				<el-select v-model="status" slot="prepend" placeholder="Please select">
+					<el-option label="All Orders" value=""></el-option>
+					<el-option label="Completed Orders	" value="2"></el-option>
+					<el-option label="Pending Orders" value="1"></el-option>
 				</el-select>
 				<el-button @click="searchStatus()" slot="append" icon="search"></el-button>
 			</div>
 			<div class="search-top2">
-				<el-input placeholder="请输入订单Id" v-model="searchId" class="input-with-select">
+				<el-input placeholder="Please Enter Order ID" v-model="searchId" class="input-with-select">
 					<el-button @click="goSearch()" slot="append" icon="search"></el-button>
 				</el-input>
 			</div>
@@ -18,11 +18,11 @@
     	<div class="admin-list">
             <div v-for="(item,index) in orderList" class="order-item">
 				<div class="order-top clearfix">
-					<span>订单编号:</span>{{item.orderId}}
-					<span>下单时间：</span>{{item.createTime}}
-					<span>总金额：</span><i class="money">{{item.payment}}</i>
-					<span v-if="item.status==2" class="f-r">已完成</span>
-					<a v-else @click="goSuccessStatus(item.orderId)" class="f-r"  href="javascript:;">确认完成</a>
+					<span>Order Number:</span>{{item.orderId}}
+					<span>Order Date:</span>{{item.createTime}}
+					<span>Total Amount：</span><i class="money">{{item.payment}}</i>
+					<span v-if="item.status==2" class="f-r">Complete</span>
+					<a v-else @click="goSuccessStatus(item.orderId)" class="f-r"  href="javascript:;">Confirm to complete</a>
 					
 				</div>
 				<table class="order-table">
@@ -52,7 +52,7 @@
 				</table>
 			</div>  
 			<div v-if="orderList.length==0" class="no-list">
-				暂无数据
+				No Data
 			</div>
 			<div v-if="pageShow" class="page-list">
 				<el-pagination
@@ -102,7 +102,7 @@ export default {
 		},
 
 		bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/back/order/get/list/'+this.currentPage+'?status='+this.status+'&stage='+this.pageSize;
+			var url='http://manager.luxtonusa.com/back/order/get/list/'+this.currentPage+'?status='+this.status+'&stage='+this.pageSize;
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				if(response.data.status==432){
@@ -130,7 +130,7 @@ export default {
 			this.bodyReady();
 		},
 		goSearch:function(){
-			var url='http://luxma.helpyoulove.com/back/order/get/'+this.searchId;
+			var url='http://manager.luxtonusa.com/back/order/get/'+this.searchId;
 			var vm=this;
 			this.$http.post(url).then(response => { 
 				if(response.data.status==432){
@@ -152,7 +152,7 @@ export default {
 			});
 		},
 		goSuccessStatus:function(e){
-			var url='http://luxma.helpyoulove.com/back/order/update/'+e+'/2';
+			var url='http://manager.luxtonusa.com/back/order/update/'+e+'/2';
 			var vm=this;
 			this.$http.post(url).then(response => {  
 				if(response.data.status==432){

@@ -1,7 +1,7 @@
 
 <template>   
     <div class="sign-code">
-    	<el-button @click="getCode()" plain>生成验证码</el-button>
+    	<el-button @click="getCode()" plain>Generating Access Code</el-button>
 		<span>{{code}}</span>	
     </div>
 </template>    
@@ -14,7 +14,7 @@
         },
         methods:{
             getCode:function(){
-            	var url='http://luxma.helpyoulove.com/back/admin/create/registerCode';
+            	var url='http://manager.luxtonusa.com/back/admin/create/registerCode';
 	            var vm=this;
 	            this.$http.post(url).then(response => { 
 					if(response.data.status==432){

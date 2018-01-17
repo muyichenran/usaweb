@@ -1,16 +1,16 @@
 <template>
   <div class="admin-center">
   		<div class="admin-center-top clearfix">
-            <el-button @click="addSubShow=true" class="f-r" type="primary">添加管理员</el-button>
+            <el-button @click="addSubShow=true" class="f-r" type="primary">Add Administrator</el-button>
     	</div>
     	<div class="admin-list">
           <table class="admin-table">
               <thead>
                 <tr>
-					<td width="150">名称</td>
-                    <td width="250">管理员级别</td>
+					<td width="150">Name</td>
+                    <td width="250"> Administrator </td>
                     <td width="150" align="center">
-                    	<span>操作</span>
+                    	<span>Operating</span>
                     </td>
 					<td></td>
                 </tr>
@@ -19,11 +19,11 @@
               	<tr v-for="(item,index) in adminList">
 					<td  width="150">{{item.username}}</td>
                     <td width="250">
-						<span v-if="item.identity=='admin'">高级</span>
-						<span v-else>普通</span>
+						<span v-if="item.identity=='admin'">Senior Administrator</span>
+						<span v-else>Administrator</span>
 					</td>
                     <td valign="middle" align="center">
-						<el-button v-on:click="delect(item.id,item.identity)" type="warning">删除</el-button>
+						<el-button v-on:click="delect(item.id,item.identity)" type="warning">Delect</el-button>
                     </td>
 					<td></td>
                 </tr>
@@ -44,13 +44,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="right">密码</td>
+							<td width="120" align="right">Password</td>
 							<td width="220">
 								<el-input v-model="adminUser.password"></el-input>
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="right">确认密码</td>
+							<td width="120" align="right">Confirm Password</td>
 							<td width="220">
 								<el-input v-model="password"></el-input>
 							</td>
@@ -84,15 +84,15 @@ export default {
 		},
 		delect:function(e,f){
 			if(f=='admin'){
-				this.$message.error('高级管理员不能删除');
+				this.$message.error('Senior administrator unable to delete!');
 				return false;
 			}
-			this.$confirm('管理员删除后无法恢复, 是否继续?', '提示', {
-				confirmButtonText: '确定',
-				cancelButtonText: '取消',
+			this.$confirm('This will permanently delete this file, Continue?', 'Prompt', {
+				confirmButtonText: 'Confirm',
+				cancelButtonText: 'Cancel',
 				type: 'warning'
 			}).then(() => {
-				var url='http://luxma.helpyoulove.com/back/admin/delete/'+e;
+				var url='http://manager.luxtonusa.com/back/admin/delete/'+e;
 				var vm=this;
 				this.$http.post(url).then(response => {   
 					if(response.data.status==432){
@@ -103,7 +103,7 @@ export default {
 					}else if(response.data.status==200){
 						this.$message({
 							type: 'success',
-							message: '删除成功!'
+							message: 'Delect Success!'
 						});
 						this.bodyReady();
 					}
@@ -113,7 +113,7 @@ export default {
 			}).catch(() => {
 				this.$message({
 					type: 'info',
-					message: '已取消删除'
+					message: 'Deleted'
 				});          
 			});
 
@@ -127,7 +127,7 @@ export default {
 				this.$message.error('两次密码不一致');
 				return false;
 			}
-			var url='http://luxma.helpyoulove.com/back/admin/add/adminUser';
+			var url='http://manager.luxtonusa.com/back/admin/add/adminUser';
 			var vm=this;
 			this.$http.post(url,vm.adminUser).then(response => {   
 				if(response.data.status==432){
@@ -136,7 +136,7 @@ export default {
 					this.$store.state.adminLogin='';
                     this.$router.replace("/Login")
                 }else if(response.data.status==200){
-					this.$message.success('添加成功');
+					this.$message.success('Add Success');
 					this.addSubShow=false;
 					this.adminUser={};
 					this.password="";
@@ -148,7 +148,7 @@ export default {
 			});
 		},
 		bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/back/admin/get/list';
+			var url='http://manager.luxtonusa.com/back/admin/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {
 				if(response.data.status==432){

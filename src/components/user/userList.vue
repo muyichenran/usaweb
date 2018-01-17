@@ -2,12 +2,12 @@
   <div class="admin-center">
   		<div class="admin-center-top clearfix">
 			<div class="search-top">
-				<el-input placeholder="请输入用户名查询" v-model="searchName" class="input-with-select">
+				<el-input placeholder="Please enter user name" v-model="searchName" class="input-with-select">
 					<el-button @click="goSearch()" slot="append" icon="search"></el-button>
 				</el-input>
 			</div>
 			
-            <el-button @click="addSubShow=true" style="margin-top: -40px;" class="f-r" type="primary">添加用户</el-button>
+            <el-button @click="addSubShow=true" style="margin-top: -40px;" class="f-r" type="primary">Add User</el-button>
     	</div>
     	<div class="admin-list">
             <el-table
@@ -43,7 +43,7 @@
                 label="操作"
                 >
                 <template slot-scope="scope">
-                    <el-button  type="primary">编辑</el-button>
+                    <el-button  type="primary">Edit</el-button>
                 </template>
                 </el-table-column>
             </el-table>    
@@ -158,7 +158,7 @@ export default {
 				this.$message.error('两次密码不一致');
 				return false;
 			}
-			var url='http://luxma.helpyoulove.com/back/user/insert';
+			var url='http://manager.luxtonusa.com/back/user/insert';
 			var vm=this;
 			this.$http.post(url,vm.User).then(response => { 
 				if(response.data.status==432){
@@ -167,7 +167,7 @@ export default {
 					this.$store.state.adminLogin='';
 					this.$router.replace("/Login")
 				}else if(response.data.status==200){
-					this.$message.success('添加成功');
+					this.$message.success('Add Success');
 					this.addSubShow=false;
 					this.User={};
 					this.bodyReady();
@@ -181,7 +181,7 @@ export default {
 			});
 		},
 		bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/back/user/get/list/'+this.currentPage+'?stage='+this.pageSize;
+			var url='http://manager.luxtonusa.com/back/user/get/list/'+this.currentPage+'?stage='+this.pageSize;
 			var vm=this;
 			this.$http.post(url).then(response => { 
 				if(response.data.status==432){
@@ -207,7 +207,7 @@ export default {
 		},
 		goSearch:function(){
 			if(this.searchName.replace(/(^\s+)|(\s+$)/g, "")){
-				var url='http://luxma.helpyoulove.com/back/user/get/'+this.searchName;
+				var url='http://manager.luxtonusa.com/back/user/get/'+this.searchName;
 				var vm=this;
 				this.$http.post(url).then(response => { 
 					if(response.data.status==432){

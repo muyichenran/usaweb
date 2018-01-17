@@ -2,18 +2,18 @@
   	<!--供应商录入-->
   <div class="admin-center">
 	   	  <div class="admin-center-top clearfix">
-	   	  	  <el-button @click="addSuppShow=true" class="f-r" type="primary">添加供应商</el-button>
+	   	  	  <el-button @click="addSuppShow=true" class="f-r" type="primary">Vendor Entry	</el-button>
         </div>
         <div class="adver-list">
             <table class="adver-table">
                 <thead>
                     <tr>
-						<td width="60">序号</td>
+						<td width="60">Number</td>
                         <td width="160">LOGO</td>
-                        <td width="140">供应商名称</td>
-                        <td width="160">发布时间</td>
-                        <td width="160">修改时间</td>
-                        <td>操作</td>
+                        <td width="140">Vendor Names</td>
+                        <td width="160">Issue Date</td>
+                        <td width="160">Modify Date	</td>
+                        <td>Operating</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +28,8 @@
                         <td valign="middle">{{item.createTime |formatTime}}</td>
                         <td valign="middle">{{item.updateTime |formatTime}}</td>
                         <td valign="middle" class="operate-table">
-                            <el-button @click="edit(index,item.supplierId)">编辑</el-button>
-                    	  	<el-button @click="delect(item.supplierId)" type="warning">删除</el-button>
+                            <el-button @click="edit(index,item.supplierId)">Edit</el-button>
+                    	  	<el-button @click="delect(item.supplierId)" type="warning">Delect</el-button>
                         </td>
                     </tr>
                 </tbody>                   
@@ -43,15 +43,15 @@
         		</a>
         			<table>
         				<tr>
-        					<td align="right"  width="90">序号</td>
+        					<td align="right"  width="90">Number</td>
         					<td width="195">
-        						<el-input v-model="supplier.sortNum" placeholder="请输入序号"></el-input>
+        						<el-input v-model="supplier.sortNum" placeholder="Please Enter Number"></el-input>
         					</td>
         				</tr>
         				<tr>
-        					<td align="right" width="90">名称</td>
+        					<td align="right" width="90">Name</td>
         					<td>
-        						<el-input  v-model="supplier.name" placeholder="请输入名称"></el-input>
+        						<el-input  v-model="supplier.name" placeholder="Please Enter Name"></el-input>
         					</td>
         				</tr>
         				<tr>
@@ -60,7 +60,7 @@
         						<el-upload
 										  class="avatar-uploader"
 										  name="uploadFile"
-										  action="http://luxma.helpyoulove.com/picture/upload"
+										  action="http://manager.luxtonusa.com/picture/upload"
 										  :show-file-list="false"
 										  :on-success="handleAvatarSuccess"
 										  :before-upload="beforeAvatarUpload">
@@ -71,7 +71,7 @@
         				</tr>
         			</table>
         			<p class="sub-adver" >
-        				<el-button @click="subSupplier()" type="primary">提交</el-button>
+        				<el-button @click="subSupplier()" type="primary">Submit</el-button>
         			</p>
         			
         	</div>
@@ -108,29 +108,29 @@ export default {
 	      	this.addSuppShow=true;
       },
     	delect:function(){
-	    		this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-		          confirmButtonText: '确定',
-		          cancelButtonText: '取消',
+	    		this.$confirm('This will permanently delete this file, Continue?', 'Prompt', {
+		          confirmButtonText: 'Confirm',
+		          cancelButtonText: 'Cancel',
 		          type: 'warning'
 	        }).then(() => {
 		          this.$message({
 		            type: 'success',
-		            message: '删除成功!'
+		            message: 'Delect Success!'
 		          });
 	        }).catch(() => {
 		          this.$message({
 		            type: 'info',
-		            message: '已取消删除'
+		            message: 'Deleted'
 		          });          
 	        });
     	},
     	subSupplier:function(){
-    			var url='http://luxma.helpyoulove.com/supplier/insert';
+    			var url='http://manager.luxtonusa.com/supplier/insert';
 	        var vm=this;
 	        this.$http.post(url,vm.supplier).then(response => {   
 	            this.$message({
 		            type: 'success',
-		            message: '提交成功!'
+		            message: 'Submit Success!'
 				});
 				this.bodyReady();
 				this.supplier={};
@@ -143,7 +143,7 @@ export default {
           this.addSuppShow=false;
     	},
     	bodyReady:function(){
-			var url='http://luxma.helpyoulove.com/supplier/get/list';
+			var url='http://manager.luxtonusa.com/supplier/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.supplierList=response.data.data;
