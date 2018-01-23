@@ -14,7 +14,7 @@
 						<td width="100">商品推荐</td>
                         <td width="120">发布时间</td>
                         <td width="120">修改时间</td>
-                        <td>操作</td>
+                        <td>Operating</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +28,8 @@
                         <td valign="middle">发布时间</td>
                         <td valign="middle">修改时间</td>
                         <td valign="middle" class="operate-table">
-                            <el-button>编辑</el-button>
-                    	  	  <el-button v-on:click="delect()" type="warning">删除</el-button>
+                            <el-button>edit</el-button>
+							<el-button v-on:click="delect()" type="warning">删除</el-button>
                         </td>
                     </tr>
                 </tbody>                   

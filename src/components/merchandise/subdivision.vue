@@ -2,16 +2,16 @@
   	<!--分区管理-->
    <div class="admin-center">
 		<div class="admin-center-top clearfix">
-            <el-button @click="addSubShow=true" class="f-r" type="primary">添加分区</el-button>
+            <el-button @click="addSubShow=true" class="f-r" type="primary">Add Category</el-button>
         </div>
         <div class="subdivision-list">
             <table class="subdivision-table">
                 <thead>
                     <tr>
-                    	<td width="60">序号</td>
-                        <td width="200">分区名称</td>
+                    	<td width="100">Number</td>
+                        <td width="200">Category Name</td>
                         <td align="right">
-                        	<span style="padding-right: 25px;">操作</span>
+                        	<span style="padding-right: 25px;">Operating</span>
                         </td>
                     </tr>
                 </thead>
@@ -25,8 +25,8 @@
                         </td>
                         <td valign="middle">
 							<p class="align-right">
-								<el-button  @click="edit(index)" type="primary">编辑</el-button>
-								<el-button v-on:click="delect()" type="warning">删除</el-button>
+								<el-button  @click="edit(index)" type="primary">Edit</el-button>
+								<el-button v-on:click="delect()" type="warning">Delect</el-button>
 							</p>
                         </td>
                     </tr>
@@ -41,13 +41,13 @@
 	        		</a>	
         			<table>
 						<tr>
-							<td width="120" align="right">序号</td>
+							<td width="120" align="right">Number</td>
 							<td width="220">
 								<el-input v-model="item.sortOrder"></el-input>
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="right">名称</td>
+							<td width="120" align="right">Name</td>
 							<td width="220">
 								<el-input v-model="item.title"></el-input>
 							</td>

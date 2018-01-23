@@ -8,9 +8,9 @@
             <table class="adver-table">
                 <thead>
                     <tr>
-						<td width="60">Number</td>
+						<td width="100">Number</td>
                         <td width="160">LOGO</td>
-                        <td width="140">Vendor Names</td>
+                        <td width="160">Vendor Names</td>
                         <td width="160">Issue Date</td>
                         <td width="160">Modify Date	</td>
                         <td>Operating</td>
@@ -43,19 +43,19 @@
         		</a>
         			<table>
         				<tr>
-        					<td align="right"  width="90">Number</td>
+        					<td align="right"  width="100">Number</td>
         					<td width="195">
         						<el-input v-model="supplier.sortNum" placeholder="Please Enter Number"></el-input>
         					</td>
         				</tr>
         				<tr>
-        					<td align="right" width="90">Name</td>
+        					<td align="right">Name</td>
         					<td>
         						<el-input  v-model="supplier.name" placeholder="Please Enter Name"></el-input>
         					</td>
         				</tr>
         				<tr>
-        					<td align="right" width="90">Logo</td>
+        					<td align="right">Logo</td>
         					<td>
         						<el-upload
 										  class="avatar-uploader"

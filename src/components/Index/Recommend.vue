@@ -3,63 +3,63 @@
   <div class="admin-center">
   			<div class="add-column">
   					<div class="admin-center-top clearfix">
-  							<el-button @click="addColumnShow=true" class="f-r" type="primary">添加栏目</el-button>
+						<el-button @click="addColumnShow=true" class="f-r" type="primary">Add category</el-button>
   					</div>
   					<div class="column-list">
-								<span v-for="(item,index) in typeList" class="item">
-										<label>{{item.typeTitle}}</label>
-										<a @click="delectClumn(item.typeId)" class="delect" href="javascript:;"><i class="iconfont">&#xe605;</i></a>
-								</span>
+						<span v-for="(item,index) in typeList" class="item">
+							<label>{{item.typeTitle}}</label>
+							<a @click="delectClumn(item.typeId)" class="delect" href="javascript:;"><i class="iconfont">&#xe605;</i></a>
+						</span>
   					</div>
   			</div>
   			<div>
-		   	  <div class="alladver-top clearfix">
-							<div class="select-search f-l">
-									<el-select v-model="typeId" placeholder="请选择">
-											<el-option
-												label="全部"
-												value="">
-											</el-option>
-											<el-option
-												v-for="(item,index) in typeList"
-												:key="index"
-												:label="item.typeTitle"
-												:value="item.typeId">
-											</el-option>
-									</el-select>
-							</div>
-							<el-button @click="goSearch()" class="f-l" style="margin-left: 15px;" type="primary" icon="search">搜索</el-button>
-							<el-button @click="addAdverShow=true" class="f-r" plain>添加商品推荐</el-button>
+			<div class="alladver-top clearfix">
+					<div class="select-search f-l">
+						<el-select v-model="typeId" placeholder="Please Select">
+							<el-option
+								label="All"
+								value="">
+							</el-option>
+							<el-option
+								v-for="(item,index) in typeList"
+								:key="index"
+								:label="item.typeTitle"
+								:value="item.typeId">
+							</el-option>
+						</el-select>
+					</div>
+					<el-button @click="goSearch()" class="f-l" style="margin-left: 15px;" type="primary" icon="search">Search</el-button>
+					<el-button @click="addAdverShow=true" class="f-r" plain>Add product recommendation</el-button>
 	        </div>
 	        <div class="adver-list">
 							<table class="adver-table">
 									<thead>
 											<tr>
-													<td width="60">序号</td>
-													<td width="120">分类</td>
-													<td width="160">商品头图</td>				
-													<td width="80">商品ID</td>
-													<td width="100">商品推荐</td>
-													<td width="160">修改时间</td>
-													<td>操作</td>
+													<td width="65">Num</td>
+													<td width="120">category</td>
+													<td width="160">Primary picture </td>				
+													<td width="160">Merchandise ID</td>
+													<td width="130">recommend</td>
+													<td width="160">Modify Time</td>
+													<td>Operating</td>
 											</tr>
 									</thead>
 									<tbody>
-											<tr v-for="(item,index) in adverList">
-													<td valign="middle">{{item.sortNum}}</td>
-													<td>{{item.typeTitle}}</td>
-													<td>
-															<img :src="item.picUrl"/>
-													</td>
-													<td valign="middle">{{item.itemId}}</td>
-													<td valign="middle">{{item.itemRecommend}}</td>
-													<td >{{item.createTime | formatTime}}</td>
-													
-													<td valign="middle" class="operate-table">
-															<el-button @click="edit(index)">编辑</el-button>
-															<el-button @click="delect(item.advertId)" type="warning">删除</el-button>
-													</td>
-											</tr>
+										<tr v-for="(item,index) in adverList">
+											<td valign="middle">{{item.sortNum}}</td>
+											<td>{{item.typeTitle}}</td>
+											<td>
+													<img :src="item.picUrl"/>
+											</td>
+											<td valign="middle">{{item.itemId}}</td>
+											<td valign="middle">{{item.itemRecommend}}</td>
+											<td >{{item.createTime | formatTime}}</td>
+											
+											<td valign="middle" class="operate-table">
+													<el-button @click="edit(index)">Edit</el-button>
+													<el-button @click="delect(item.advertId)" type="warning">Delect</el-button>
+											</td>
+										</tr>
 									</tbody>                   
 							</table>
         </div>
@@ -72,15 +72,15 @@
 							</a>
 								<table>
 									<tr >
-										<td align="right">类型名称</td>
+										<td align="right">Category Name</td>
 										<td>
-											<el-input v-model="typeObj.typeTitle"  placeholder="请输入名称"></el-input>
+											<el-input v-model="typeObj.typeTitle"  placeholder="Please enter name"></el-input>
 										</td>
 									</tr>
 									
 								</table>
 								<p class="sub-adver" >
-									<el-button @click="subColumnName()" type="primary">提交</el-button>
+									<el-button @click="subColumnName()" type="primary">Submit</el-button>
 								</p>
 								
 						</div>
@@ -95,10 +95,10 @@
 								<table>
 									<tr>
 										<td align="right" width="100">
-											选择类型
+											Select Category
 										</td>
 										<td>
-												<el-select v-model="newAdver.typeId" placeholder="请选择">
+												<el-select v-model="newAdver.typeId" placeholder="Please Select">
 													<el-option
 														v-for="(item,index) in typeList"
 														:key="index"
@@ -109,26 +109,26 @@
 										</td>
 									</tr>
 									<tr>
-										<td align="right"  width="100">序号</td>
+										<td align="right"  width="100">Num</td>
 										<td>
-											<el-input v-model="newAdver.sortNum"  placeholder="请输入序号"></el-input>
+											<el-input v-model="newAdver.sortNum"  placeholder="Please enter num"></el-input>
 										</td>
 									</tr>
 									<tr >
-										<td align="right" width="100">商品ID</td>
+										<td align="right" width="100">ID</td>
 										<td>
-											<el-input v-model="newAdver.itemId"  placeholder="请输入ID"></el-input>
+											<el-input v-model="newAdver.itemId"  placeholder="Please enter id"></el-input>
 										</td>
 									</tr>
 									<tr>
-										<td align="right" width="100">商品推荐</td>
+										<td align="right" width="100">recommendation</td>
 										<td>
-											<el-input v-model="newAdver.itemRecommend"  placeholder="请输入推荐"></el-input>
+											<el-input v-model="newAdver.itemRecommend"  placeholder="Please enter recommendation"></el-input>
 										</td>
 									</tr>
 								</table>
 								<p class="sub-adver" >
-										<el-button @click="subAdver()" type="primary">提交</el-button>
+										<el-button @click="subAdver()" type="primary">Submit</el-button>
 								</p>
 								
 						</div>

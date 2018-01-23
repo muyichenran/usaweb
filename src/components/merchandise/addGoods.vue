@@ -10,13 +10,13 @@
                         </td>
                     </tr> -->
 					<tr>
-                        <td align="right"  width="120">Merchandise Names</td>
+                        <td align="right"  width="150">Merchandise Names</td>
                         <td width="750">
                             <el-input v-model="GoodsInfo.title" class="width300"  placeholder="Please Enter Merchandise Names"></el-input>
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">Brand</td>
+                        <td align="right"  >Brand</td>
                         <td width="750">
 							<el-select v-model="GoodsInfo.supplierId" class="width300" placeholder="Please Select">
 								<el-option
@@ -29,7 +29,7 @@
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">Category Belongs	</td>
+                        <td align="right" >Category Belongs	</td>
                         <td width="750">
 							<el-select v-model="catId" class="width300" placeholder="Please Select">
 								<el-option
@@ -42,7 +42,7 @@
                         </td>
                     </tr>
 					<tr v-if="isSearchObj.property">
-                        <td align="right"  width="120">{{isSearchObj.property.title}}</td>
+                        <td align="right" >{{isSearchObj.property.title}}</td>
                         <td width="750">
 							<el-select v-model="searchObjIndex" class="width300" placeholder="Please Select">
 								<el-option
@@ -56,7 +56,7 @@
 						</td>
                     </tr>
 					<tr>
-                        <td align="right" valign="top" width="120"> Primary picture</td>
+                        <td align="right" valign="top"> Primary picture</td>
                         <td width="750">
 							<el-upload
 								class="avatar-uploader"
@@ -73,7 +73,7 @@
                     </tr>
 					
 					<tr>
-                        <td align="right" valign="top" width="120">Merchandise Picture</td>
+                        <td align="right" valign="top">Merchandise Picture</td>
                         <td class="uploadpic-list" width="750">
 							<el-upload
 								class="avatar-uploader"
@@ -181,7 +181,7 @@
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">Product Description</td>
+                        <td align="right" >Product Description</td>
                         <td width="750">
 							<el-input
 							v-model="GoodsInfo.sellPoint"
@@ -194,7 +194,7 @@
                         </td>
                     </tr>
 					<tr>
-                        <td align="right"  width="120">If Added to</td>
+                        <td align="right" >If Added to</td>
                         <td width="750">
 							<el-radio v-model="GoodsInfo.status" label="true">Added to</el-radio>
 							<el-radio v-model="GoodsInfo.status" label="false">No Added</el-radio>

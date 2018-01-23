@@ -3,7 +3,7 @@
   	<div class="admin-center">
 		<div class="attribute-block">
 			<div class="attribute-block-top">
-				<span style="font-size:18px;">分区：</span><el-select v-model="catId" placeholder="请选择">
+				<span style="font-size:18px;">Category：</span><el-select v-model="catId" placeholder="Please Select">
 					<el-option
 					v-for="(item,index) in itemList"
 					:key="index"
@@ -15,7 +15,7 @@
 			<div v-if="catId" class="attribute-block-center">
 				<div class="add-attribute">
 						<div class="add-newattri-top clearfix">
-					 		<el-button @click="addNewTriShow=true" class="f-l" type="primary" round>添加属性类别</el-button>
+					 		<el-button @click="addNewTriShow=true" class="f-l" type="primary" round>Add attribute categories</el-button>
 					 	</div>
 					 	<div class="add-newattri" v-for="(item,index) in propertyList">
 					 		<div class="first-input clearfix">
@@ -51,7 +51,7 @@
 				<div class="el-message-box__content">
 					<div class="el-message-box__status"></div>
 					<div class="el-message-box__message" style="margin-left: 0px;">
-						<p>请输入属性名</p>
+						<p>Please enter a property name</p>
 					</div>
 					<div class="el-message-box__input">
 						<div class="el-input">
@@ -59,19 +59,19 @@
 						</div>
 					</div>
 					<div class="el-message-box__message" style="margin-left: 0px;">
-						<p>属性类型</p>
+						<p>Attribute types</p>
 					</div>
 
 
 
 					<div class="el-message-box__input">
-						<el-checkbox v-model="addFirstObj.isSearch">是否是检索</el-checkbox>
+						<el-checkbox v-model="addFirstObj.isSearch">Is Search</el-checkbox>
 					</div>
 					<div class="el-message-box__input">
-						<el-checkbox v-model="addFirstObj.isColor">是否是颜色</el-checkbox>
+						<el-checkbox v-model="addFirstObj.isColor">Is Color</el-checkbox>
 					</div>	
 					<div class="el-message-box__input">
-						<el-checkbox v-model="addFirstObj.isSize">是否是尺寸</el-checkbox>
+						<el-checkbox v-model="addFirstObj.isSize">Is Size</el-checkbox>
 					</div>
 					<!-- <div class="el-message-box__input">
 						<el-checkbox v-model="addFirstObj.isSale">是否是销售</el-checkbox>
@@ -105,7 +105,7 @@
 				<div class="el-message-box__content">
 					<div class="el-message-box__status"></div>
 					<div class="el-message-box__message" style="margin-left: 0px;">
-						<p>请输入属性名</p>
+						<p>Please enter a property name</p>
 					</div>
 					<div class="el-message-box__input">
 						<div class="el-input">
@@ -113,7 +113,7 @@
 						</div>
 					</div>
 					<div class="el-message-box__message" style="margin-left: 0px;">
-						<p>请输入备注</p>
+						<p>Please enter remarks</p>
 					</div>
 					<div class="el-message-box__input">
 						<div class="el-input">

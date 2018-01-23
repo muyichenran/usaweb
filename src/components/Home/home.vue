@@ -31,7 +31,7 @@ export default {
 	margin-top: 10px;
 }
 .admin-right {
-    width: 970px;
+    width: 1070px;
     background: #fff;
     box-shadow: 0 2px 3px rgba(0,0,0,.4);
     padding: 30px 50px;
