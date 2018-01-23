@@ -61,7 +61,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://ws.luxtonusa.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess"
 								:before-upload="beforeAvatarUpload">
@@ -78,7 +78,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://ws.luxtonusa.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess1"
 								:before-upload="beforeAvatarUpload">
@@ -89,7 +89,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://ws.luxtonusa.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess2"
 								:before-upload="beforeAvatarUpload">
@@ -100,7 +100,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://ws.luxtonusa.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess3"
 								:before-upload="beforeAvatarUpload">
@@ -111,7 +111,7 @@
 							<el-upload
 								class="avatar-uploader"
 								name="uploadFile"
-								action="http://ws.luxtonusa.com/picture/upload"
+								action="http://manager.luxtonusa.com/picture/upload"
 								:show-file-list="false"
 								:on-success="handleAvatarSuccess4"
 								:before-upload="beforeAvatarUpload">
@@ -369,7 +369,7 @@ export default {
 
 
 		fqItemListReady:function(){
-			var url='http://ws.luxtonusa.com/item/cat/get/list';
+			var url='http://manager.luxtonusa.com/item/cat/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				if(response.data.status==432){
@@ -387,7 +387,7 @@ export default {
 			});
 		},
 		supplierListReady:function(){
-			var url='http://ws.luxtonusa.com/supplier/get/list';
+			var url='http://manager.luxtonusa.com/supplier/get/list';
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.supplierList=response.data.data;
@@ -396,7 +396,7 @@ export default {
 			});
 		},
 		getPropertyAll:function(){
-			var url='http://ws.luxtonusa.com/property/get/info/'+this.GoodsInfo.catId;
+			var url='http://manager.luxtonusa.com/property/get/info/'+this.GoodsInfo.catId;
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				this.propertyList=response.data.data;
@@ -447,7 +447,7 @@ export default {
 		subGoods:function(){
 			this.GoodsInfo.picList=this.picList;
 			this.GoodsInfo.price=this.price;
-			var url='http://ws.luxtonusa.com/item/insert';
+			var url='http://manager.luxtonusa.com/item/insert';
 			var vm=this;
 			this.$http.post(url,vm.GoodsInfo).then(response => {   
 				if(response.data){
@@ -467,7 +467,7 @@ export default {
 			propertyNewList.push(this.isSearchObj)
 			propertyNewList.push(this.isColorObj)
 			propertyNewList.push(this.isSizeObj);
-			var url2='http://ws.luxtonusa.com/item/insert/property/'+e.data;
+			var url2='http://manager.luxtonusa.com/item/insert/property/'+e.data;
 			this.$http.post(url2,propertyNewList).then(response => {  
 				if(response.data.status==432){
                     this.$message.error("登录过期，请重新登录！");
@@ -484,7 +484,7 @@ export default {
 				this.skuList[i].itemId=e.data;
 			}
 			var vm=this;
-			var url3='http://ws.luxtonusa.com/item/sku/insert';
+			var url3='http://manager.luxtonusa.com/item/sku/insert';
 			this.$http.post(url3,vm.skuList).then(response => { 
 				if(response.data.status==432){
                     this.$message.error("登录过期，请重新登录！");
