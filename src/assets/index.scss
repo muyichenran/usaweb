@@ -134,11 +134,11 @@ $F76260:#F76260;
     .el-checkbox{
         margin-right: 15px;
         margin-bottom: 10px;
-        display: inline-block;
+        display: inline-block !important;
     }
-    .el-checkbox, .el-checkbox__input{
-        display: initial;
-    }
+    // .el-checkbox__input{
+    //     display: initial;
+    // }
 }
 .avatar-uploader-icon{
     line-height: 118px !important;
