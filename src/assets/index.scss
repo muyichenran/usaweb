@@ -139,6 +139,9 @@ $F76260:#F76260;
     // .el-checkbox__input{
     //     display: initial;
     // }
+    .el-checkbox+.el-checkbox{
+        margin-left: 0 !important;
+    }
 }
 .avatar-uploader-icon{
     line-height: 118px !important;
