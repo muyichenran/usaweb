@@ -10,7 +10,7 @@
                         </td>
                     </tr> -->
 					<tr>
-                        <td align="right"  width="150">Merchandise Names</td>
+                        <td align="right"  width="155">Merchandise Names</td>
                         <td width="750">
                             <el-input v-model="GoodsInfo.title" class="width300"  placeholder="Please Enter Merchandise Names"></el-input>
                         </td>
@@ -127,7 +127,7 @@
                         <td>
                             <div class="product-speci">
 								<div class="item-block color-block">
-									<p class="title">color</p>	
+									<p class="title">Color:</p>	
 									<div class="attribute-list">
 										<!-- {{colorList}} -->
 										<el-checkbox-group v-model="colorList">
