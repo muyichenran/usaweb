@@ -373,7 +373,7 @@ export default {
 			var vm=this;
 			this.$http.post(url).then(response => {   
 				if(response.data.status==432){
-                    this.$message.error("登录过期，请重新登录！");
+                    this.$message.error("Your login has been expired, please re-login	！");
 					this.$cookie.delete('adminLogin');
 					this.$store.state.adminLogin='';
                     this.$router.replace("/Login")
@@ -440,7 +440,7 @@ export default {
 		beforeAvatarUpload(file) {
 			const isLt2M = file.size / 1024 / 1024 < 2;
 			if (!isLt2M) {
-				this.$message.error('上传头像图片大小不能超过 2MB!');
+				this.$message.error(' Profile picture no greater than 2MB!');
 			}
 			return isLt2M;
 		},
@@ -470,7 +470,7 @@ export default {
 			var url2='http://manager.luxtonusa.com/item/insert/property/'+e.data;
 			this.$http.post(url2,propertyNewList).then(response => {  
 				if(response.data.status==432){
-                    this.$message.error("登录过期，请重新登录！");
+                    this.$message.error("Your login has been expired, please re-login	！");
 					this.$cookie.delete('adminLogin');
 					this.$store.state.adminLogin='';
                     this.$router.replace("/Login")
@@ -487,7 +487,7 @@ export default {
 			var url3='http://manager.luxtonusa.com/item/sku/insert';
 			this.$http.post(url3,vm.skuList).then(response => { 
 				if(response.data.status==432){
-                    this.$message.error("登录过期，请重新登录！");
+                    this.$message.error("Your login has been expired, please re-login	！");
 					this.$cookie.delete('adminLogin');
 					this.$store.state.adminLogin='';
                     this.$router.replace("/Login")

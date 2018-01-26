@@ -95,7 +95,7 @@ export default {
 			var vm=this;
 			this.$http.post(url).then(response => {  
 				if(response.data.status==432){
-					this.$message.error("登录过期，请重新登录！");
+					this.$message.error("Your login has been expired, please re-login	！");
 					this.$cookie.delete('adminLogin');
 					this.$store.state.adminLogin='';
 					this.$router.replace("/Login")
@@ -116,7 +116,7 @@ export default {
 			var vm=this;
 			this.$http.post(url,vm.item).then(response => { 
 				if(response.data.status==432){
-					this.$message.error("登录过期，请重新登录！");
+					this.$message.error("Your login has been expired, please re-login	！");
 					this.$cookie.delete('adminLogin');
 					this.$store.state.adminLogin='';
 					this.$router.replace("/Login")

@@ -161,7 +161,7 @@ export default {
 					var url='http://manager.luxtonusa.com/back/advert/get/list?typeId='+this.searchId;
 					this.$http.post(url).then(response => {
 						if(response.data.status==432){
-							this.$message.error("登录过期，请重新登录！");
+							this.$message.error("Your login has been expired, please re-login	！");
 							this.$cookie.delete('adminLogin');
 							this.$store.state.adminLogin='';
 							this.$router.replace("/Login")
@@ -180,7 +180,7 @@ export default {
 						var url='http://manager.luxtonusa.com/back/advert/type/insert';
 						this.$http.post(url,vm.typeObj).then(response => { 
 							if(response.data.status==432){
-								this.$message.error("登录过期，请重新登录！");
+								this.$message.error("Your login has been expired, please re-login	！");
 								this.$cookie.delete('adminLogin');
 								this.$store.state.adminLogin='';
 								this.$router.replace("/Login")
@@ -207,7 +207,7 @@ export default {
 						var url='http://manager.luxtonusa.com/back/advert/type/get/list';
 						this.$http.post(url).then(response => { 
 							if(response.data.status==432){
-								this.$message.error("登录过期，请重新登录！");
+								this.$message.error("Your login has been expired, please re-login	！");
 								this.$cookie.delete('adminLogin');
 								this.$store.state.adminLogin='';
 								this.$router.replace("/Login")
@@ -226,7 +226,7 @@ export default {
 						var url='http://manager.luxtonusa.com/back/advert/insert';
 						this.$http.post(url,vm.newAdver).then(response => { 
 							if(response.data.status==432){
-								this.$message.error("登录过期，请重新登录！");
+								this.$message.error("Your login has been expired, please re-login	！");
 								this.$cookie.delete('adminLogin');
 								this.$store.state.adminLogin='';
 								this.$router.replace("/Login")
@@ -259,7 +259,7 @@ export default {
 									var url='http://manager.luxtonusa.com/back/advert/type/delete/'+e;
 									this.$http.post(url).then(response => { 
 										if(response.data.status==432){
-											this.$message.error("登录过期，请重新登录！");
+											this.$message.error("Your login has been expired, please re-login	！");
 											this.$cookie.delete('adminLogin');
 											this.$store.state.adminLogin='';
 											this.$router.replace("/Login")
@@ -305,7 +305,7 @@ export default {
 							var url='http://manager.luxtonusa.com/back/advert/delete/'+e;
 							this.$http.post(url).then(response => { 
 								if(response.data.status==432){
-									this.$message.error("登录过期，请重新登录！");
+									this.$message.error("Your login has been expired, please re-login	！");
 									this.$cookie.delete('adminLogin');
 									this.$store.state.adminLogin='';
 									this.$router.replace("/Login")
