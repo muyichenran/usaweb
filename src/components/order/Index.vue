@@ -18,12 +18,14 @@
     	<div class="admin-list">
             <div v-for="(item,index) in orderList" class="order-item">
 				<div class="order-top clearfix">
-					<span>Order Number:</span>{{item.orderId}}
-					<span>Order Date:</span>{{item.createTime}}
+					<span>Order Id:</span>{{item.orderId}}
+					<span>Order Date:</span>{{item.createTime |formatTime}}
 					<span>Total Amount：</span><i class="money">{{item.payment}}</i>
+					<span>Num：</span>{{item.items.length}}
 					<span v-if="item.status==2" class="f-r">Complete</span>
+
 					<a v-else @click="goSuccessStatus(item.orderId)" class="f-r"  href="javascript:;">Confirm to complete</a>
-					
+					<a @click="windowHref(item.orderId)" class="f-r" style="margin-right:40px">Export</a>
 				</div>
 				<table class="order-table">
 					<thead>
@@ -174,6 +176,9 @@ export default {
 				}      
 			}, response => {
 			});
+		},
+		windowHref(e){
+			window.location.href='http://manager.luxtonusa.com/back/order/exportOrder?orderId='+e;
 		}
 		
     },
@@ -216,7 +221,7 @@ export default {
 	.order-top{
 		height: 40px;
 		line-height: 40px;
-		font-size: 16px;
+		font-size: 14px;
 		color: #95989a;
 		padding: 0 10px;
 		span{
