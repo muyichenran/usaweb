@@ -43,7 +43,7 @@
                 label="Operating"
                 >
                 <template slot-scope="scope">
-                    <el-button  type="primary">Edit</el-button>
+                    <el-button  @click="Edit(scope.index)" type="primary">Edit</el-button>
                 </template>
                 </el-table-column>
             </el-table>    
@@ -148,7 +148,10 @@ export default {
 			this.addSubShow=false;
 			this.User={};
 		},
-		
+		Edit(e){
+			this.User=this.userList[e];
+			this.addSubShow=true;				
+		},
 		addUser:function(){
 			if(this.User.username==''||this.User.password==''||this.User.username==null||this.User.password==null){
 				this.$message.error('用户名、密码不得为空');
