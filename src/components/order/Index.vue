@@ -27,6 +27,11 @@
 					<a v-else @click="goSuccessStatus(item.orderId)" class="f-r"  href="javascript:;">Confirm to complete</a>
 					<a @click="windowHref(item.orderId)" class="f-r" style="margin-right:40px">Export</a>
 				</div>
+				<div class="order-top clearfix">
+					<span>User Name:</span>{{item.name}}
+					<span>Phone:</span>{{item.phone}}
+					<span>Remark：</span>{{item.remark}}
+				</div>
 				<table class="order-table">
 					<thead>
 						<tr>
@@ -117,6 +122,8 @@ export default {
 					this.total=response.data.data.total;
 					if(this.total<10){
 						this.pageShow=false
+					}else{
+						this.pageShow=true;
 					}
 				}else{
 					this.$message({

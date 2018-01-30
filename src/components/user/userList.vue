@@ -150,6 +150,7 @@ export default {
 		},
 		Edit(e){
 			this.User=this.userList[e];
+			this.User.password2=this.User.password;
 			this.addSubShow=true;				
 		},
 		addUser:function(){
