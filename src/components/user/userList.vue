@@ -43,7 +43,7 @@
                 label="Operating"
                 >
                 <template slot-scope="scope">
-                    <el-button  @click="Edit(scope.index)" type="primary">Edit</el-button>
+                    <el-button  @click="Edit(scope.$index)" type="primary">Edit</el-button>
                 </template>
                 </el-table-column>
             </el-table>    
