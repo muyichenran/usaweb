@@ -3,8 +3,7 @@
    	<header class="admin-top">
         <div class="center1200 clearfix">
             <router-link style="display: inline-block;"  :to="{path:'/'}">
-                <img class="logo" src="././assets/logo.png" />
-                <span class="company-name">魔卡情感-后台</span>
+                <span class="company-name">Romon</span>
             </router-link>
             
             <div v-if="adminLogin"  class="admin-login">
