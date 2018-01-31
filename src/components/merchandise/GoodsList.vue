@@ -7,8 +7,8 @@
 			<div class="top-search">
 				<el-select v-model="select"  placeholder="Please Select">
 					<el-option label="All" value=""></el-option>
-					<el-option label="上架" value="true"></el-option>
-					<el-option label="下架" value="false"></el-option>
+					<el-option label="Added" value="true"></el-option>
+					<el-option label="Sold out" value="false"></el-option>
 				</el-select>
 				<el-button @click="goSearch()" type="primary" icon="search">Search</el-button>
 			</div>
@@ -53,8 +53,8 @@
 				label="Operating"
 				>
 					<template slot-scope="scope">
-						<el-button v-if="scope.row.status" @click="modifyStateSingle(scope.row.itemId,false)" type="info">下架</el-button>
-						<el-button v-else @click="modifyStateSingle(scope.row.itemId,true)" type="success">上架</el-button>
+						<el-button v-if="scope.row.status" @click="modifyStateSingle(scope.row.itemId,false)" type="info">Sold out</el-button>
+						<el-button v-else @click="modifyStateSingle(scope.row.itemId,true)" type="success">Added</el-button>
 						<el-button @click="edit(scope.row.itemId,scope.row)">Edit inventory</el-button>
 						<el-button type="danger" @click="delect(scope.row.itemId)">Delect</el-button>
 					</template>
