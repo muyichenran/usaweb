@@ -29,14 +29,14 @@
                 var vm=this;
                 var apiUrl='http://manager.luxtonusa.com/back/admin/login';
                 if(vm.item.username==undefined||vm.item.password==undefined){
-                    this.$message.error('用户名、密码不得为空！');
+                    this.$message.error('User name and password must be entered！');
                     return false;
                 }
                 this.$http.post(apiUrl, vm.item).then(response => {                
                     if(response.body.msg=="OK" && response.body.status=="200"){
                         this.$cookie.set('adminLogin',true)
                         this.$store.state.adminLogin=true;
-                        this.$message.success('登录成功，正在跳转……');
+                        this.$message.success('You are login……');
                         var vm=this;
                         this.sign={};
                         setTimeout(() => {

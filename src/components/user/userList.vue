@@ -155,11 +155,11 @@ export default {
 		},
 		addUser:function(){
 			if(this.User.username==''||this.User.password==''||this.User.username==null||this.User.password==null){
-				this.$message.error('用户名、密码不得为空');
+				this.$message.error('User name and password must be entered！');
 				return false;
 			}
 			if(this.User.password!==this.User.password2){
-				this.$message.error('两次密码不一致');
+				this.$message.error('Re-enter password doesn’t match original password！');
 				return false;
 			}
 			var url='http://manager.luxtonusa.com/back/user/insert';

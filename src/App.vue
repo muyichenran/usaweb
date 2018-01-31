@@ -42,12 +42,12 @@ export default {
 	        var vm=this;
 	        this.$http.post(url).then(response => {   
 	            if(response.data.status==432){
-                    this.$message.error("Your login has been expired, please re-login	！");
+                    this.$message.error("Your login has been expired, please re-login！");
 					this.$cookie.delete('adminLogin');
 					this.$store.state.adminLogin='';
                     this.$router.replace("/Login")
                 }else if(response.data.status==200){
-					this.$message.success('成功退出');
+					this.$message.success('Successful launch');
 					var vm=this;
 					setTimeout(() => {
 						vm.$router.push({path:'/Login'})
